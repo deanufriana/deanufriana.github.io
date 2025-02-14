@@ -1,0 +1,30 @@
+---
+import { simpleIcon } from "@/constants/url";
+import contacts from "@/data/contacts.json";
+import { Image } from "astro:assets";
+---
+
+<footer class="footer">
+  <h3>Contact me</h3>
+  <div class="groups">
+    {
+      contacts.map((contact) => (
+        <a href={contact.url} target="_blank">
+          <Image
+            width="32"
+            height="32"
+            src={`${simpleIcon}/${contact.icon}`}
+            alt={contact.icon}
+          />
+        </a>
+      ))
+    }
+  </div>
+</footer>
+
+<style>
+  .footer {
+    padding: var(--size-4);
+    background-color: var(--surface-2);
+  }
+</style>

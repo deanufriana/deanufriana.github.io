@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import "./css/experience.css";
-
 import companies from "@/data/companies.json";
 import Center from "@/components/Center.vue";
 import Card from "@/components/Card.vue";

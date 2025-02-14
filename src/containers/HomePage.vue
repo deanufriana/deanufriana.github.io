@@ -26,7 +26,7 @@ const yearExperience = computed(() => {
         <a href="#about">
           <Button variant="primary">Found out more</Button>
         </a>
-        <a href="https://www.upwork.com/freelancers/~0184d7dce8f8055ca5">
+        <a href="https://www.linkedin.com/in/devinufriana">
           <Button variant="secondary">Hire me</Button>
         </a>
       </div>
