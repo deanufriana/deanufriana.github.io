@@ -1,1 +1,1 @@
-export const simpleIcon = "https://cdn.simpleicons.org/";
+export const simpleIcon = 'https://cdn.simpleicons.org';

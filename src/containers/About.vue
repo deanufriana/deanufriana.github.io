@@ -18,9 +18,6 @@ const techIcons = [
   "npm",
   "python",
   "react",
-  "redux",
-  "sublimetext",
-  "visualstudiocode",
   "vuedotjs",
 ];
 </script>
