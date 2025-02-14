@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import "./css/button.css";
 type variant = "primary" | "secondary";
 
-withDefaults(defineProps<{ variant: variant }>(), {
+withDefaults(defineProps<{ variant?: variant }>(), {
   variant: "primary",
 });
 
@@ -13,3 +12,7 @@ withDefaults(defineProps<{ variant: variant }>(), {
     <slot />
   </button>
 </template>
+
+<style scoped>
+@import "./css/button.css";
+</style>

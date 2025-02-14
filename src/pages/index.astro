@@ -4,6 +4,7 @@ import HomePage from "@/containers/HomePage.vue";
 import About from "@/containers/About.astro";
 import Experience from "@/containers/Experience.vue";
 import Footer from "@/containers/Footer.astro";
+import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
 ---
 
 <!DOCTYPE html>
@@ -28,7 +29,8 @@ import Footer from "@/containers/Footer.astro";
     </script>
   </head>
   <body>
-    <HomePage />
+    <ToggleThemeButton style="position: absolute; top: 12px; right: 12px;" client:idle />
+    <HomePage client:load />
     <About />
     <Experience />
     <Footer />
