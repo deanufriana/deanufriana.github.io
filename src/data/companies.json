@@ -10,11 +10,14 @@
             {
                 "role": "Frontend Software Engineer",
                 "experience": [
-                    "Reliably delivered high-quality code enhancements, consistently ensuring peak performance.",
                     "Proficiently developed integration tests using Playwright to validate software functionality and reliability.",
                     "Took charge of refining the UI Detail page, implementing improvements for an enhanced user experience.",
-                    "Conducted comprehensive software analysis to identify opportunities for performance enhancement and implemented strategies to optimize system efficiency."
-                ]
+                    "Conducted comprehensive software analysis to identify opportunities for performance enhancement and implemented strategies to optimize system efficiency.",
+                    "Refactored the review page, hall of fame page, and latet to the latest Vue version, improving performance and reusability by creating modular components",
+                    "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
+                    "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
+                ],
+                "development": ["Vue"]
             }
         ]
     },
@@ -33,7 +36,8 @@
                     "Upgraded the application to utilize the latest React technology stack.",
                     "Took on a pivotal role in enhancing the TMLI web application.",
                     "Consistently contributed high-quality code and improvements, ensuring optimal performance."
-                ]
+                ],
+                "development": ["React JS"]
             },
             {
                 "role": "UI/UX Implementation - Kitasiap.com",
@@ -41,15 +45,16 @@
                     "Translated design concepts into a functional and user-friendly web interface.",
                     "Adapted the UI/UX of kitasiap.com to align with user preferences and client expectations.",
                     "Leveraged HTML, CSS, and JavaScript to create engaging user interactions."
-                ]
+                ],
+                "development": ["React JS"]
             }, 
             {
                 "role": "Customer Care Access - Polis Web Access",
                 "experience": [
                     "Successfully implemented a web-based customer care access system for the insurance industry.",
-                    "Ensured seamless user access to policy information and services.",
-                    "Employed technologies such as JavaScript, ReactJS, ViteJS, Git, Nginx, and Linux to achieve project goals."
-                ]
+                    "Ensured seamless user access to policy information and services."
+                ],
+                "development": ["React JS"]
             }
         ]
     },
@@ -66,7 +71,8 @@
                 "experience": [
                     "Spearheaded the transformation of the 'Mylife' mobile application, transitioning it from React Native to Flutter.",
                     "Conducted thorough testing and optimization to enhance user experience and app performance."
-                ]
+                ],
+                "development": ["Flutter", "React Native"]
             },
             {
                 "role": "Web and Mobile Application Development",
@@ -74,14 +80,8 @@
                     "Successfully managed three distinct application projects, showcasing adaptability across diverse technologies.",
                     "Developed a customer care application, ensuring seamless access to vital services.",
                     "Contributed significantly to the maintenance and enhancement of the web application 'Digiform' using ReactJS."
-                ]
-            },
-            {
-                "role": "Technology Stack",
-                "experience": [
-                    "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
-                    "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
-                ]
+                ],
+                "development": ["ExpressJS", "MySQL"]
             }
         ]
     }
