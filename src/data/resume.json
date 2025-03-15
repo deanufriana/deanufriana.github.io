@@ -76,7 +76,6 @@
             "position": "Software Frontend Development",
             "url": "https://www.blibli.com",
             "startDate": "2022-08-01",
-            "endDate": "Present",
             "summary": "Frontend Engineer with expertise in Vue and UI optimization. Developed integration tests using Playwright to ensure software reliability. Led UI improvements, refactored key pages to the latest Vue version, and migrated the Review Center from Java to Vue for better performance and maintainability. Conducted software analysis to enhance system efficiency and implemented new features based on product requirements.",
             "highlights": [
                 "Proficiently developed integration tests using Playwright to validate software functionality and reliability.",
