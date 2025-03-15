@@ -23,33 +23,18 @@
     },
     "work": [
         {
-            "name": "BRI Life",
-            "position": "Software Development",
-            "url": "https://brilife.co.id",
-            "startDate": "2019-02-01",
-            "endDate": "2021-03-01",
-            "summary": "Software Engineer with experience in mobile and web development. Led the migration of the 'Mylife' app from React Native to Flutter and managed multiple projects across different technologies. Developed and maintained applications like 'Digiform' using ReactJS and built a customer care app for seamless service access. Skilled in JavaScript, React, ExpressJS, Git, SQL Server, and Linux server configuration, with expertise in deploying applications across environments",
+            "name": "Blibli",
+            "position": "Software Frontend Development",
+            "url": "https://www.blibli.com",
+            "startDate": "2022-08-01",
+            "summary": "Frontend Engineer with expertise in Vue and UI optimization. Developed integration tests using Playwright to ensure software reliability. Led UI improvements, refactored key pages to the latest Vue version, and migrated the Review Center from Java to Vue for better performance and maintainability. Conducted software analysis to enhance system efficiency and implemented new features based on product requirements.",
             "highlights": [
-                "Spearheaded the transformation of the 'Mylife' mobile application, transitioning it from React Native to Flutter.",
-                "Conducted thorough testing and optimization to enhance user experience and app performance.",
-                "Successfully managed three distinct application projects, showcasing adaptability across diverse technologies.",
-                "Developed a customer care application, ensuring seamless access to vital services.",
-                "Contributed significantly to the maintenance and enhancement of the web application 'Digiform' using ReactJS.",
-                "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
-                "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
-            ]
-        },
-        {
-            "name": "Glovory",
-            "position": "Backend Engineer",
-            "url": "https://glovory.solutions/",
-            "startDate": "2022-03-01",
-            "endDate": "2022-07-01",
-            "summary": "Backend Developer with expertise in database implementation, data migration, and API development. Skilled in translating ERD designs into functional SQL databases (MySQL, SQL Server) and optimizing complex queries for efficient data handling. Successfully managed data migrations while ensuring integrity and minimal disruption. Proficient in building robust APIs using Express and NestJS to enable seamless system interactions.",
-            "highlights": [
-                "Database Implementation Expertise: I translated the ERD design into a functional SQL database, employing MySQL or SQL Server. My experience with complex queries allowed for efficient data retrieval and manipulation.",
-                "Efficient Data Migration: I successfully managed the migration of data to the new ERD structure, ensuring data integrity and minimizing disruptions during the transition.",
-                "API Development Excellence: Leveraging modern frameworks such as Express or NestJS, I designed and developed robust APIs that powered the project's functionality, ensuring seamless communication and interaction."
+                "Proficiently developed integration tests using Playwright to validate software functionality and reliability.",
+                "Took charge of refining the UI Detail page, implementing improvements for an enhanced user experience.",
+                "Conducted comprehensive software analysis to identify opportunities for performance enhancement and implemented strategies to optimize system efficiency.",
+                "Refactored the review page, hall of fame page, and latet to the latest Vue version, improving performance and reusability by creating modular components",
+                "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
+                "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
             ]
         },
         {
@@ -72,18 +57,33 @@
             ]
         },
         {
-            "name": "Blibli",
-            "position": "Software Frontend Development",
-            "url": "https://www.blibli.com",
-            "startDate": "2022-08-01",
-            "summary": "Frontend Engineer with expertise in Vue and UI optimization. Developed integration tests using Playwright to ensure software reliability. Led UI improvements, refactored key pages to the latest Vue version, and migrated the Review Center from Java to Vue for better performance and maintainability. Conducted software analysis to enhance system efficiency and implemented new features based on product requirements.",
+            "name": "Glovory",
+            "position": "Backend Engineer",
+            "url": "https://glovory.solutions/",
+            "startDate": "2022-03-01",
+            "endDate": "2022-07-01",
+            "summary": "Backend Developer with expertise in database implementation, data migration, and API development. Skilled in translating ERD designs into functional SQL databases (MySQL, SQL Server) and optimizing complex queries for efficient data handling. Successfully managed data migrations while ensuring integrity and minimal disruption. Proficient in building robust APIs using Express and NestJS to enable seamless system interactions.",
             "highlights": [
-                "Proficiently developed integration tests using Playwright to validate software functionality and reliability.",
-                "Took charge of refining the UI Detail page, implementing improvements for an enhanced user experience.",
-                "Conducted comprehensive software analysis to identify opportunities for performance enhancement and implemented strategies to optimize system efficiency.",
-                "Refactored the review page, hall of fame page, and latet to the latest Vue version, improving performance and reusability by creating modular components",
-                "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
-                "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
+                "Database Implementation Expertise: I translated the ERD design into a functional SQL database, employing MySQL or SQL Server. My experience with complex queries allowed for efficient data retrieval and manipulation.",
+                "Efficient Data Migration: I successfully managed the migration of data to the new ERD structure, ensuring data integrity and minimizing disruptions during the transition.",
+                "API Development Excellence: Leveraging modern frameworks such as Express or NestJS, I designed and developed robust APIs that powered the project's functionality, ensuring seamless communication and interaction."
+            ]
+        },
+        {
+            "name": "BRI Life",
+            "position": "Software Development",
+            "url": "https://brilife.co.id",
+            "startDate": "2019-02-01",
+            "endDate": "2021-03-01",
+            "summary": "Software Engineer with experience in mobile and web development. Led the migration of the 'Mylife' app from React Native to Flutter and managed multiple projects across different technologies. Developed and maintained applications like 'Digiform' using ReactJS and built a customer care app for seamless service access. Skilled in JavaScript, React, ExpressJS, Git, SQL Server, and Linux server configuration, with expertise in deploying applications across environments",
+            "highlights": [
+                "Spearheaded the transformation of the 'Mylife' mobile application, transitioning it from React Native to Flutter.",
+                "Conducted thorough testing and optimization to enhance user experience and app performance.",
+                "Successfully managed three distinct application projects, showcasing adaptability across diverse technologies.",
+                "Developed a customer care application, ensuring seamless access to vital services.",
+                "Contributed significantly to the maintenance and enhancement of the web application 'Digiform' using ReactJS.",
+                "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
+                "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
             ]
         }
     ],
@@ -168,5 +168,8 @@
             "highlights": [],
             "url": "https://github.com/deanufriana/sistem_skripsi"
         }
-    ]
+    ],
+    "meta": {
+        "theme": "jsonresume-theme-onepage-plus"
+    }
 }
