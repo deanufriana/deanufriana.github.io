@@ -22,11 +22,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Install, build, and upload your site
         uses: withastro/action@v2
-      - name: Update Resume Gist
-        uses: exuanbo/actions-deploy-gist@v1
-        with:
-          gist_id: b0396934938be633d75f134046ae8806
-          file_path: src/data/resume.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
