@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-import "./css/experience.css";
-import companies from "@/data/companies.json";
-import Center from "@/components/Center.vue";
 import Card from "@/components/Card.vue";
+import Center from "@/components/Center.vue";
+import resume from "@/data/resume.json";
+import "./css/experience.css";
+
+const formatDate = (date: string | undefined | null) => {
+  if (!date) return 'Present';
+  return new Date(date).toLocaleDateString('en-US', { year: 'numeric', month: 'short' });
+};
 </script>
 
 <template>
@@ -10,20 +15,17 @@ import Card from "@/components/Card.vue";
     <div class="content" id="experience">
       <h1>Experience</h1>
       <div class="list">
-        <Card v-for="company in companies">
+        <Card v-for="work in resume.work" :key="work.name">
           <h3>
-            {{ company.name }}
-            <span class="role">{{ company.role }}</span>
+            <a :href="work.url" target="_blank">{{ work.name }}</a>
+            <span class="role">{{ work.position }}</span>
           </h3>
-          <time>{{ company.date.start }} - {{ company.date.end }}</time>
+          <time>{{ formatDate(work.startDate) }} - {{ formatDate(work.endDate) }}</time>
           <hr />
+          <p>{{ work.summary }}</p>
           <ol>
-            <li v-for="job in company.jobDesc">
-             <b>{{ job.role }}</b>
-              <ul>
-                <li v-for="exp in job.experience">{{ exp }}</li>
-              </ul>
-              <br>
+            <li v-for="highlight in work.highlights" :key="highlight">
+              {{ highlight }}
             </li>
           </ol>
         </Card>

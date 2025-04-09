@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "./css/center.css";
-withDefaults(defineProps<{ isFullHeight?: boolean, id?: String }>(), { isFullHeight: true });
+withDefaults(defineProps<{ isFullHeight?: boolean, id?: string }>(), { isFullHeight: true });
 </script>
 
 <template>

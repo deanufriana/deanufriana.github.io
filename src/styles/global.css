@@ -12,12 +12,25 @@
 }
 
 .h-screen {
-  height: 100vh;
+  height: 100dvh;
 }
 
-.mark {
+.typewriter, .mark {
   color: var(--brand);
   display: inline-block;
+  position: relative;
+}
+
+.typewriter:not(:empty)::after {
+  content: '|';
+  position: absolute;
+  right: -0.2em;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 .groups {

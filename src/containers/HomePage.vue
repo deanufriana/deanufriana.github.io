@@ -1,8 +1,22 @@
 <script lang="ts" setup>
-import { computed, onMounted } from "vue";
-import companies from "@/data/companies.json";
 import Button from "@/components/Button.vue";
 import Center from "@/components/Center.vue";
+import { useTypewriter } from "@/composables/string";
+import companies from "@/data/companies.json";
+import { computed, onMounted } from "vue";
+
+const texts = computed(() => {
+  // Get unique roles from companies.json
+  const roles = new Set(companies.map(company => company.role));
+  return Array.from(roles);
+});
+
+const { typedText } = useTypewriter(texts.value, {
+  typingSpeed: 100,
+  deletingSpeed: 50,
+  pauseDuration: 2000,
+  startDelay: 500
+});
 
 onMounted(() => {
   document.documentElement.setAttribute(
@@ -27,7 +41,7 @@ const yearExperience = computed(() => {
       <h4>Hello,</h4>
       <h1>I am <span class="mark">Devi Adi Nufriana</span></h1>
       <p>
-        a <span class="mark">Software Engineer</span> with
+        a <span class="typewriter">{{ typedText }}</span> with
         {{ yearExperience }} year of experience
       </p>
       <div class="groups">
