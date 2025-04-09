@@ -2,13 +2,13 @@
 import Button from "@/components/Button.vue";
 import Center from "@/components/Center.vue";
 import { useTypewriter } from "@/composables/string";
-import companies from "@/data/companies.json";
+import resume from "@/data/resume.json";
 import { computed, onMounted } from "vue";
 
 const texts = computed(() => {
-  // Get unique roles from companies.json
-  const roles = new Set(companies.map(company => company.role));
-  return Array.from(roles);
+  // Get unique positions from resume.json
+  const positions = new Set(resume.work.map(job => job.position));
+  return Array.from(positions);
 });
 
 const { typedText } = useTypewriter(texts.value, {
@@ -27,9 +27,7 @@ onMounted(() => {
 
 const yearExperience = computed(() => {
   const getYear = new Date().getFullYear();
-  const firstJob = new Date(
-    companies[companies.length - 1].date.start
-  ).getFullYear();
+  const firstJob = new Date(resume.work[resume.work.length - 1].startDate).getFullYear();
   const yearExperience = getYear - firstJob;
   return yearExperience;
 });
