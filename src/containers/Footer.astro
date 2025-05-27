@@ -4,9 +4,9 @@ import contacts from "@/data/contacts.json";
 import { Image } from "astro:assets";
 ---
 
-<footer class="footer">
-  <h3>Contact me</h3>
-  <div class="groups">
+<footer class="flex flex-col p-4 shadow-md border-t-4 gap-2 bg-gray-100">
+  <h3 class="text-lg font-bold">Contact me</h3>
+  <div class="flex gap-4">
     {
       contacts.map((contact) => (
         <a href={contact.url} target="_blank">

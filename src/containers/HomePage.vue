@@ -1,13 +1,12 @@
 <script lang="ts" setup>
-import Button from "@/components/Button.vue";
-import Center from "@/components/Center.vue";
+import Button from "@/components/ui/button/Button.vue";
 import { useTypewriter } from "@/composables/string";
 import resume from "@/data/resume.json";
 import { computed, onMounted } from "vue";
 
 const texts = computed(() => {
   // Get unique positions from resume.json
-  const positions = new Set(resume.work.map(job => job.position));
+  const positions = new Set(resume.work.map((job) => job.position));
   return Array.from(positions);
 });
 
@@ -15,7 +14,7 @@ const { typedText } = useTypewriter(texts.value, {
   typingSpeed: 100,
   deletingSpeed: 50,
   pauseDuration: 2000,
-  startDelay: 500
+  startDelay: 500,
 });
 
 onMounted(() => {
@@ -27,29 +26,33 @@ onMounted(() => {
 
 const yearExperience = computed(() => {
   const getYear = new Date().getFullYear();
-  const firstJob = new Date(resume.work[resume.work.length - 1].startDate).getFullYear();
+  const firstJob = new Date(
+    resume.work[resume.work.length - 1].startDate
+  ).getFullYear();
   const yearExperience = getYear - firstJob;
   return yearExperience;
 });
 </script>
 
 <template>
-  <Center>
-    <div class="content">
-      <h4>Hello,</h4>
-      <h1>I am <span class="mark">Devi Adi Nufriana</span></h1>
-      <p>
-        a <span class="typewriter">{{ typedText }}</span> with
+  <div class="h-screen dark:bg-gray-800  flex justify-center items-center">
+    <div class="flex gap-2 flex-col">
+      <h4 class="text-2xl font-bold">Hello,</h4>
+      <h1 class="text-5xl font-bold">
+        I am <span class="text-blue-600">Devi Adi Nufriana</span>
+      </h1>
+      <p class="text-base">
+        a <span class="text-blue-600 typewriter">{{ typedText }}</span> with
         {{ yearExperience }} year of experience
       </p>
-      <div class="groups">
+      <div class="flex gap-2">
         <a href="#about">
-          <Button>Found out more</Button>
+          <Button size="lg">Found out more</Button>
         </a>
         <a href="https://www.linkedin.com/in/devinufriana">
-          <Button variant="secondary">Hire me</Button>
+          <Button size="lg" variant="secondary">Hire me</Button>
         </a>
       </div>
     </div>
-  </Center>
+  </div>
 </template>
