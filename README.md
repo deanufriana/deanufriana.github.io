@@ -1,65 +1,145 @@
-# Astro Starter Kit: Blog
+# Personal Portfolio Website
+
+A modern, responsive personal portfolio website built with **Astro** and **Vue.js**, showcasing professional experience, skills, and projects.
+
+## ✨ Features
+
+- 📱 **Responsive Layout** - Optimized for all devices and screen sizes
+- ⚡ **Performance Optimized** - Built with Astro for optimal loading speeds
+- 🎭 **Interactive Elements** - Typewriter effect, smooth animations, and dynamic content
+- 📊 **SEO Optimized** - Meta tags, sitemap, and RSS feed support
+- 🚀 **Modern Tech Stack** - Vue 3, Tailwind CSS, and TypeScript
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Astro](https://astro.build/) - Static site generator
+- **Frontend**: [Vue.js 3](https://vuejs.org/) - Progressive JavaScript framework
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS framework
+- **Language**: [TypeScript](https://www.typescriptlang.org/) - Type-safe JavaScript
+- **Icons**: [Lucide Vue](https://lucide.dev/) - Beautiful & consistent icon toolkit
+- **UI Components**: [Reka UI](https://reka-ui.com/) - Modern component library
+- **Build Tool**: [Vite](https://vitejs.dev/) - Fast build tool and dev server
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (version 18 or higher)
+- npm or yarn package manager
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/deanufriana/deanufriana.github.io.git
+   cd deanufriana.github.io
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000` to view your site
+
+## 📁 Project Structure
 
 ```
-npm create astro@latest -- --template blog
+src/
+├── components/          # Reusable Vue components
+│   ├── ui/             # UI component library
+│   └── ...             # Custom components
+├── containers/          # Page sections and layouts
+├── data/               # Static data (resume, contacts, icons)
+├── composables/        # Vue composables and utilities
+├── styles/             # Global CSS and Tailwind configuration
+├── pages/              # Astro pages and routing
+└── lib/                # Utility functions and helpers
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/withastro/astro/tree/latest/examples/blog)
+## 🎯 Available Scripts
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Build for production |
+| `npm run preview` | Preview production build |
+| `npm run astro` | Run Astro CLI commands |
 
+## 🌐 Deployment
 
-![blog](https://user-images.githubusercontent.com/4677417/186189140-4ef17aac-c3c9-4918-a8c2-ce86ba1bb394.png)
+This project is configured for GitHub Pages deployment. The build output is automatically generated in the `dist/` folder.
 
-Features:
+### Build for Production
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-├── public/
-├── src/
-│   ├── components/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```bash
+npm run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Deploy to GitHub Pages
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. Build the project: `npm run build`
+2. Push the `dist/` folder to your `gh-pages` branch
+3. Configure GitHub Pages to serve from the `gh-pages` branch
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🎨 Customization
 
-## 🧞 Commands
+### Personal Information
+Update your personal details in the following files:
+- `src/data/resume.json` - Work experience and skills
+- `src/data/contacts.json` - Contact information
+- `src/data/icons.json` - Technology icons to display
 
-All commands are run from the root of the project, from a terminal:
+### Styling
+- Modify `src/styles/global.css` for custom styles
+- Update Tailwind configuration for theme customization
+- Customize component styles in individual Vue components
 
-| Command                | Action                                           |
-| :--------------------- | :----------------------------------------------- |
-| `npm install`          | Installs dependencies                            |
-| `npm run dev`          | Starts local dev server at `localhost:3000`      |
-| `npm run build`        | Build your production site to `./dist/`          |
-| `npm run preview`      | Preview your build locally, before deploying     |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro --help` | Get help using the Astro CLI                     |
+### Content
+- Edit `src/containers/` components to modify page sections
+- Update the main page layout in `src/pages/index.astro`
 
-## 👀 Want to learn more?
+## 📱 Responsive Design
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The portfolio is fully responsive and optimized for:
+- Desktop (1200px+)
+- Tablet (768px - 1199px)
+- Mobile (320px - 767px)
 
-## Credit
+## 🔧 Configuration
 
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Key configuration files:
+- `astro.config.mjs` - Astro configuration
+- `tailwind.config.js` - Tailwind CSS configuration
+- `tsconfig.json` - TypeScript configuration
+- `package.json` - Dependencies and scripts
+
+## 🤝 Contributing
+
+This is a personal portfolio project, but if you find any bugs or have suggestions for improvements, feel free to:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📄 License
+
+This project is private and intended for personal use.
+
+## 👤 About
+
+**Devi Adi Nufriana** - A technology enthusiast driven by continuous learning and exploration in the ever-evolving world of technology.
+
+- **LinkedIn**: [devinufriana](https://www.linkedin.com/in/devinufriana)
+- **Portfolio**: [deanufriana.github.io](https://deanufriana.github.io)
+
+---
+
+Built with ❤️ using [Astro](https://astro.build/) and [Vue.js](https://vuejs.org/)
