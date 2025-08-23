@@ -38,11 +38,19 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Bump version
-        run: npm version patch
-      - name: Push changes
+      
+      - name: Bump version (no git tagging)
         run: |
+          npm version patch --no-git-tag-version
+          node -p "require('./package.json').version" > .version
+
+      - name: Commit & tag
+        run: |
+          VERSION=$(cat .version)
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git push origin master
-          git push origin --tags # If npm version created a tag
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json || true
+          git commit -m "chore(release): v$VERSION [skip ci]" || echo "No changes to commit"
+          git tag -a "v$VERSION" -m "Release v$VERSION" || echo "Tag exists"
+          BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          git push origin "$BRANCH" --follow-tags
