@@ -50,11 +50,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 24
+      - name: Configure Git
+        run: |
+          git config user.name "deanufriana"
+          git config user.email "deanheart09@gmail.com"
       - name: Bump version
         run: npm version patch
-      - run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Push changes
+        run: |
           git push origin master
           git push origin --tags # If npm version created a tag
     
