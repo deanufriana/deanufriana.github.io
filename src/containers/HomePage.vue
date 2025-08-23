@@ -34,15 +34,15 @@ const yearExperience = computed(() => {
         I am <span class="text-blue-600">Devi Adi Nufriana</span>
       </h1>
       <p class="text-base">
-        a <span class="text-blue-600 typewriter">{{ typedText }}</span> with
-        {{ yearExperience }} year of experience
+        A <span class="text-blue-600 typewriter">{{ typedText }}</span> with
+        {{ yearExperience }} years of experience
       </p>
       <div class="flex gap-2">
-        <a href="#about">
-          <Button size="lg">Found out more</Button>
+        <a href="#experience">
+          <Button size="lg">Find out more</Button>
         </a>
-        <a href="https://www.linkedin.com/in/devinufriana">
-          <Button size="lg" variant="secondary">Hire me</Button>
+        <a href="https://registry.jsonresume.org/deanufriana">
+          <Button size="lg" variant="secondary">Resume</Button>
         </a>
       </div>
     </div>

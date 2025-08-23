@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { simpleIcon } from "@/constants/url";
 import icons from "@/data/icons.json";
+import resume from "@/data/resume.json";
 </script>
 
 
@@ -8,8 +9,7 @@ import icons from "@/data/icons.json";
   <div id="about" class="flex gap-4 flex-col p-6 bg-gray-600 text-white">
     <h1 class="text-5xl font-bold">About</h1>
     <p class="text-base">
-      A technology enthusiast is endlessly driven by the pursuit of continuous
-      learning and exploration in the ever-evolving world of technology
+      {{ resume.basics.summary }}
     </p>
     <div class="flex flex-wrap gap-2">
       <div v-for="icon in icons" :key="icon">

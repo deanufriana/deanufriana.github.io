@@ -13,7 +13,7 @@ const formatDate = (date: string | undefined | null) => {
 </script>
 
 <template>
-  <div class="flex gap-4 p-4 flex-col bg-gray-800 text-white">
+  <div id="experience" class="flex gap-4 p-4 flex-col bg-gray-800 text-white">
     <h1 class="text-5xl font-bold py-3">Experience</h1>
     <div class="flex overflow-x-auto snap-x snap-mandatory gap-4">
       <Card v-for="work in resume.work" class="min-w-[90%] bg-gray-700 border-blue-200 rounded-l text-white snap-start md:min-w-[32%]" :key="work.name">
