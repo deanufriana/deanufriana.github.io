@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import "./css/timeline.css";
+import Badge from "./ui/badge/Badge.vue";
 defineProps<{
   name: string;
   role: string;
@@ -13,7 +13,7 @@ defineProps<{
     <div class="timeline__right">
       <h3>
         {{ name }}
-        <span class="role">{{ role }}</span>
+        <Badge class="role">{{ role }}</Badge>
       </h3>
       <time>{{ date.start }} - {{ date.end }}</time>
       <ul>

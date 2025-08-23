@@ -11,7 +11,7 @@ const toggleTheme = () => {
 <template>
   <button
     @click="toggleTheme"
-    class="theme-toggle"
+    class="theme-toggle cursor-pointer"
     id="theme-toggle"
     title="Toggles light & dark"
     aria-label="auto"
