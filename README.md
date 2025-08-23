@@ -1,6 +1,16 @@
 # Personal Portfolio Website
 
-A modern, responsive personal portfolio website built with **Astro** and **Vue.js**, showcasing professional experience, skills, and projects.
+A modern, responsive personal portfolio website built with **Astro** and **Vue.js**, showcasing professional experience, skills, and projects. This project serves as my **personal testing ground** for exploring and experimenting with various web technologies, frameworks, and development practices.
+
+## 🎯 Project Purpose
+
+This portfolio website is more than just a showcase of my work - it's an **active learning laboratory** where I:
+
+- **Test new technologies** and frameworks to understand their capabilities
+- **Experiment with different approaches** to web development and design
+- **Practice modern development practices** like component architecture, responsive design, and performance optimization
+- **Learn by doing** - implementing features I want to understand better
+- **Document my learning journey** through code and implementation choices
 
 ## ✨ Features
 
@@ -9,6 +19,7 @@ A modern, responsive personal portfolio website built with **Astro** and **Vue.j
 - 🎭 **Interactive Elements** - Typewriter effect, smooth animations, and dynamic content
 - 📊 **SEO Optimized** - Meta tags, sitemap, and RSS feed support
 - 🚀 **Modern Tech Stack** - Vue 3, Tailwind CSS, and TypeScript
+- 🧪 **Technology Testing** - Continuously evolving with new experiments and features
 
 ## 🛠️ Tech Stack
 
@@ -19,6 +30,17 @@ A modern, responsive personal portfolio website built with **Astro** and **Vue.j
 - **Icons**: [Lucide Vue](https://lucide.dev/) - Beautiful & consistent icon toolkit
 - **UI Components**: [Reka UI](https://reka-ui.com/) - Modern component library
 - **Build Tool**: [Vite](https://vitejs.dev/) - Fast build tool and dev server
+
+## 🔬 Learning & Testing Focus
+
+This project is intentionally designed to explore:
+
+- **Component Architecture**: Testing different ways to structure Vue components
+- **Performance Optimization**: Experimenting with Astro's static generation capabilities
+- **Responsive Design**: Testing various approaches to mobile-first development
+- **Modern CSS**: Exploring Tailwind CSS utilities and custom styling solutions
+- **TypeScript Integration**: Learning type safety in Vue.js applications
+- **Build Tools**: Understanding Vite and modern development workflows
 
 ## 🚀 Getting Started
 
@@ -135,10 +157,11 @@ This project is private and intended for personal use.
 
 ## 👤 About
 
-**Devi Adi Nufriana** - A technology enthusiast driven by continuous learning and exploration in the ever-evolving world of technology.
+**Devi Adi Nufriana** - A technology enthusiast driven by continuous learning and exploration in the ever-evolving world of technology. I believe in learning through hands-on experimentation, which is why this portfolio serves as both a showcase and a testing environment for new technologies.
 
 - **LinkedIn**: [devinufriana](https://www.linkedin.com/in/devinufriana)
 - **Portfolio**: [deanufriana.github.io](https://deanufriana.github.io)
+- **Learning Approach**: Hands-on experimentation with real projects
 
 ---
 
