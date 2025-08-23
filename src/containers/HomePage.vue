@@ -2,10 +2,9 @@
 import Button from "@/components/ui/button/Button.vue";
 import { useTypewriter } from "@/composables/string";
 import resume from "@/data/resume.json";
-import { computed, onMounted } from "vue";
+import { computed } from "vue";
 
 const texts = computed(() => {
-  // Get unique positions from resume.json
   const positions = new Set(resume.work.map((job) => job.position));
   return Array.from(positions);
 });
@@ -15,13 +14,6 @@ const { typedText } = useTypewriter(texts.value, {
   deletingSpeed: 50,
   pauseDuration: 2000,
   startDelay: 500,
-});
-
-onMounted(() => {
-  document.documentElement.setAttribute(
-    "data-theme",
-    window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-  );
 });
 
 const yearExperience = computed(() => {
@@ -35,8 +27,8 @@ const yearExperience = computed(() => {
 </script>
 
 <template>
-  <div class="h-screen dark:bg-gray-800  flex justify-center items-center">
-    <div class="flex gap-2 flex-col">
+  <div class="h-screen bg-gray-800 text-white flex justify-center items-center">
+    <div class="flex gap-2 flex-col p-6">
       <h4 class="text-2xl font-bold">Hello,</h4>
       <h1 class="text-5xl font-bold">
         I am <span class="text-blue-600">Devi Adi Nufriana</span>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import "./css/timeline.css";
 import Badge from "./ui/badge/Badge.vue";
 defineProps<{
   name: string;

@@ -1,9 +1,9 @@
 ---
 import "../styles/global.css";
 import HomePage from "@/containers/HomePage.vue";
-import About from "@/containers/About.astro";
+import About from "@/containers/About.vue";
 import Experience from "@/containers/Experience.vue";
-import Footer from "@/containers/Footer.astro";
+import Footer from "@/containers/Footer.vue";
 import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
 ---
 
@@ -29,9 +29,8 @@ import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
     </script>
   </head>
   <body>
-    <ToggleThemeButton style="position: absolute; top: 12px; right: 12px;" client:idle />
     <HomePage client:load />
-    <About />
+    <About client:load />
     <Experience />
     <Footer />
   </body>

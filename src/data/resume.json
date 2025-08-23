@@ -58,19 +58,6 @@
             ]
         },
         {
-            "name": "Glovory",
-            "position": "Backend Engineer",
-            "url": "https://glovory.solutions/",
-            "startDate": "2022-03-01",
-            "endDate": "2022-07-01",
-            "summary": "Backend Developer specializing in database architecture and API development. Designed scalable database solutions and built robust RESTful APIs.",
-            "highlights": [
-                "Database Implementation Expertise: I translated the ERD design into a functional SQL database, employing MySQL or SQL Server. My experience with complex queries allowed for efficient data retrieval and manipulation.",
-                "Efficient Data Migration: I successfully managed the migration of data to the new ERD structure, ensuring data integrity and minimizing disruptions during the transition.",
-                "API Development Excellence: Leveraging modern frameworks such as Express or NestJS, I designed and developed robust APIs that powered the project's functionality, ensuring seamless communication and interaction."
-            ]
-        },
-        {
             "name": "BRI Life",
             "position": "Software Development",
             "url": "https://brilife.co.id",

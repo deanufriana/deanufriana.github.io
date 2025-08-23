@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import "./css/card.css";
 withDefaults(defineProps<{ isFullHeight?: boolean }>(), { isFullHeight: true });
 </script>
 
