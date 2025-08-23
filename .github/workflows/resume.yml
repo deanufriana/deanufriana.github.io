@@ -1,0 +1,27 @@
+name: on Update Resume
+
+on:
+  # Trigger the workflow every time you push to the `master` branch
+  # Using a different branch name? Replace `master` with your branch’s name
+  push:
+    branches: [master]
+    paths: [src/data/resume.json]
+  # Allows you to run this workflow manually from the Actions tab on GitHub.
+  workflow_dispatch:
+
+# Allow this job to clone the repo and create a page deployment
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Resume Gist
+        uses: exuanbo/actions-deploy-gist@v1
+        with:
+          token: ${{ secrets.GIST_TOKEN }}
+          gist_id: b0396934938be633d75f134046ae8806
+          file_path: src/data/resume.json
