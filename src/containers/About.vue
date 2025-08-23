@@ -5,7 +5,7 @@ import icons from "@/data/icons.json";
 
 
 <template>
-  <div class="flex gap-4 flex-col p-6 bg-gray-600 text-white">
+  <div id="about" class="flex gap-4 flex-col p-6 bg-gray-600 text-white">
     <h1 class="text-5xl font-bold">About</h1>
     <p class="text-base">
       A technology enthusiast is endlessly driven by the pursuit of continuous
