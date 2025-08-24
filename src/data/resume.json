@@ -36,7 +36,8 @@
                 "Refactored the review page, hall of fame page, and latet to the latest Vue version, improving performance and reusability by creating modular components",
                 "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
                 "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
-            ]
+            ],
+            "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
         },
         {
             "name": "Frisidea",
@@ -55,7 +56,8 @@
                 "Successfully implemented a web-based customer care access system for the insurance industry.",
                 "Ensured seamless user access to policy information and services.",
                 "Employed technologies such as JavaScript, ReactJS, ViteJS, Git, Nginx, and Linux to achieve project goals."
-            ]
+            ],
+            "skills": ["JavaScript", "ReactJS", "Linux"]
         },
         {
             "name": "BRI Life",
@@ -72,6 +74,15 @@
                 "Contributed significantly to the maintenance and enhancement of the web application 'Digiform' using ReactJS.",
                 "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
                 "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
+            ],
+            "skills": [
+                "JavaScript",
+                "ReactJS",
+                "Flutter",
+                "ExpressJS",
+                "SQL Server",
+                "Linux",
+                "NodeJS"
             ]
         }
     ],

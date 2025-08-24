@@ -27,23 +27,22 @@ const yearExperience = computed(() => {
 </script>
 
 <template>
-  <div class="h-screen bg-gray-800 text-white flex justify-center items-center">
-    <div class="flex gap-2 flex-col p-6">
-      <h4 class="text-2xl font-bold">Hello,</h4>
-      <h1 class="text-5xl font-bold">
-        I am <span class="text-blue-600">Devi Adi Nufriana</span>
-      </h1>
-      <p class="text-base">
-        A <span class="text-blue-600 typewriter">{{ typedText }}</span> with
-        {{ yearExperience }} years of experience
-      </p>
-      <div class="flex gap-2">
-        <a href="#experience">
-          <Button size="lg">Find out more</Button>
-        </a>
-        <a href="https://registry.jsonresume.org/deanufriana">
-          <Button size="lg" variant="secondary">Resume</Button>
-        </a>
+  <div class="h-screen bg-gray-800 text-gray-100 flex items-center">
+    <div class="container flex gap-4 mx-auto">
+      <div class="flex gap-2 flex-col p-6">
+        <h4 class="text-2xl font-bold">Hello,</h4>
+        <h1 class="text-5xl font-bold">
+          I am <span class="text-blue-600">Devi Adi Nufriana</span>
+        </h1>
+        <p class="text-base">
+          A <span class="text-blue-600 typewriter">{{ typedText }}</span> with
+          {{ yearExperience }} years of experience
+        </p>
+        <div class="flex gap-2">
+          <a href="#experience">
+            <Button variant="outline" size="lg">More about me</Button>
+          </a>
+        </div>
       </div>
     </div>
   </div>

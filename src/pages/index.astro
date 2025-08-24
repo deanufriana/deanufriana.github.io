@@ -4,7 +4,6 @@ import HomePage from "@/containers/HomePage.vue";
 import About from "@/containers/About.vue";
 import Experience from "@/containers/Experience.vue";
 import Footer from "@/containers/Footer.vue";
-import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
 ---
 
 <!DOCTYPE html>
@@ -13,8 +12,8 @@ import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="favicon.svg" />
-    <title>Personal Portofolio</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <title>Hi, I’m Devi — Frontend Engineer</title>
     <script
       type="text/partytown"
       src="https://www.googletagmanager.com/gtag/js?id=G-5XH9HL1N8D"
@@ -30,8 +29,8 @@ import ToggleThemeButton from "@/components/ToggleThemeButton.vue";
   </head>
   <body>
     <HomePage client:load />
-    <About client:load />
-    <Experience />
+    <About />
+    <Experience client:load />
     <Footer />
   </body>
 </html>
