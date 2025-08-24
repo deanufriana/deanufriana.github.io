@@ -12,15 +12,6 @@ This portfolio website is more than just a showcase of my work - it's an **activ
 - **Learn by doing** - implementing features I want to understand better
 - **Document my learning journey** through code and implementation choices
 
-## ✨ Features
-
-- 📱 **Responsive Layout** - Optimized for all devices and screen sizes
-- ⚡ **Performance Optimized** - Built with Astro for optimal loading speeds
-- 🎭 **Interactive Elements** - Typewriter effect, smooth animations, and dynamic content
-- 📊 **SEO Optimized** - Meta tags, sitemap, and RSS feed support
-- 🚀 **Modern Tech Stack** - Vue 3, Tailwind CSS, and TypeScript
-- 🧪 **Technology Testing** - Continuously evolving with new experiments and features
-
 ## 🛠️ Tech Stack
 
 - **Framework**: [Astro](https://astro.build/) - Static site generator
@@ -70,21 +61,6 @@ This project is intentionally designed to explore:
 4. **Open your browser**
    Navigate to `http://localhost:3000` to view your site
 
-## 📁 Project Structure
-
-```
-src/
-├── components/          # Reusable Vue components
-│   ├── ui/             # UI component library
-│   └── ...             # Custom components
-├── containers/          # Page sections and layouts
-├── data/               # Static data (resume, contacts, icons)
-├── composables/        # Vue composables and utilities
-├── styles/             # Global CSS and Tailwind configuration
-├── pages/              # Astro pages and routing
-└── lib/                # Utility functions and helpers
-```
-
 ## 🎯 Available Scripts
 
 | Command | Description |
@@ -123,38 +99,6 @@ Update your personal details in the following files:
 - Update Tailwind configuration for theme customization
 - Customize component styles in individual Vue components
 
-### Content
-- Edit `src/containers/` components to modify page sections
-- Update the main page layout in `src/pages/index.astro`
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive and optimized for:
-- Desktop (1200px+)
-- Tablet (768px - 1199px)
-- Mobile (320px - 767px)
-
-## 🔧 Configuration
-
-Key configuration files:
-- `astro.config.mjs` - Astro configuration
-- `tailwind.config.js` - Tailwind CSS configuration
-- `tsconfig.json` - TypeScript configuration
-- `package.json` - Dependencies and scripts
-
-## 🤝 Contributing
-
-This is a personal portfolio project, but if you find any bugs or have suggestions for improvements, feel free to:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-This project is private and intended for personal use.
-
 ## 👤 About
 
 **Devi Adi Nufriana** - A technology enthusiast driven by continuous learning and exploration in the ever-evolving world of technology. I believe in learning through hands-on experimentation, which is why this portfolio serves as both a showcase and a testing environment for new technologies.
@@ -164,5 +108,3 @@ This project is private and intended for personal use.
 - **Learning Approach**: Hands-on experimentation with real projects
 
 ---
-
-Built with ❤️ using [Astro](https://astro.build/) and [Vue.js](https://vuejs.org/)
