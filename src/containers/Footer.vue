@@ -8,7 +8,7 @@ import contacts from "@/data/contacts.json";
     <h3 class="text-lg font-bold">Contact me</h3>
     <div class="flex gap-4">
       <div v-for="contact in contacts" :key="contact.icon">
-        <a :href="contact.url" target="_blank">
+        <a :href="contact.url" target="_blank" rel="noopener noreferrer">
           <img width="32" height="32" :src="`${simpleIcon}/${contact.icon}`" :alt="contact.icon" />
         </a>
       </div>
