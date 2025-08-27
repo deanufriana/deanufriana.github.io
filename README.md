@@ -59,7 +59,7 @@ This project is intentionally designed to explore:
    ```
 
 4. **Open your browser**
-   Navigate to `http://localhost:3000` to view your site
+   Navigate to `http://localhost:4321` (or the port shown after running `npm run dev`) to view your site. You can override the port with `--port`, e.g., `npm run dev -- --port 3000`.
 
 ## 🎯 Available Scripts
 
