@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, onUnmounted } from 'vue';
 
 interface TypewriterOptions {
   typingSpeed?: number;
@@ -20,6 +20,7 @@ export function useTypewriter(texts: string[], options: TypewriterOptions = {}) 
   let currentCharIndex = 0;
   let isDeleting = false;
   let currentSpeed = typingSpeed;
+  let timeoutId: ReturnType<typeof setTimeout>;
 
   const type = () => {
     const currentText = texts[currentTextIndex];
@@ -47,11 +48,15 @@ export function useTypewriter(texts: string[], options: TypewriterOptions = {}) 
       currentSpeed = startDelay;
     }
 
-    setTimeout(type, currentSpeed);
+    timeoutId = setTimeout(type, currentSpeed);
   };
 
   // Start the typewriter effect
-  setTimeout(type, startDelay);
+  timeoutId = setTimeout(type, startDelay);
+
+  onUnmounted(() => {
+    clearTimeout(timeoutId);
+  });
 
   return {
     typedText
