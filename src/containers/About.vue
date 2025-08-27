@@ -17,7 +17,11 @@ import resume from "@/data/resume.json";
           <img width="32" height="32" :src="`${simpleIcon}/${icon}`" :alt="icon" />
         </div>
       </div>
-      <a target="_blank" href="https://registry.jsonresume.org/deanufriana">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://registry.jsonresume.org/deanufriana"
+        >
         <Button size="lg" variant="secondary">Download CV</Button>
       </a>
     </div>
