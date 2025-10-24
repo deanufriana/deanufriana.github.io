@@ -7,11 +7,10 @@
         "url": "https://deanufriana.github.io",
         "summary": "I am Software Engineer with expertise in React and Vue. Passionate about exploring new technologies to optimize feature development for speed and efficiency. Experienced in rebuilding websites using the latest technologies to enhance performance, maintainability, and code readability. Committed to delivering fast, scalable, and high-quality solutions",
         "location": {
-            "address": "Ir. Juanda St",
-            "postalCode": "52146",
-            "city": "Tegal",
+            "postalCode": "13950",
+            "city": "East Jakarta",
             "countryCode": "ID",
-            "region": "South East Asia"
+            "region": "Indonesia"
         },
         "image": "https://media.licdn.com/dms/image/v2/C5603AQEmOped69Jl7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1603892082142?e=1749686400&v=beta&t=egYHX4_TPza5o6xdTzEBjbAFNKp1O0z-QOelgNkhsL0",
         "profiles": [
@@ -116,6 +115,7 @@
             "keywords": [
                 "Vue.js",
                 "React.js",
+                "Express.js",
                 "TypeScript",
                 "JavaScript (ES6+)",
                 "HTML5/CSS3"
@@ -171,6 +171,6 @@
         }
     ],
     "meta": {
-        "theme": "onepage-plus"
+        "theme": "macchiato"
     }
 }
