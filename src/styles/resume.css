@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import '@fontsource/lato';
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+/* Print/PDF specific styles */
+@media print {
+    /* Prevent content from being split across pages */
+    body {
+        page-break-inside: avoid;
+    }
+    
+    /* Prevent heading sections from being orphaned */
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+    
+    /* Prevent individual experience items from being split */
+    .experience-item,
+    .work-item {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+    
+    /* Allow page breaks between list items */
+    ul {
+        page-break-inside: auto;
+    }
+    
+    li {
+        page-break-inside: avoid;
+    }
+    
+    /* Ensure proper spacing to avoid orphans and widows */
+    .section {
+        orphans: 3;
+        widows: 3;
+    }
+    
+    /* Prevent HR from breaking pages awkwardly */
+    hr {
+        page-break-after: avoid;
+        page-break-before: auto;
+    }
+}

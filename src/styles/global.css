@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: "Lato", sans-serif;
+  src: url("/fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 @custom-variant dark (&:is(.dark *));
-/* @import "open-props/postcss/style";
-@import "open-props/normalize";
-@import "open-props/theme.light.switch.min.css";
-@import "open-props/theme.dark.switch.min.css"; */
 
 :root {
   --brand: var(--blue-8);
@@ -45,6 +49,7 @@
 }
 
 * {
+  font-family: "Lato", sans-serif;
   scroll-behavior: smooth;
 }
 

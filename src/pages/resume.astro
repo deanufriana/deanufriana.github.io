@@ -1,0 +1,90 @@
+---
+import resume from "@/data/resume.json";
+import { formatDate } from '@/lib/time';
+import "@/styles/resume.css";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume</title>
+  </head>
+  <body class="py-2 px-2">
+    <div class="container mx-auto max-w-screen-md">
+      <h1 class="text-2xl font-bold">
+        {resume.basics.name}, {resume.basics.label}
+      </h1>
+      <div class="flex flex-row gap-2 overflow-x-auto">
+        <span>{resume.basics.email}</span> |
+        <span class="text-nowrap">{resume.basics.phone}</span> |
+        <span>{resume.basics.url}</span>
+      </div>
+      <div class="flex flex-row gap-2">
+        {
+          resume.basics.profiles.map((profile) => (
+            <div class="flex flex-row gap-2">
+              <span class="font-bold">
+                {profile.network}:
+              </span>
+              <a href={profile.url} target="_blank" rel="noopener noreferrer">
+                {profile.url}
+              </a>
+            </div>
+          ))
+        }
+      </div>
+      <hr class="my-4 border border-dashed border-gray-300" />
+      <div class="flex flex-row gap-4">
+        <h2 class="w-30">SUMMARY</h2>
+        <div class="flex-1">{resume.basics.summary}</div>
+      </div>
+      <hr class="my-4 border border-dashed border-gray-300" />
+      <div class="flex flex-row gap-4 overflow-auto">
+        <h2 class="w-30">SKILLS</h2>
+        <div class="flex flex-grow flex-col flex-1">
+          {resume.skills.map((skill) => (
+              <div class="flex flex-row flex-grow gap-2">
+                  <h3 class="font-bold text-nowrap">{skill.name} <span class="italic">({skill.level}) : </span> </h3><span>{skill.keywords.join(', ')}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <hr class="my-4 border border-dashed border-gray-300" />
+      <div class="flex flex-row gap-4">
+        <h2 class="w-30">EXPERIENCE</h2>
+        <div class="flex flex-1 flex-grow flex-col">
+          {resume.work.map(work => (
+              <div class="mb-5 work-item">
+                <div class="flex flex-row justify-between">
+                  <div><span class="font-black">{work.name}</span> | {work.position}</div>
+                  <div>{formatDate(work.startDate)} - {formatDate(work.endDate)}</div>
+                </div>
+                <div class="py-3">{work.summary}</div>
+                <ul class="list-disc pl-5"> {work.highlights.map((highlight) => (<li>{highlight}</li>))}</ul>
+              </div>
+          ))}
+        </div>
+      </div>
+      <hr class="my-4 border border-dashed border-gray-300" />
+      <div class="flex flex-row gap-4">
+        <h2 class="w-30">EDUCATION</h2>
+        <div class="flex flex-grow flex-1">
+          {
+            resume.education.map((education) => (
+              <div class="flex flex-col flex-grow gap-2">
+                <div class="flex justify-between flex-grow">
+                  <a href={education.url}><h3 class="font-bold">{education.institution}</h3></a>
+                  <span>{formatDate(education.startDate)} - {formatDate(education.endDate)}</span>
+                </div>
+                <span>{education.studyType} - {education.area}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
