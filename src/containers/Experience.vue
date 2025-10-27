@@ -2,14 +2,7 @@
 import Badge from "@/components/ui/badge/Badge.vue";
 import { Card, CardContent } from "@/components/ui/card";
 import resume from "@/data/resume.json";
-
-const formatDate = (date: string | undefined | null) => {
-  if (!date) return "Present";
-  return new Date(date).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-  });
-};
+import { formatDate } from '@/lib/time';
 </script>
 
 <template>
