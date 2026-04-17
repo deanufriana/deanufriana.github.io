@@ -43,17 +43,20 @@ This project is intentionally designed to explore:
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/deanufriana/deanufriana.github.io.git
    cd deanufriana.github.io
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -63,12 +66,12 @@ This project is intentionally designed to explore:
 
 ## 🎯 Available Scripts
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build for production |
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start development server |
+| `npm run build`   | Build for production     |
 | `npm run preview` | Preview production build |
-| `npm run astro` | Run Astro CLI commands |
+| `npm run astro`   | Run Astro CLI commands   |
 
 ## 🌐 Deployment
 
@@ -89,12 +92,15 @@ npm run build
 ## 🎨 Customization
 
 ### Personal Information
+
 Update your personal details in the following files:
+
 - `src/data/resume.json` - Work experience and skills
 - `src/data/contacts.json` - Contact information
 - `src/data/icons.json` - Technology icons to display
 
 ### Styling
+
 - Modify `src/styles/global.css` for custom styles
 - Update Tailwind configuration for theme customization
 - Customize component styles in individual Vue components
@@ -103,7 +109,7 @@ Update your personal details in the following files:
 
 **Devi Adi Nufriana** - A technology enthusiast driven by continuous learning and exploration in the ever-evolving world of technology. I believe in learning through hands-on experimentation, which is why this portfolio serves as both a showcase and a testing environment for new technologies.
 
-- **LinkedIn**: [devinufriana](https://www.linkedin.com/in/devinufriana)
+- **LinkedIn**: [deanufriana](https://www.linkedin.com/in/deanufriana)
 - **Portfolio**: [deanufriana.github.io](https://deanufriana.github.io)
 - **Learning Approach**: Hands-on experimentation with real projects
 

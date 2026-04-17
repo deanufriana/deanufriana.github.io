@@ -16,8 +16,8 @@
         "profiles": [
             {
                 "network": "LinkedIn",
-                "username": "devinufriana",
-                "url": "https://www.linkedin.com/in/devinufriana"
+                "username": "deanufriana",
+                "url": "https://www.linkedin.com/in/deanufriana"
             }
         ]
     },
@@ -37,7 +37,12 @@
                 "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
                 "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
             ],
-            "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
+            "skills": [
+                "JavaScript",
+                "Vue.js",
+                "Playwright",
+                "Linux"
+            ]
         },
         {
             "name": "Frisidea",
@@ -57,7 +62,11 @@
                 "Ensured seamless user access to policy information and services.",
                 "Employed technologies such as JavaScript, ReactJS, ViteJS, Git, Nginx, and Linux to achieve project goals."
             ],
-            "skills": ["JavaScript", "ReactJS", "Linux"]
+            "skills": [
+                "JavaScript",
+                "ReactJS",
+                "Linux"
+            ]
         },
         {
             "name": "BRI Life",
