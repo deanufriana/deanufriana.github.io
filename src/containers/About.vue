@@ -66,9 +66,10 @@ const allSkills = computed(() => resume.value.skills.flatMap((s) => s.keywords))
               <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.projects') }}</p>
             </div>
             <div class="p-4 rounded-xl bg-card border border-border card-hover">
-              <p class="text-2xl sm:text-3xl font-bold">{{ resume.education[0].score }}</p>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.gpa') }}</p>
+              <p class="text-2xl sm:text-3xl font-bold">{{ t('about.privacyValue') }}</p>
+              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.privacyLabel') }}</p>
             </div>
+
           </div>
 
           <!-- Skills -->

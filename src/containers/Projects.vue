@@ -18,6 +18,9 @@ const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
         <div>
           <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">{{ t('projects.label') }}</span>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2">{{ t('projects.heading') }}</h2>
+          <p class="text-sm sm:text-base text-muted-foreground mt-4 max-w-2xl leading-relaxed">
+            {{ t('projects.subtitle') }}
+          </p>
         </div>
       </div>
 
@@ -38,9 +41,14 @@ const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
               <h3 class="text-xl font-bold text-foreground group-hover:text-emerald-500 transition-colors">
                 {{ project.name }}
               </h3>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
-                {{ new Date(project.startDate).getFullYear() }} — {{ new Date(project.endDate).getFullYear() }}
-              </p>
+              <div class="flex items-center gap-2 mt-1.5">
+                <span class="px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-500 text-[10px] font-bold uppercase tracking-wider border border-emerald-500/20">
+                  {{ t('projects.openSource') }}
+                </span>
+                <span class="text-[10px] text-muted-foreground font-medium uppercase tracking-wider">
+                  {{ new Date(project.startDate).getFullYear() }}
+                </span>
+              </div>
             </div>
             <!-- Arrow icon -->
             <div class="p-2 rounded-lg bg-accent opacity-0 group-hover:opacity-100 transition-all transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">

@@ -116,11 +116,10 @@ const copyEmail = async () => {
           style="animation-delay: 0.4s; animation-fill-mode: forwards"
         >
           <p class="text-base sm:text-lg text-muted-foreground leading-relaxed">
-            A
+            {{ t("hero.intro") }} <span class="text-foreground font-semibold">{{ yearExperience }}+</span> {{ t("hero.suffix") }}
             <span class="text-foreground font-semibold typewriter">{{
               typedText
             }}</span>
-            {{ t("hero.with") }} {{ yearExperience }}+ {{ t("hero.years") }}
           </p>
         </div>
 

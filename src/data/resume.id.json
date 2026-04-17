@@ -5,7 +5,7 @@
         "email": "devi.nufriana@gmail.com",
         "phone": "(62) 85642612283",
         "url": "https://deanufriana.github.io",
-        "summary": "Saya membantu mewujudkan ide bisnis Anda melalui aplikasi web front-end yang modern, skalabel, dan berkinerja tinggi. Dengan pengalaman lebih dari satu dekade, saya berspesialisasi dalam mengubah masalah kompleks menjadi pengalaman digital yang elegan. Baik Anda membutuhkan solusi aplikasi kustom, modernisasi sistem lama, maupun optimasi performa web, saya siap membantu mengembangkan bisnis Anda.",
+        "summary": "Saya membantu bisnis visioner mewujudkan ide mereka melalui aplikasi web yang berperforma tinggi dan skalabel. Dengan pengalaman lebih dari satu dekade, saya berspesialisasi dalam mengubah masalah kompleks menjadi pengalaman digital yang elegan dan ramah pengguna. Baik Anda membutuhkan aplikasi web kustom, modernisasi sistem lama, maupun konsultasi performa, saya menghadirkan solusi cepat dan mudah dipelihara yang memberikan hasil nyata.",
         "location": {
             "postalCode": "13950",
             "city": "Jakarta Timur",
@@ -22,6 +22,26 @@
         ]
     },
     "work": [
+        {
+            "name": "BRI Life",
+            "position": "Software Engineer",
+            "startDate": "2025-11-06",
+            "endDate": "",
+            "summary": "Full-stack engineer yang bertanggung jawab menganalisis masalah bisnis dan berkolaborasi dengan tim lintas fungsi dalam tim integrasi digital untuk merancang dan meningkatkan alur kerja sistem, mengurangi redundansi, dan meningkatkan efisiensi operasional.",
+            "highlights": [
+                "Menganalisis dan mengoptimalkan alur kerja yang ada untuk mengurangi redundansi dan meningkatkan efisiensi sistem",
+                "Merancang dan mengimplementasikan microservice notifikasi untuk mendukung integrasi sistem yang skalabel",
+                "Berkolaborasi dengan beberapa tim untuk merampingkan proses integrasi antar sistem",
+                "Mengimplementasikan pipeline CI/CD menggunakan GitLab CI untuk meningkatkan otomasi deployment"
+            ],
+            "skills": [
+                "Go Lang",
+                "VueJs",
+                "Docker",
+                "Gitlab"
+            ],
+            "url": "https://brilife.co.id/"
+        },
         {
             "name": "Blibli",
             "position": "Software Frontend Engineer",
@@ -76,13 +96,11 @@
             "endDate": "2021-03-01",
             "summary": "Full-stack Developer yang bertanggung jawab memodernisasi aplikasi seluler dan web. Memimpin migrasi aplikasi 'Mylife' ke Flutter dan mengimplementasikan best-practice React modern.",
             "highlights": [
-                "Memelopori transformasi aplikasi mobile 'Mylife', beralih dari React Native ke Flutter.",
-                "Melakukan pengujian dan optimasi mendalam untuk meningkatkan pengalaman pengguna dan performa aplikasi.",
-                "Berhasil mengelola tiga proyek aplikasi berbeda, menunjukkan kemampuan adaptasi di berbagai teknologi.",
-                "Mengembangkan aplikasi customer care, memastikan akses tanpa batas ke layanan penting.",
-                "Berkontribusi signifikan dalam pemeliharaan dan peningkatan aplikasi web 'Digiform' menggunakan ReactJS.",
-                "Mahir menggunakan stack teknologi yang beragam, termasuk JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, dan konfigurasi Linux server.",
-                "Dibekali dengan keahlian untuk mengonfigurasi dan men-deploy aplikasi di berbagai environment, baik development maupun production."
+                "Led system analysis and migration of mobile applications from React Native to Flutter",
+                "Managed multiple application systems, ensuring scalability and consistent performance across platforms",
+                "Designed and implemented backend services and APIs to support business operations",
+                "Collaborated with cross-functional teams to improve system functionality and user experience",
+                "Supported deployment and environment configuration for development and production systems"
             ],
             "skills": [
                 "JavaScript",
@@ -107,16 +125,6 @@
             "courses": []
         }
     ],
-    "awards": [],
-    "certificates": [
-        {
-            "name": "Certified Software Engineer",
-            "date": "2019-12-12",
-            "issuer": "Pijar Camp",
-            "url": "https://certificate.com"
-        }
-    ],
-    "publications": [],
     "skills": [
         {
             "name": "Web Development",
@@ -147,8 +155,29 @@
                 "MySQL",
                 "RESTful APIs"
             ]
+        },
+        {
+            "name": "DevOps & Infrastruktur",
+            "level": "Intermediate",
+            "keywords": [
+                "Docker",
+                "CI/CD (GitHub Actions, GitLab CI)",
+                "Server Linux",
+                "Git"
+            ]
         }
     ],
+    "volunteer": [],
+    "awards": [],
+    "certificates": [
+        {
+            "name": "Certified Software Engineer",
+            "date": "2019-12-12",
+            "issuer": "Pijar Camp",
+            "url": "https://certificate.com"
+        }
+    ],
+    "publications": [],
     "languages": [
         {
             "language": "Indonesia",
@@ -163,12 +192,26 @@
     "references": [],
     "projects": [
         {
-            "name": "Mortgage Loan",
+            "name": "Resume Lab",
+            "startDate": "2025-10-01",
+            "endDate": "2025-10-10",
+            "description": "Laboratorium resume modern dan ramah ATS yang dibangun dengan Vue 3, TypeScript, Vite, dan Tailwind CSS. Buat resume profesional dengan mengunggah file JSON atau mengisi formulir secara manual, lalu buat PDF yang dioptimalkan untuk Applicant Tracking Systems (ATS).",
+            "highlights": [
+                "Membangun laboratorium resume modern dan ramah ATS menggunakan Vue 3, TypeScript, Vite, dan Tailwind CSS",
+                "Mengimplementasikan unggah file JSON dan pengisian formulir manual untuk pembuatan resume",
+                "Mengembangkan pembuatan PDF dengan optimasi ATS untuk resume profesional",
+                "Menciptakan antarmuka yang ramah pengguna untuk pengelolaan dan kustomisasi resume",
+                "Mengintegrasikan teknologi web modern untuk pengalaman pengguna yang mulus"
+            ],
+            "url": "https://deanufriana.github.io/resume-lab/"
+        },
+        {
+            "name": "Simulasi KPR",
             "startDate": "2018-03-01",
             "endDate": "2019-04-01",
-            "description": "",
+            "description": "Aplikasi Kalkulator KPR modern dan responsif yang dibangun dengan React dan Vite. Aplikasi ini membantu pengguna memperkirakan cicilan KPR bulanan mereka, dengan mempertimbangkan suku bunga **fixed** dan **floating**.",
             "highlights": [],
-            "url": "https://simulasi-kpr.vercel.app"
+            "url": "https://deanufriana.github.io/simulasi-kpr/"
         },
         {
             "name": "Sistem Skripsi",

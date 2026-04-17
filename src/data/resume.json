@@ -23,6 +23,26 @@
     },
     "work": [
         {
+            "name": "BRI Life",
+            "position": "Software Engineer",
+            "startDate": "2025-11-06",
+            "endDate": "",
+            "summary": "Full-stack engineer responsible for analyzing business problems and collaborating with cross-functional teams within the digital integration team to design and improve system workflows, reducing redundancy and increasing operational efficiency.",
+            "highlights": [
+                "Analyzed and optimized existing workflows to reduce redundancy and improve system efficiency",
+                "Designed and implemented a notification microservice to support scalable system integration",
+                "Collaborated with multiple teams to streamline integration processes across systems",
+                "Implemented CI/CD pipelines using GitLab CI to improve deployment automation"
+            ],
+            "skills": [
+                "Go Lang",
+                "VueJs",
+                "Docker",
+                "Gitlab"
+            ],
+            "url": "https://brilife.co.id/"
+        },
+        {
             "name": "Blibli",
             "position": "Software Frontend Engineer",
             "url": "https://www.blibli.com",
@@ -107,16 +127,6 @@
             "courses": []
         }
     ],
-    "awards": [],
-    "certificates": [
-        {
-            "name": "Certified Software Engineer",
-            "date": "2019-12-12",
-            "issuer": "Pijar Camp",
-            "url": "https://certificate.com"
-        }
-    ],
-    "publications": [],
     "skills": [
         {
             "name": "Web Development",
@@ -144,11 +154,33 @@
             "level": "Intermediate",
             "keywords": [
                 "Express.js",
+                "Go",
                 "MySQL",
                 "RESTful APIs"
             ]
+        },
+        {
+            "name": "DevOps & Infrastructure",
+            "level": "Intermediate",
+            "keywords": [
+                "Docker",
+                "CI/CD (GitHub Actions, GitLab CI)",
+                "Linux Server",
+                "Git"
+            ]
         }
     ],
+    "volunteer": [],
+    "awards": [],
+    "certificates": [
+        {
+            "name": "Certified Software Engineer",
+            "date": "2019-12-12",
+            "issuer": "Pijar Camp",
+            "url": "https://certificate.com"
+        }
+    ],
+    "publications": [],
     "languages": [
         {
             "language": "Indonesia",
@@ -163,12 +195,26 @@
     "references": [],
     "projects": [
         {
+            "name": "Resume Lab",
+            "startDate": "2025-10-01",
+            "endDate": "2025-10-10",
+            "description": "A modern, ATS-friendly resume lab built with Vue 3, TypeScript, Vite, and Tailwind CSS. Create professional resumes by uploading JSON files or filling in forms manually, then generate PDFs optimized for Applicant Tracking Systems.",
+            "highlights": [
+                "Built a modern, ATS-friendly resume lab using Vue 3, TypeScript, Vite, and Tailwind CSS",
+                "Implemented JSON file upload and manual form entry for resume creation",
+                "Developed PDF generation with ATS optimization for professional resumes",
+                "Created a user-friendly interface for resume management and customization",
+                "Integrated modern web technologies for a seamless user experience"
+            ],
+            "url": "https://deanufriana.github.io/resume-lab/"
+        },
+        {
             "name": "Mortgage Loan",
             "startDate": "2018-03-01",
             "endDate": "2019-04-01",
-            "description": "",
+            "description": "A modern, responsive Mortgage Calculator (Simulasi KPR) built with React and Vite. This application helps users estimate their monthly mortgage payments, taking into account both **fixed** and **floating** interest rates",
             "highlights": [],
-            "url": "https://simulasi-kpr.vercel.app"
+            "url": "https://deanufriana.github.io/simulasi-kpr/"
         },
         {
             "name": "Sistem Skripsi",
