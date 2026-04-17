@@ -6,61 +6,71 @@
 
 :root {
   --brand: #3b82f6;
-  --background: #ffffff;
-  --foreground: #0a0a0a;
-  --card: #f5f5f5;
-  --card-foreground: #0a0a0a;
+  --background: #fafafa;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
   --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
-  --primary: #0a0a0a;
+  --popover-foreground: #09090b;
+  --primary: #18181b;
   --primary-foreground: #fafafa;
-  --secondary: #f0f0f0;
-  --secondary-foreground: #0a0a0a;
-  --muted: #e5e5e5;
-  --muted-foreground: #737373;
-  --accent: #f0f0f0;
-  --accent-foreground: #0a0a0a;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: #a3a3a3;
-  --radius: 0.75rem;
+  --border: #e2e2e7;
+  --input: #e4e4e7;
+  --ring: #18181b;
+  --radius: 1rem;
 
+  /* Glassmorphism Tokens - Light */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  
   /* Subtle Folio accent */
-  --accent-green: #22c55e;
-  --accent-green-glow: rgba(34, 197, 94, 0.3);
-  --nav-bg: rgba(255, 255, 255, 0.8);
-  --nav-border: rgba(0, 0, 0, 0.08);
-  --card-hover-border: rgba(0, 0, 0, 0.15);
-  --section-alt-bg: #f9fafb;
+  --accent-green: #10b981;
+  --accent-green-glow: rgba(16, 185, 129, 0.15);
+  --nav-bg: rgba(255, 255, 255, 0.75);
+  --nav-border: rgba(0, 0, 0, 0.05);
+  --card-hover-border: rgba(16, 185, 129, 0.2);
+  --section-alt-bg: #f8fafc;
 }
 
 .dark {
-  --background: #0a0a0a;
+  --background: #09090b;
   --foreground: #fafafa;
-  --card: #141414;
+  --card: #111113;
   --card-foreground: #fafafa;
-  --popover: #141414;
+  --popover: #09090b;
   --popover-foreground: #fafafa;
   --primary: #fafafa;
-  --primary-foreground: #0a0a0a;
-  --secondary: #1a1a1a;
+  --primary-foreground: #09090b;
+  --secondary: #18181b;
   --secondary-foreground: #fafafa;
-  --muted: #262626;
-  --muted-foreground: #a3a3a3;
-  --accent: #1a1a1a;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --accent: #18181b;
   --accent-foreground: #fafafa;
   --destructive: oklch(0.396 0.141 25.723);
   --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: #262626;
-  --input: #262626;
-  --ring: #404040;
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #d4d4d8;
 
-  --nav-bg: rgba(10, 10, 10, 0.8);
-  --nav-border: rgba(255, 255, 255, 0.08);
-  --card-hover-border: rgba(255, 255, 255, 0.15);
-  --section-alt-bg: #111111;
+  /* Glassmorphism Tokens - Dark */
+  --glass-bg: rgba(15, 15, 18, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+
+  --nav-bg: rgba(9, 9, 11, 0.75);
+  --nav-border: rgba(255, 255, 255, 0.05);
+  --card-hover-border: rgba(16, 185, 129, 0.3);
+  --section-alt-bg: #0c0c0e;
 }
 
 * {
@@ -74,7 +84,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
   color: var(--foreground);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.3s ease,
+              border-color 0.3s ease;
 }
 
 .h-screen {
@@ -163,25 +175,39 @@ body {
 /* Glassmorphism nav */
 .glass-nav {
   background: var(--nav-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--nav-border);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Card hover effects */
 .card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border);
 }
 
 .card-hover:hover {
   border-color: var(--card-hover-border);
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
 }
 
 .dark .card-hover:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Available badge pulse */

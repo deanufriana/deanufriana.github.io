@@ -81,10 +81,10 @@ const copyEmail = async () => {
             style="animation-delay: 0.1s; animation-fill-mode: forwards"
           >
             <div
-              class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 badge-pulse"
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 backdrop-blur-md badge-pulse"
             >
               <span
-                class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"
+                class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse ring-4 ring-emerald-500/20"
               ></span>
               <span
                 class="text-xs md:text-sm font-semibold text-emerald-500 tracking-wider uppercase"
@@ -104,7 +104,7 @@ const copyEmail = async () => {
           >
             I'm
             <span
-              class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              class="bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent"
               >{{ resume.basics.name }}</span
             >
           </h1>
@@ -117,7 +117,7 @@ const copyEmail = async () => {
         >
           <p class="text-base sm:text-lg text-muted-foreground leading-relaxed">
             A
-            <span class="text-foreground font-medium typewriter">{{
+            <span class="text-foreground font-semibold typewriter">{{
               typedText
             }}</span>
             {{ t("hero.with") }} {{ yearExperience }}+ {{ t("hero.years") }}
@@ -131,7 +131,7 @@ const copyEmail = async () => {
         >
           <a
             :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
-            class="inline-flex items-center gap-2 px-7 py-3 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+            class="inline-flex items-center gap-2 px-8 py-3.5 bg-foreground text-background text-sm font-bold rounded-full hover:opacity-90 transition-all hover:scale-105 active:scale-95 shadow-xl shadow-foreground/10"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +140,7 @@ const copyEmail = async () => {
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="2.5"
               stroke-linecap="round"
               stroke-linejoin="round"
             >
@@ -153,7 +153,7 @@ const copyEmail = async () => {
           </a>
           <button
             @click="copyEmail"
-            class="inline-flex items-center gap-2 px-7 py-3 border border-border text-sm font-semibold rounded-full hover:bg-accent transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            class="inline-flex items-center gap-2 px-8 py-3.5 glass-card text-sm font-bold rounded-full hover:bg-white/10 dark:hover:bg-black/10 transition-all hover:scale-105 active:scale-95 cursor-pointer backdrop-blur-xl"
           >
             <svg
               v-if="!copied"

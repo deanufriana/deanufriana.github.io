@@ -202,52 +202,56 @@ onUnmounted(() => {
           <!-- Theme Toggle -->
           <button
             @click="toggleTheme"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer"
+            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer group/theme"
             :title="isDark ? 'Light Mode' : 'Dark Mode'"
           >
-            <!-- Sun -->
-            <svg
-              v-if="isDark"
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="5" />
-              <line x1="12" y1="1" x2="12" y2="3" />
-              <line x1="12" y1="21" x2="12" y2="23" />
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-              <line x1="1" y1="12" x2="3" y2="12" />
-              <line x1="21" y1="12" x2="23" y2="12" />
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-            </svg>
-            <!-- Moon -->
-            <svg
-              v-else
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-            </svg>
+            <div class="relative w-[18px] h-[18px] transition-transform duration-500 ease-in-out group-active/theme:scale-90" :class="{ 'rotate-[360deg]': isDark }">
+              <!-- Sun -->
+              <svg
+                v-if="isDark"
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="absolute inset-0 text-emerald-500 animate-in fade-in zoom-in duration-300"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="m4.93 4.93 1.41 1.41" />
+                <path d="m17.66 17.66 1.41 1.41" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                <path d="m6.34 17.66-1.41 1.41" />
+                <path d="m19.07 4.93-1.41 1.41" />
+              </svg>
+              <!-- Moon -->
+              <svg
+                v-else
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="absolute inset-0 text-blue-500 animate-in fade-in zoom-in duration-300"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </div>
           </button>
 
           <a
             :href="`mailto:${resume.basics.email}`"
-            class="inline-flex items-center gap-1.5 px-4 py-2 bg-foreground text-background text-xs sm:text-sm font-medium rounded-full hover:opacity-90 transition-all"
+            class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-foreground text-background text-xs sm:text-sm font-medium rounded-full hover:opacity-90 transition-all"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

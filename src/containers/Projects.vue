@@ -29,7 +29,7 @@ const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
           :href="project.url"
           target="_blank"
           rel="noopener noreferrer"
-          class="group relative rounded-2xl bg-card p-6 card-hover flex flex-col gap-4 no-underline"
+          class="group relative rounded-2xl p-6 glass-card card-hover flex flex-col gap-4 no-underline"
           :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
         >
           <!-- Project Header -->

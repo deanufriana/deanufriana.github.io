@@ -39,11 +39,11 @@ const services = [
         <div
           v-for="(service, index) in services"
           :key="index"
-          class="group relative rounded-2xl bg-card border border-border p-8 card-hover flex flex-col gap-4"
+          class="group relative rounded-2xl p-8 glass-card card-hover flex flex-col gap-4"
           :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
         >
           <!-- Icon -->
-          <div class="p-4 rounded-2xl bg-accent w-fit mb-2" v-html="service.icon"></div>
+          <div class="p-4 rounded-2xl bg-foreground/5 w-fit mb-2 group-hover:scale-110 transition-transform duration-500" v-html="service.icon"></div>
 
           <!-- Service Title -->
           <h3 class="text-xl font-bold text-foreground">

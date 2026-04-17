@@ -71,7 +71,7 @@ const formatDate = (date: string | undefined | null) => {
         <div
           v-for="work in workList"
           :key="work.name"
-          class="group relative rounded-2xl bg-card p-6 card-hover flex flex-col gap-4 h-fit transition-all duration-700 ease-in-out cursor-pointer"
+          class="group relative rounded-2xl glass-card p-6 card-hover flex flex-col gap-4 h-fit transition-all duration-700 ease-in-out cursor-pointer"
           :class="{ 
             'md:col-span-2 lg:col-span-3 border-emerald-500/30 ring-1 ring-emerald-500/20 shadow-xl shadow-emerald-500/5': expandedWorkName === work.name,
             'opacity-60 scale-[0.98] blur-[1px] grayscale-[0.5]': expandedWorkName && expandedWorkName !== work.name
