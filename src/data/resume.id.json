@@ -5,10 +5,10 @@
         "email": "devi.nufriana@gmail.com",
         "phone": "(62) 85642612283",
         "url": "https://deanufriana.github.io",
-        "summary": "I help visionary businesses bring their ideas to life through high-performing, scalable web applications. With over a decade of experience, I specialize in turning complex problems into elegant, user-friendly digital experiences. Whether you need a custom web app, legacy modernization, or performance consulting, I deliver fast, highly-maintainable solutions that drive results.",
+        "summary": "Saya membantu mewujudkan ide bisnis Anda melalui aplikasi web front-end yang modern, skalabel, dan berkinerja tinggi. Dengan pengalaman lebih dari satu dekade, saya berspesialisasi dalam mengubah masalah kompleks menjadi pengalaman digital yang elegan. Baik Anda membutuhkan solusi aplikasi kustom, modernisasi sistem lama, maupun optimasi performa web, saya siap membantu mengembangkan bisnis Anda.",
         "location": {
             "postalCode": "13950",
-            "city": "East Jakarta",
+            "city": "Jakarta Timur",
             "countryCode": "ID",
             "region": "Indonesia"
         },
@@ -28,14 +28,14 @@
             "url": "https://www.blibli.com",
             "startDate": "2022-08-01",
             "endDate": "2025-10-23",
-            "summary": "Frontend Engineer leading UI modernization and performance optimization initiatives. Spearheaded migration of legacy systems to Vue.js and implemented comprehensive integration testing.",
+            "summary": "Frontend Engineer yang memimpin inisiatif modernisasi antarmuka pengguna (UI) dan optimasi performa. Memelopori migrasi sistem lawas ke Vue.js dan mengimplementasikan pengujian integrasi yang komprehensif.",
             "highlights": [
-                "Proficiently developed integration tests using Playwright to validate software functionality and reliability.",
-                "Took charge of refining the UI Detail page, implementing improvements for an enhanced user experience.",
-                "Conducted comprehensive software analysis to identify opportunities for performance enhancement and implemented strategies to optimize system efficiency.",
-                "Refactored the review page, hall of fame page, and latest to the latest Vue version, improving performance and reusability by creating modular components",
-                "Redesigned and migrated the Review Center page from Java to Vue, enhancing user experience and modernizing the technology stack",
-                "Maintained existing features and developed new functionalities based on product manager requests, ensuring smooth and efficient implementation"
+                "Mahir mengembangkan integration tests menggunakan Playwright untuk memvalidasi fungsionalitas dan keandalan perangkat lunak.",
+                "Bertanggung jawab menyempurnakan halaman UI Detail, mengimplementasikan perbaikan untuk pengalaman pengguna yang lebih baik.",
+                "Melakukan analisis perangkat lunak komprehensif untuk mengidentifikasi peluang peningkatan performa dan mengimplementasikan strategi guna mengoptimalkan efisiensi sistem.",
+                "Melakukan refactoring pada halaman review, hall of fame, dan fitur terbaru ke versi Vue terkini, meningkatkan performa dan reusability dengan membuat komponen modular.",
+                "Merancang ulang dan memigrasikan halaman Review Center dari Java ke Vue, meningkatkan pengalaman pengguna dan memodernisasi stack teknologi.",
+                "Memelihara fitur yang ada dan mengembangkan fungsionalitas baru berdasarkan permintaan Product Manager, memastikan implementasi berjalan lancar dan efisien."
             ],
             "skills": [
                 "JavaScript",
@@ -50,17 +50,17 @@
             "url": "https://www.frisidea.com/id/",
             "startDate": "2021-04-01",
             "endDate": "2022-07-01",
-            "summary": "Full-stack Developer leading modernization of web and mobile applications. Successfully migrated 'Mylife' app to Flutter and implemented modern React practices.",
+            "summary": "Full-stack Developer yang memimpin modernisasi aplikasi web dan seluler. Berhasil memigrasikan aplikasi 'Mylife' ke Flutter dan mengimplementasikan best-practice React modern.",
             "highlights": [
-                "Upgraded the application to utilize the latest React technology stack.",
-                "Took on a pivotal role in enhancing the TMLI web application.",
-                "Consistently contributed high-quality code and improvements, ensuring optimal performance.",
-                "Translated design concepts into a functional and user-friendly web interface.",
-                "Adapted the UI/UX of kitasiap.com to align with user preferences and client expectations.",
-                "Leveraged HTML, CSS, and JavaScript to create engaging user interactions.",
-                "Successfully implemented a web-based customer care access system for the insurance industry.",
-                "Ensured seamless user access to policy information and services.",
-                "Employed technologies such as JavaScript, ReactJS, ViteJS, Git, Nginx, and Linux to achieve project goals."
+                "Memperbarui aplikasi untuk menggunakan stack teknologi React terbaru.",
+                "Berperan penting dalam meningkatkan aplikasi web TMLI.",
+                "Secara konsisten memberikan kode dan peningkatan berkualitas tinggi, memastikan performa optimal.",
+                "Menerjemahkan konsep desain ke dalam antarmuka web yang fungsional dan ramah pengguna.",
+                "Menyesuaikan UI/UX kitasiap.com agar selaras dengan preferensi pengguna dan ekspektasi klien.",
+                "Memanfaatkan HTML, CSS, dan JavaScript untuk menciptakan interaksi pengguna yang menarik.",
+                "Berhasil mengimplementasikan sistem akses customer care berbasis web untuk industri asuransi.",
+                "Memastikan pengguna mendapatkan akses mulus ke informasi dan layanan polis.",
+                "Menggunakan teknologi seperti JavaScript, ReactJS, ViteJS, Git, Nginx, dan Linux untuk mencapai tujuan proyek."
             ],
             "skills": [
                 "JavaScript",
@@ -74,15 +74,15 @@
             "url": "https://brilife.co.id",
             "startDate": "2019-02-01",
             "endDate": "2021-03-01",
-            "summary": "Full-stack Developer responsible for modernizing mobile and web applications. Led migration of 'Mylife' app to Flutter and implemented modern React practices.",
+            "summary": "Full-stack Developer yang bertanggung jawab memodernisasi aplikasi seluler dan web. Memimpin migrasi aplikasi 'Mylife' ke Flutter dan mengimplementasikan best-practice React modern.",
             "highlights": [
-                "Spearheaded the transformation of the 'Mylife' mobile application, transitioning it from React Native to Flutter.",
-                "Conducted thorough testing and optimization to enhance user experience and app performance.",
-                "Successfully managed three distinct application projects, showcasing adaptability across diverse technologies.",
-                "Developed a customer care application, ensuring seamless access to vital services.",
-                "Contributed significantly to the maintenance and enhancement of the web application 'Digiform' using ReactJS.",
-                "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
-                "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
+                "Memelopori transformasi aplikasi mobile 'Mylife', beralih dari React Native ke Flutter.",
+                "Melakukan pengujian dan optimasi mendalam untuk meningkatkan pengalaman pengguna dan performa aplikasi.",
+                "Berhasil mengelola tiga proyek aplikasi berbeda, menunjukkan kemampuan adaptasi di berbagai teknologi.",
+                "Mengembangkan aplikasi customer care, memastikan akses tanpa batas ke layanan penting.",
+                "Berkontribusi signifikan dalam pemeliharaan dan peningkatan aplikasi web 'Digiform' menggunakan ReactJS.",
+                "Mahir menggunakan stack teknologi yang beragam, termasuk JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, dan konfigurasi Linux server.",
+                "Dibekali dengan keahlian untuk mengonfigurasi dan men-deploy aplikasi di berbagai environment, baik development maupun production."
             ],
             "skills": [
                 "JavaScript",
@@ -99,7 +99,7 @@
         {
             "institution": "Universitas Muhadi Setiabudi",
             "url": "https://umus.ac.id/",
-            "area": "Informatics Engineering",
+            "area": "Teknik Informatika",
             "studyType": "S1",
             "startDate": "2014-05-01",
             "endDate": "2019-03-01",
@@ -174,7 +174,7 @@
             "name": "Sistem Skripsi",
             "startDate": "2018-03-01",
             "endDate": "2019-04-01",
-            "description": "The thesis process becomes more organized and faster, carried out online and can be accessed anywhere via a browser with the aim of saving time, energy and making it easier to obtain information on the thesis process online.",
+            "description": "Proses skripsi menjadi lebih terorganisir dan cepat, dilakukan secara daring serta dapat diakses di mana saja melalui browser dengan tujuan menghemat waktu, tenaga, dan mempermudah perolehan informasi proses skripsi secara online.",
             "highlights": [],
             "url": "https://github.com/deanufriana/sistem_skripsi"
         }

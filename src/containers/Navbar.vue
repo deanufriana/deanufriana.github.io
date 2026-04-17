@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import resume from "@/data/resume.json";
 import { onMounted, onUnmounted, ref } from "vue";
+import { useTranslations, type ui } from "@/i18n/ui";
+
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const t = useTranslations(props.lang);
 
 const isScrolled = ref(false);
 
@@ -45,7 +49,7 @@ onUnmounted(() => {
           <a
             href="#home"
             class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
-            title="Home"
+            :title="t('nav.home')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -65,7 +69,7 @@ onUnmounted(() => {
           <a
             href="#about"
             class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
-            title="About"
+            :title="t('nav.about')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -83,9 +87,30 @@ onUnmounted(() => {
             </svg>
           </a>
           <a
+            href="#services"
+            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            :title="t('nav.services')"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+          </a>
+          <a
             href="#experience"
             class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
-            title="Experience"
+            :title="t('nav.experience')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +130,7 @@ onUnmounted(() => {
           <a
             href="#projects"
             class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
-            title="Projects"
+            :title="t('nav.projects')"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -139,27 +164,42 @@ onUnmounted(() => {
           <a
             href="#home"
             class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >Home</a
+            >{{ t('nav.home') }}</a
           >
           <a
             href="#about"
             class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >About</a
+            >{{ t('nav.about') }}</a
+          >
+          <a
+            href="#services"
+            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >{{ t('nav.services') }}</a
           >
           <a
             href="#experience"
             class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >Experience</a
+            >{{ t('nav.experience') }}</a
           >
           <a
             href="#projects"
             class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >Projects</a
+            >{{ t('nav.projects') }}</a
           >
         </div>
 
-        <!-- Right side: Theme toggle + CTA -->
+        <!-- Right side: Theme toggle + Lang + CTA -->
         <div class="flex items-center gap-2">
+          <!-- Language Switcher -->
+          <a
+            :href="lang === 'en' ? '/id/' : '/'"
+            class="p-2 rounded-xl text-sm font-bold text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer inline-flex items-center"
+            :title="lang === 'en' ? 'Indonesian' : 'English'"
+          >
+            {{ lang === 'en' ? 'ID' : 'EN' }}
+          </a>
+
+          <!-- Theme Toggle -->
           <button
             @click="toggleTheme"
             class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer"
@@ -224,7 +264,7 @@ onUnmounted(() => {
               <line x1="12" y1="8" x2="12" y2="16" />
               <line x1="8" y1="12" x2="16" y2="12" />
             </svg>
-            Hire Me
+            {{ t('hero.hire') }}
           </a>
         </div>
       </div>

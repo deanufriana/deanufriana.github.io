@@ -1,12 +1,18 @@
 <script lang="ts" setup>
-import resume from "@/data/resume.json";
-import { ref } from "vue";
+import resumeEn from "@/data/resume.json";
+import resumeId from "@/data/resume.id.json";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { computed, ref } from "vue";
 
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const t = useTranslations(props.lang);
+
+const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
 const copied = ref(false);
 
 const copyEmail = async () => {
   try {
-    await navigator.clipboard.writeText(resume.basics.email);
+    await navigator.clipboard.writeText(resume.value.basics.email);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
@@ -21,23 +27,23 @@ const copyEmail = async () => {
   <section class="py-20 sm:py-28" style="background-color: var(--section-alt-bg);">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-        Let's work <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">together.</span>
+        {{ t('cta.heading1') }} <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">{{ t('cta.heading2') }}</span>
       </h2>
       <p class="text-base sm:text-lg text-muted-foreground mt-4 max-w-xl mx-auto">
-        Building scalable, high-quality web applications with modern technologies and clean architecture.
+        {{ t('cta.desc') }}
       </p>
 
       <!-- CTA Buttons -->
       <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
         <a
-          :href="`mailto:${resume.basics.email}`"
+          :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
           class="inline-flex items-center gap-2 px-7 py-3 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all hover:scale-105 active:scale-95"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
             <polyline points="22,6 12,13 2,6"/>
           </svg>
-          Hire Me
+          {{ t('hero.hire') }}
         </a>
         <button
           @click="copyEmail"
@@ -50,7 +56,7 @@ const copyEmail = async () => {
           <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="20 6 9 17 4 12"/>
           </svg>
-          {{ copied ? 'Copied!' : 'Copy Email' }}
+          {{ copied ? t('hero.copied') : t('hero.copyEmail') }}
         </button>
       </div>
     </div>

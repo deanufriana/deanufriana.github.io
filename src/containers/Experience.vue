@@ -1,9 +1,17 @@
 <script lang="ts" setup>
-import resume from "@/data/resume.json";
+import resumeEn from "@/data/resume.json";
+import resumeId from "@/data/resume.id.json";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { computed } from "vue";
+
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const t = useTranslations(props.lang);
+
+const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
 
 const formatDate = (date: string | undefined | null) => {
-  if (!date) return "Present";
-  return new Date(date).toLocaleDateString("en-US", {
+  if (!date) return t('experience.present');
+  return new Date(date).toLocaleDateString(props.lang === 'id' ? "id-ID" : "en-US", {
     year: "numeric",
     month: "short",
   });
@@ -16,8 +24,8 @@ const formatDate = (date: string | undefined | null) => {
       <!-- Section Header -->
       <div class="flex items-end justify-between mb-10">
         <div>
-          <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">Experience</span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2">Work History</h2>
+          <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">{{ t('experience.label') }}</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2">{{ t('experience.heading') }}</h2>
         </div>
       </div>
 
@@ -41,7 +49,7 @@ const formatDate = (date: string | undefined | null) => {
                 {{ work.name }}
               </a>
               <p class="text-sm text-muted-foreground mt-1">
-                {{ formatDate(work.startDate) }} — {{ work.endDate ? formatDate(work.endDate) : 'Present' }}
+                {{ formatDate(work.startDate) }} — {{ work.endDate ? formatDate(work.endDate) : t('experience.present') }}
               </p>
             </div>
             <!-- Arrow icon -->

@@ -1,10 +1,19 @@
 <script lang="ts" setup>
 import { useTypewriter } from "@/composables/string";
-import resume from "@/data/resume.json";
+import resumeId from "@/data/resume.id.json";
+import resumeEn from "@/data/resume.json";
+import { useTranslations, type ui } from "@/i18n/ui";
 import { computed, ref } from "vue";
 
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
+  lang: "en",
+});
+const t = useTranslations(props.lang);
+
+const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
+
 const texts = computed(() => {
-  const positions = new Set(resume.work.map((job) => job.position));
+  const positions = new Set(resume.value.work.map((job) => job.position));
   return Array.from(positions);
 });
 
@@ -18,7 +27,7 @@ const { typedText } = useTypewriter(texts.value, {
 const yearExperience = computed(() => {
   const getYear = new Date().getFullYear();
   const firstJob = new Date(
-    resume.work[resume.work.length - 1].startDate,
+    resume.value.work[resume.value.work.length - 1].startDate,
   ).getFullYear();
   return getYear - firstJob;
 });
@@ -27,7 +36,7 @@ const copied = ref(false);
 
 const copyEmail = async () => {
   try {
-    await navigator.clipboard.writeText(resume.basics.email);
+    await navigator.clipboard.writeText(resume.value.basics.email);
     copied.value = true;
     setTimeout(() => {
       copied.value = false;
@@ -79,7 +88,7 @@ const copyEmail = async () => {
               ></span>
               <span
                 class="text-xs md:text-sm font-semibold text-emerald-500 tracking-wider uppercase"
-                >Available for Work</span
+                >{{ t("hero.badge") }}</span
               >
             </div>
           </div>
@@ -111,7 +120,7 @@ const copyEmail = async () => {
             <span class="text-foreground font-medium typewriter">{{
               typedText
             }}</span>
-            with {{ yearExperience }}+ years of experience.
+            {{ t("hero.with") }} {{ yearExperience }}+ {{ t("hero.years") }}
           </p>
         </div>
 
@@ -121,7 +130,7 @@ const copyEmail = async () => {
           style="animation-delay: 0.5s; animation-fill-mode: forwards"
         >
           <a
-            :href="`mailto:${resume.basics.email}`"
+            :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
             class="inline-flex items-center gap-2 px-7 py-3 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all hover:scale-105 active:scale-95"
           >
             <svg
@@ -140,7 +149,7 @@ const copyEmail = async () => {
               />
               <polyline points="22,6 12,13 2,6" />
             </svg>
-            Hire Me
+            {{ t("hero.hire") }}
           </a>
           <button
             @click="copyEmail"
@@ -177,7 +186,7 @@ const copyEmail = async () => {
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
-            {{ copied ? "Copied!" : "Copy Email" }}
+            {{ copied ? t("hero.copied") : t("hero.copyEmail") }}
           </button>
         </div>
       </div>

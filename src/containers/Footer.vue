@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import contacts from "@/data/contacts.json";
+import { useTranslations, type ui } from "@/i18n/ui";
+
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const t = useTranslations(props.lang);
 
 const currentYear = new Date().getFullYear();
 
@@ -25,7 +29,7 @@ const contactLabels: Record<string, string> = {
       <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
         <!-- Left: Follow Me -->
         <div class="flex flex-col items-center sm:items-start gap-4">
-          <h3 class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">Follow Me</h3>
+          <h3 class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">{{ t('footer.follow') }}</h3>
           <div class="flex items-center gap-3">
             <a
               v-for="contact in contacts"
@@ -75,7 +79,7 @@ const contactLabels: Record<string, string> = {
             © {{ currentYear }} Devi Adi Nufriana
           </p>
           <p class="text-xs text-muted-foreground/60 mt-1">
-            Built with Astro & Vue.js
+            {{ t('footer.builtWith') }}
           </p>
         </div>
       </div>

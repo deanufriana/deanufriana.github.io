@@ -1,5 +1,13 @@
 <script lang="ts" setup>
-import resume from "@/data/resume.json";
+import resumeEn from "@/data/resume.json";
+import resumeId from "@/data/resume.id.json";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { computed } from "vue";
+
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const t = useTranslations(props.lang);
+
+const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
 </script>
 
 <template>
@@ -8,8 +16,8 @@ import resume from "@/data/resume.json";
       <!-- Section Header -->
       <div class="flex items-end justify-between mb-10">
         <div>
-          <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">Projects</span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2">Side Projects</h2>
+          <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">{{ t('projects.label') }}</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2">{{ t('projects.heading') }}</h2>
         </div>
       </div>
 
@@ -48,7 +56,7 @@ import resume from "@/data/resume.json";
             {{ project.description }}
           </p>
           <p v-else class="text-sm text-muted-foreground leading-relaxed italic">
-            Personal project
+            {{ t('projects.personal') }}
           </p>
 
           <!-- Link label -->
