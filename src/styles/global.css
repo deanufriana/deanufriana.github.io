@@ -278,6 +278,33 @@ section {
   transition: background-color 0.3s ease;
 }
 
+/* Skip to Content link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--accent-green);
+  color: white;
+  padding: 10px 20px;
+  z-index: 1000;
+  border-radius: 0 0 10px 10px;
+  font-weight: 800;
+  text-decoration: none;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: none;
+}
+
+/* High-contrast focus styles */
+:focus-visible {
+  outline: 2px solid var(--accent-green);
+  outline-offset: 4px;
+}
+
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 6px;

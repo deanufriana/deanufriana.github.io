@@ -37,6 +37,7 @@ const contactLabels: Record<string, string> = {
               target="_blank"
               rel="noopener noreferrer"
               :title="contactLabels[contact.icon] || contact.icon"
+              :aria-label="`Visit my ${contactLabels[contact.icon] || contact.icon} profile`"
               class="border-border bg-card text-muted-foreground hover:text-foreground hover:border-foreground/20 rounded-xl border p-2.5 transition-all hover:scale-110 active:scale-95"
             >
               <Mail

@@ -81,6 +81,7 @@ onUnmounted(() => {
             :variant="activeSection === 'home' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.home')"
+            :aria-label="t('nav.home')"
             :class="{ 'text-emerald-500': activeSection === 'home' }"
           >
             <Home :size="18" />
@@ -91,6 +92,7 @@ onUnmounted(() => {
             :variant="activeSection === 'about' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.about')"
+            :aria-label="t('nav.about')"
             :class="{ 'text-emerald-500': activeSection === 'about' }"
           >
             <User :size="18" />
@@ -101,6 +103,7 @@ onUnmounted(() => {
             :variant="activeSection === 'services' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.services')"
+            :aria-label="t('nav.services')"
             :class="{ 'text-emerald-500': activeSection === 'services' }"
           >
             <Layers :size="18" />
@@ -111,6 +114,7 @@ onUnmounted(() => {
             :variant="activeSection === 'experience' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.experience')"
+            :aria-label="t('nav.experience')"
             :class="{ 'text-emerald-500': activeSection === 'experience' }"
           >
             <Briefcase :size="18" />
@@ -121,6 +125,7 @@ onUnmounted(() => {
             :variant="activeSection === 'projects' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.projects')"
+            :aria-label="t('nav.projects')"
             :class="{ 'text-emerald-500': activeSection === 'projects' }"
           >
             <Folder :size="18" />
@@ -143,6 +148,7 @@ onUnmounted(() => {
             :class="
               activeSection === 'home' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
+            :aria-current="activeSection === 'home' ? 'page' : undefined"
           >{{ t("nav.home") }}</a>
           <a
             href="#about"
@@ -150,6 +156,7 @@ onUnmounted(() => {
             :class="
               activeSection === 'about' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
+            :aria-current="activeSection === 'about' ? 'page' : undefined"
           >{{ t("nav.about") }}</a>
           <a
             href="#services"
@@ -157,6 +164,7 @@ onUnmounted(() => {
             :class="
               activeSection === 'services' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
+            :aria-current="activeSection === 'services' ? 'page' : undefined"
           >{{ t("nav.services") }}</a>
           <a
             href="#experience"
@@ -166,6 +174,7 @@ onUnmounted(() => {
                 ? 'font-bold text-emerald-500'
                 : 'text-muted-foreground'
             "
+            :aria-current="activeSection === 'experience' ? 'page' : undefined"
           >{{ t("nav.experience") }}</a>
           <a
             href="#projects"
@@ -173,6 +182,7 @@ onUnmounted(() => {
             :class="
               activeSection === 'projects' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
+            :aria-current="activeSection === 'projects' ? 'page' : undefined"
           >{{ t("nav.projects") }}</a>
         </div>
 
@@ -185,7 +195,8 @@ onUnmounted(() => {
             variant="ghost"
             size="icon-xl"
             class="text-sm font-bold"
-            :title="lang === 'en' ? 'Indonesian' : 'English'"
+            :title="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
+            :aria-label="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
           >
             {{ lang === "en" ? "ID" : "EN" }}
           </Button>
@@ -195,7 +206,8 @@ onUnmounted(() => {
             variant="ghost"
             size="icon-xl"
             class="group/theme"
-            :title="isDark ? 'Light Mode' : 'Dark Mode'"
+            :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
+            :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
             @click="toggleTheme"
           >
             <div
@@ -223,12 +235,13 @@ onUnmounted(() => {
             variant="cta"
             size="sm"
             class="rounded-full px-3 py-2 sm:px-4"
+            aria-label="Hire Me"
           >
             <Plus
               :size="14"
               :stroke-width="2.5"
             />
-            <span class="hidden sm:inline">{{ t("hero.hire") }}</span>
+            <span class="ml-1 inline-flex">{{ t("hero.hire") }}</span>
           </Button>
         </div>
       </div>

@@ -45,6 +45,7 @@ const { elementRef: sectionRef } = useScrollReveal();
           :href="project.url"
           target="_blank"
           rel="noopener noreferrer"
+          :aria-label="`View project: ${project.name}`"
           class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-6 no-underline"
           :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
         >
