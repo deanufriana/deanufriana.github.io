@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useScrollReveal } from "@/composables/reveal";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
+
+const { elementRef: sectionRef } = useScrollReveal();
 
 const services = [
   {
@@ -26,7 +29,8 @@ const services = [
 <template>
   <section
     id="services"
-    class="py-20 sm:py-28"
+    ref="sectionRef"
+    class="reveal py-20 sm:py-28"
   >
     <div class="mx-auto max-w-6xl px-6">
       <!-- Section Header -->

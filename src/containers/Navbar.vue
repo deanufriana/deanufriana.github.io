@@ -16,6 +16,7 @@ const handleScroll = () => {
 };
 
 const isDark = ref(true);
+const activeSection = ref("home");
 
 const toggleTheme = () => {
   isDark.value = !isDark.value;
@@ -23,8 +24,12 @@ const toggleTheme = () => {
   localStorage.setItem("theme", isDark.value ? "dark" : "light");
 };
 
+let observer: IntersectionObserver | null = null;
+
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
+
+  // Theme setup
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "light") {
     isDark.value = false;
@@ -33,10 +38,31 @@ onMounted(() => {
     isDark.value = true;
     document.documentElement.classList.add("dark");
   }
+
+  // Active section tracking
+  const options = {
+    threshold: 0.2, // Lower threshold for more responsive activation
+    rootMargin: "-20% 0px -35% 0px", // Focus area in the mid-upper part of viewport
+  };
+
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        activeSection.value = entry.target.id;
+      }
+    });
+  }, options);
+
+  const sections = ["home", "about", "services", "experience", "projects"];
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer?.observe(el);
+  });
 });
 
 onUnmounted(() => {
   window.removeEventListener("scroll", handleScroll);
+  observer?.disconnect();
 });
 </script>
 
@@ -52,45 +78,50 @@ onUnmounted(() => {
           <Button
             as="a"
             href="#home"
-            variant="ghost"
+            :variant="activeSection === 'home' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.home')"
+            :class="{ 'text-emerald-500': activeSection === 'home' }"
           >
             <Home :size="18" />
           </Button>
           <Button
             as="a"
             href="#about"
-            variant="ghost"
+            :variant="activeSection === 'about' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.about')"
+            :class="{ 'text-emerald-500': activeSection === 'about' }"
           >
             <User :size="18" />
           </Button>
           <Button
             as="a"
             href="#services"
-            variant="ghost"
+            :variant="activeSection === 'services' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.services')"
+            :class="{ 'text-emerald-500': activeSection === 'services' }"
           >
             <Layers :size="18" />
           </Button>
           <Button
             as="a"
             href="#experience"
-            variant="ghost"
+            :variant="activeSection === 'experience' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.experience')"
+            :class="{ 'text-emerald-500': activeSection === 'experience' }"
           >
             <Briefcase :size="18" />
           </Button>
           <Button
             as="a"
             href="#projects"
-            variant="ghost"
+            :variant="activeSection === 'projects' ? 'secondary' : 'ghost'"
             size="icon-xl"
             :title="t('nav.projects')"
+            :class="{ 'text-emerald-500': activeSection === 'projects' }"
           >
             <Folder :size="18" />
           </Button>
@@ -108,23 +139,40 @@ onUnmounted(() => {
         <div class="hidden items-center gap-8 md:flex">
           <a
             href="#home"
-            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            class="hover:text-foreground text-sm font-medium transition-colors"
+            :class="
+              activeSection === 'home' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
+            "
           >{{ t("nav.home") }}</a>
           <a
             href="#about"
-            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            class="hover:text-foreground text-sm font-medium transition-colors"
+            :class="
+              activeSection === 'about' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
+            "
           >{{ t("nav.about") }}</a>
           <a
             href="#services"
-            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            class="hover:text-foreground text-sm font-medium transition-colors"
+            :class="
+              activeSection === 'services' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
+            "
           >{{ t("nav.services") }}</a>
           <a
             href="#experience"
-            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            class="hover:text-foreground text-sm font-medium transition-colors"
+            :class="
+              activeSection === 'experience'
+                ? 'font-bold text-emerald-500'
+                : 'text-muted-foreground'
+            "
           >{{ t("nav.experience") }}</a>
           <a
             href="#projects"
-            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+            class="hover:text-foreground text-sm font-medium transition-colors"
+            :class="
+              activeSection === 'projects' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
+            "
           >{{ t("nav.projects") }}</a>
         </div>
 

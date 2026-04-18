@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useClipboard } from "@/composables/clipboard";
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useScrollReveal } from "@/composables/reveal";
 import { Check, Copy, Mail } from "lucide-vue-next";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
@@ -11,6 +12,8 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
 const t = useTranslations(props.lang);
 const resume = useResume(props.lang);
 const { copied, copyToClipboard } = useClipboard();
+
+const { elementRef: sectionRef } = useScrollReveal();
 
 const copyEmail = async () => {
   const success = await copyToClipboard(resume.value.basics.email);
@@ -26,7 +29,8 @@ const copyEmail = async () => {
 
 <template>
   <section
-    class="py-20 sm:py-28"
+    ref="sectionRef"
+    class="reveal py-20 sm:py-28"
     style="background-color: var(--section-alt-bg)"
   >
     <div class="mx-auto max-w-4xl px-6 text-center">

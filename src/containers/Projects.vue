@@ -2,6 +2,7 @@
 import resumeEn from "@/data/resume.json";
 import resumeId from "@/data/resume.id.json";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useScrollReveal } from "@/composables/reveal";
 import { Badge } from "@/components/ui/badge";
 import { ArrowUpRight, Link } from "lucide-vue-next";
 import { computed } from "vue";
@@ -10,12 +11,15 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "e
 const t = useTranslations(props.lang);
 
 const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
+
+const { elementRef: sectionRef } = useScrollReveal();
 </script>
 
 <template>
   <section
     id="projects"
-    class="py-20 sm:py-28"
+    ref="sectionRef"
+    class="reveal py-20 sm:py-28"
   >
     <div class="mx-auto max-w-6xl px-6">
       <!-- Section Header -->
