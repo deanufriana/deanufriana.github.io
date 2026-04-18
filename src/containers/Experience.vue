@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight, ChevronDown } from "lucide-vue-next";
 import { computed, nextTick, ref } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
@@ -161,38 +164,21 @@ const formatDate = (date: string | undefined | null) => {
                   class="bg-accent transform rounded-lg p-2 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
                   @click.stop
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <line
-                      x1="7"
-                      y1="17"
-                      x2="17"
-                      y2="7"
-                    />
-                    <polyline points="7 7 17 7 17 17" />
-                  </svg>
+                  <ArrowUpRight :size="14" />
                 </div>
               </div>
 
               <!-- Role Badge (Primary/Latest) -->
               <div class="mt-4 flex flex-col gap-2">
-                <span
+                <Badge
                   v-for="(role, idx) in work.roles"
                   v-show="expandedWorkName === work.name || idx === 0"
                   :key="idx"
-                  class="inline-flex w-fit items-center rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-500"
+                  variant="emerald"
+                  class="rounded-full px-3 py-1 font-semibold"
                 >
                   {{ role.position }}
-                </span>
+                </Badge>
               </div>
 
               <!-- Primary Summary -->
@@ -204,8 +190,10 @@ const formatDate = (date: string | undefined | null) => {
               </p>
 
               <!-- Read More Button -->
-              <button
-                class="mt-4 flex w-fit cursor-pointer items-center gap-1 text-xs font-semibold text-emerald-500 transition-colors hover:text-emerald-400"
+              <Button
+                variant="ghost-emerald"
+                size="sm"
+                class="mt-4 h-auto p-0 font-semibold"
                 @click.stop="toggleExpand(work.name)"
               >
                 {{
@@ -213,22 +201,12 @@ const formatDate = (date: string | undefined | null) => {
                     ? t("experience.readLess")
                     : t("experience.readMore")
                 }}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="12"
-                  height="12"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                <ChevronDown
+                  :size="12"
                   class="transition-transform duration-300"
                   :class="{ 'rotate-180': expandedWorkName === work.name }"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-              </button>
+                />
+              </Button>
             </div>
 
             <!-- Right Side (Timeline View when expanded) -->

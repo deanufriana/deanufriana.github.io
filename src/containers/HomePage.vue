@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Button } from "@/components/ui/button";
 import { useClipboard } from "@/composables/clipboard";
 import { useResume } from "@/composables/resume";
 import { useTypewriter } from "@/composables/string";
@@ -57,15 +58,15 @@ const copyEmail = async () => {
     </div>
 
     <div class="relative z-10 mx-auto max-w-6xl px-6">
-      <div class="flex flex-col gap-6">
-        <div class="flex items-center justify-between">
+      <div class="flex flex-col gap-6 md:gap-8">
+        <div class="flex flex-col items-center gap-4 md:flex-row md:justify-between">
           <!-- Role Label -->
           <div
             class="animate-fade-in-up opacity-0"
             style="animation-delay: 0.2s; animation-fill-mode: forwards"
           >
             <span
-              class="text-muted-foreground text-sm font-medium tracking-widest uppercase md:text-base"
+              class="text-muted-foreground text-center text-sm font-medium tracking-widest uppercase md:text-left md:text-base"
             >{{ resume.basics.label }}</span>
           </div>
           <!-- Available for Work Badge -->
@@ -81,7 +82,8 @@ const copyEmail = async () => {
               />
               <span
                 class="text-xs font-semibold tracking-wider text-emerald-500 uppercase md:text-sm"
-              >{{ t("hero.badge") }}</span>
+              >{{ t("hero.badge") }}
+              </span>
             </div>
           </div>
         </div>
@@ -91,7 +93,9 @@ const copyEmail = async () => {
           class="animate-fade-in-up opacity-0"
           style="animation-delay: 0.3s; animation-fill-mode: forwards"
         >
-          <h1 class="text-4xl leading-tight font-bold tracking-tight sm:text-6xl lg:text-7xl">
+          <h1
+            class="text-center text-4xl leading-tight font-bold tracking-tight sm:text-6xl md:text-left lg:text-7xl"
+          >
             I'm
             <span
               class="bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent"
@@ -104,31 +108,44 @@ const copyEmail = async () => {
           class="animate-fade-in-up max-w-2xl opacity-0"
           style="animation-delay: 0.4s; animation-fill-mode: forwards"
         >
-          <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
-            {{ t("hero.intro") }}
-            <span class="text-foreground font-semibold">{{ yearExperience }}+</span>
-            {{ t("hero.suffix") }}
-            <span class="text-foreground typewriter font-semibold">{{ typedText }}</span>
-          </p>
+          <div
+            class="text-muted-foreground text-center text-base leading-relaxed sm:text-lg md:text-left"
+          >
+            <span class="block md:inline">
+              {{ t("hero.intro") }}
+              <span class="text-foreground font-semibold">{{ yearExperience }}+</span>
+              {{ t("hero.suffix") }}
+            </span>
+            <div
+              class="text-foreground typewriter block min-h-[3.5rem] font-semibold md:ml-1.5 md:inline md:min-h-0"
+            >
+              {{ typedText }}
+            </div>
+          </div>
         </div>
 
         <!-- CTA Buttons -->
         <div
-          class="animate-fade-in-up mt-2 flex flex-wrap items-center justify-center gap-4 opacity-0"
+          class="animate-fade-in-up mt-4 flex flex-col items-center gap-4 opacity-0 sm:flex-row sm:justify-center md:justify-start"
           style="animation-delay: 0.5s; animation-fill-mode: forwards"
         >
-          <a
+          <Button
+            as="a"
             :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
-            class="bg-foreground text-background shadow-foreground/10 inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold shadow-xl transition-all hover:scale-105 hover:opacity-90 active:scale-95"
+            variant="cta"
+            size="pill"
+            class="w-full sm:w-auto"
           >
             <Mail
               :size="16"
               :stroke-width="2.5"
             />
             {{ t("hero.hire") }}
-          </a>
-          <button
-            class="glass-card inline-flex cursor-pointer items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold backdrop-blur-xl transition-all hover:scale-105 hover:bg-white/10 active:scale-95 dark:hover:bg-black/10"
+          </Button>
+          <Button
+            variant="glass"
+            size="pill"
+            class="w-full sm:w-auto"
             @click="copyEmail"
           >
             <Copy
@@ -140,7 +157,7 @@ const copyEmail = async () => {
               :size="16"
             />
             {{ copied ? t("hero.copied") : t("hero.copyEmail") }}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

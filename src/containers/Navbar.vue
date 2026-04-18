@@ -2,6 +2,7 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { useResume } from "@/composables/resume";
+import { Button } from "@/components/ui/button";
 import { Home, User, Layers, Briefcase, Folder, Sun, Moon, Plus } from "lucide-vue-next";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
@@ -48,41 +49,51 @@ onUnmounted(() => {
       <div class="flex h-14 items-center justify-between sm:h-16">
         <!-- Mobile: Icon nav row -->
         <div class="flex items-center gap-1 md:hidden">
-          <a
+          <Button
+            as="a"
             href="#home"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
+            variant="ghost"
+            size="icon-xl"
             :title="t('nav.home')"
           >
             <Home :size="18" />
-          </a>
-          <a
+          </Button>
+          <Button
+            as="a"
             href="#about"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
+            variant="ghost"
+            size="icon-xl"
             :title="t('nav.about')"
           >
             <User :size="18" />
-          </a>
-          <a
+          </Button>
+          <Button
+            as="a"
             href="#services"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
+            variant="ghost"
+            size="icon-xl"
             :title="t('nav.services')"
           >
             <Layers :size="18" />
-          </a>
-          <a
+          </Button>
+          <Button
+            as="a"
             href="#experience"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
+            variant="ghost"
+            size="icon-xl"
             :title="t('nav.experience')"
           >
             <Briefcase :size="18" />
-          </a>
-          <a
+          </Button>
+          <Button
+            as="a"
             href="#projects"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
+            variant="ghost"
+            size="icon-xl"
             :title="t('nav.projects')"
           >
             <Folder :size="18" />
-          </a>
+          </Button>
         </div>
 
         <!-- Desktop: Logo -->
@@ -118,19 +129,24 @@ onUnmounted(() => {
         </div>
 
         <!-- Right side: Theme toggle + Lang + CTA -->
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1 sm:gap-2">
           <!-- Language Switcher -->
-          <a
+          <Button
+            as="a"
             :href="lang === 'en' ? '/id/' : '/'"
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 inline-flex cursor-pointer items-center rounded-xl p-2 text-sm font-bold transition-all"
+            variant="ghost"
+            size="icon-xl"
+            class="text-sm font-bold"
             :title="lang === 'en' ? 'Indonesian' : 'English'"
           >
             {{ lang === "en" ? "ID" : "EN" }}
-          </a>
+          </Button>
 
           <!-- Theme Toggle -->
-          <button
-            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 group/theme cursor-pointer rounded-xl p-2.5 transition-all"
+          <Button
+            variant="ghost"
+            size="icon-xl"
+            class="group/theme"
             :title="isDark ? 'Light Mode' : 'Dark Mode'"
             @click="toggleTheme"
           >
@@ -151,18 +167,21 @@ onUnmounted(() => {
                 class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
               />
             </div>
-          </button>
+          </Button>
 
-          <a
+          <Button
+            as="a"
             :href="`mailto:${resume.basics.email}`"
-            class="bg-foreground text-background inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium transition-all hover:opacity-90 sm:text-sm"
+            variant="cta"
+            size="sm"
+            class="rounded-full px-3 py-2 sm:px-4"
           >
             <Plus
               :size="14"
               :stroke-width="2.5"
             />
-            {{ t("hero.hire") }}
-          </a>
+            <span class="hidden sm:inline">{{ t("hero.hire") }}</span>
+          </Button>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Button } from "@/components/ui/button";
 import { useClipboard } from "@/composables/clipboard";
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
@@ -41,15 +42,20 @@ const copyEmail = async () => {
 
       <!-- CTA Buttons -->
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-        <a
+        <Button
+          as="a"
           :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
-          class="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-7 py-3 text-sm font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95"
+          variant="cta"
+          size="pill"
+          class="w-full sm:w-auto"
         >
           <Mail :size="16" />
           {{ t("hero.hire") }}
-        </a>
-        <button
-          class="border-border hover:bg-accent inline-flex cursor-pointer items-center gap-2 rounded-full border px-7 py-3 text-sm font-semibold transition-all hover:scale-105 active:scale-95"
+        </Button>
+        <Button
+          variant="cta-outline"
+          size="pill"
+          class="w-full sm:w-auto"
           @click="copyEmail"
         >
           <Copy
@@ -61,7 +67,7 @@ const copyEmail = async () => {
             :size="16"
           />
           {{ copied ? t("hero.copied") : t("hero.copyEmail") }}
-        </button>
+        </Button>
       </div>
     </div>
   </section>

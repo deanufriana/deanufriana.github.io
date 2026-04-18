@@ -14,14 +14,22 @@ export const buttonVariants = cva(
         outline:
           "border shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/10",
         link: "text-blue-400 hover:text-blue-500",
+        cta: "bg-foreground text-background shadow-foreground/10 shadow-xl hover:opacity-90 hover:scale-105 active:scale-95",
+        "cta-outline":
+          "border border-border hover:bg-accent hover:scale-105 active:scale-95 transition-all shadow-xs",
+        glass:
+          "glass-card border border-white/10 backdrop-blur-xl hover:bg-white/10 dark:hover:bg-black/10 hover:scale-105 active:scale-95 transition-all shadow-xl",
+        "ghost-emerald": "text-emerald-500 hover:text-emerald-400 transition-colors",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
         sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
+        pill: "rounded-full px-8 py-3.5 has-[>svg]:px-7",
+        "icon-xl": "rounded-xl p-2.5 size-auto",
       },
     },
     defaultVariants: {

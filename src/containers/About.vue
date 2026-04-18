@@ -2,6 +2,7 @@
 import resumeEn from "@/data/resume.json";
 import resumeId from "@/data/resume.id.json";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { Download } from "lucide-vue-next";
 import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
@@ -48,26 +49,7 @@ const allSkills = computed(() => resume.value.skills.flatMap((s) => s.keywords))
               href="https://registry.jsonresume.org/deanufriana"
               class="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                <polyline points="7 10 12 15 17 10" />
-                <line
-                  x1="12"
-                  y1="15"
-                  x2="12"
-                  y2="3"
-                />
-              </svg>
+              <Download :size="16" />
               {{ t("about.downloadCv") }}
             </a>
           </div>

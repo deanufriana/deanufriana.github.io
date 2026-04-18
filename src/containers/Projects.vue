@@ -2,6 +2,8 @@
 import resumeEn from "@/data/resume.json";
 import resumeId from "@/data/resume.id.json";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight, Link } from "lucide-vue-next";
 import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
@@ -51,11 +53,12 @@ const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
                 {{ project.name }}
               </h3>
               <div class="mt-1.5 flex items-center gap-2">
-                <span
-                  class="rounded-md border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold tracking-wider text-emerald-500 uppercase"
+                <Badge
+                  variant="emerald"
+                  class="rounded-md px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase"
                 >
                   {{ t("projects.openSource") }}
-                </span>
+                </Badge>
                 <span
                   class="text-muted-foreground text-[10px] font-medium tracking-wider uppercase"
                 >
@@ -67,25 +70,7 @@ const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
             <div
               class="bg-accent transform rounded-lg p-2 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <line
-                  x1="7"
-                  y1="17"
-                  x2="17"
-                  y2="7"
-                />
-                <polyline points="7 7 17 7 17 17" />
-              </svg>
+              <ArrowUpRight :size="14" />
             </div>
           </div>
 
@@ -105,20 +90,7 @@ const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
 
           <!-- Link label -->
           <div class="text-muted-foreground mt-auto flex items-center gap-2 pt-2 text-xs">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="12"
-              height="12"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-            </svg>
+            <Link :size="12" />
             <span class="transition-colors group-hover:text-emerald-500">{{
               project.url.replace("https://", "").replace("http://", "")
             }}</span>
