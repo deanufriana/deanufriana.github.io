@@ -79,10 +79,10 @@ onUnmounted(() => {
             as="a"
             href="#home"
             :variant="activeSection === 'home' ? 'secondary' : 'ghost'"
-            size="icon-xl"
+            size="sm"
             :title="t('nav.home')"
             :aria-label="t('nav.home')"
-            :class="{ 'text-emerald-500': activeSection === 'home' }"
+            :class="['rounded-xl px-2 py-1.5', { 'text-emerald-500': activeSection === 'home' }]"
           >
             <Home :size="18" />
           </Button>
@@ -90,10 +90,10 @@ onUnmounted(() => {
             as="a"
             href="#about"
             :variant="activeSection === 'about' ? 'secondary' : 'ghost'"
-            size="icon-xl"
+            size="sm"
             :title="t('nav.about')"
             :aria-label="t('nav.about')"
-            :class="{ 'text-emerald-500': activeSection === 'about' }"
+            :class="['rounded-xl px-2 py-1.5', { 'text-emerald-500': activeSection === 'about' }]"
           >
             <User :size="18" />
           </Button>
@@ -101,10 +101,13 @@ onUnmounted(() => {
             as="a"
             href="#services"
             :variant="activeSection === 'services' ? 'secondary' : 'ghost'"
-            size="icon-xl"
+            size="sm"
             :title="t('nav.services')"
             :aria-label="t('nav.services')"
-            :class="{ 'text-emerald-500': activeSection === 'services' }"
+            :class="[
+              'rounded-xl px-2 py-1.5',
+              { 'text-emerald-500': activeSection === 'services' },
+            ]"
           >
             <Layers :size="18" />
           </Button>
@@ -112,10 +115,13 @@ onUnmounted(() => {
             as="a"
             href="#experience"
             :variant="activeSection === 'experience' ? 'secondary' : 'ghost'"
-            size="icon-xl"
+            size="sm"
             :title="t('nav.experience')"
             :aria-label="t('nav.experience')"
-            :class="{ 'text-emerald-500': activeSection === 'experience' }"
+            :class="[
+              'rounded-xl px-2 py-1.5',
+              { 'text-emerald-500': activeSection === 'experience' },
+            ]"
           >
             <Briefcase :size="18" />
           </Button>
@@ -123,10 +129,13 @@ onUnmounted(() => {
             as="a"
             href="#projects"
             :variant="activeSection === 'projects' ? 'secondary' : 'ghost'"
-            size="icon-xl"
+            size="sm"
             :title="t('nav.projects')"
             :aria-label="t('nav.projects')"
-            :class="{ 'text-emerald-500': activeSection === 'projects' }"
+            :class="[
+              'rounded-xl px-2 py-1.5',
+              { 'text-emerald-500': activeSection === 'projects' },
+            ]"
           >
             <Folder :size="18" />
           </Button>
@@ -241,7 +250,7 @@ onUnmounted(() => {
               :size="14"
               :stroke-width="2.5"
             />
-            <span class="ml-1 inline-flex">{{ t("hero.hire") }}</span>
+            <span class="ml-1 hidden sm:inline-flex">{{ t("hero.hire") }}</span>
           </Button>
         </div>
       </div>

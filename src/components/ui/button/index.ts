@@ -29,7 +29,7 @@ export const buttonVariants = cva(
         lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
         icon: "size-9",
         pill: "rounded-full px-8 py-3.5 has-[>svg]:px-7",
-        "icon-xl": "rounded-xl p-2.5 size-auto",
+        "icon-xl": "rounded-xl p-2 size-auto",
       },
     },
     defaultVariants: {
