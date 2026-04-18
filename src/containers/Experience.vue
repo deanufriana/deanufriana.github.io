@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useTranslations, type ui } from "@/i18n/ui";
 import { useResume } from "@/composables/resume";
-import { computed, ref, nextTick } from "vue";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { computed, nextTick, ref } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
@@ -206,7 +206,7 @@ const formatDate = (date: string | undefined | null) => {
               <!-- Read More Button -->
               <button
                 class="mt-4 flex w-fit cursor-pointer items-center gap-1 text-xs font-semibold text-emerald-500 transition-colors hover:text-emerald-400"
-                @click="toggleExpand(work.name)"
+                @click.stop="toggleExpand(work.name)"
               >
                 {{
                   expandedWorkName === work.name
