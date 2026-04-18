@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import Navbar from "@/containers/Navbar.vue";
 import HomePage from "@/containers/HomePage.vue";
 import About from "@/containers/About.vue";
@@ -10,56 +11,19 @@ import CallToAction from "@/containers/CallToAction.vue";
 import Footer from "@/containers/Footer.vue";
 ---
 
-<!DOCTYPE html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Devi Adi Nufriana — Software Engineer with expertise in React and Vue. Building fast, scalable, and high-quality web solutions." />
-    <meta name="author" content="Devi Adi Nufriana" />
-    <meta property="og:title" content="Devi Adi Nufriana — Software Engineer" />
-    <meta property="og:description" content="Software Engineer with expertise in React and Vue. Passionate about modern technologies and high-quality solutions." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://deanufriana.github.io" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>Devi Adi Nufriana — Software Engineer</title>
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-5XH9HL1N8D"
-    ></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-5XH9HL1N8D");
-    </script>
-    <script is:inline>
-      // Prevent flash: apply theme before render
-      (function() {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
-          document.documentElement.classList.add('dark');
-        }
-      })();
-    </script>
-  </head>
-  <body class="antialiased">
-    <Navbar client:load />
-    <main>
-      <HomePage client:load />
-      <About />
-      <Services />
-      <Experience client:load />
-      <Projects />
-      <CallToAction client:load />
-    </main>
-    <Footer />
-  </body>
-</html>
+<BaseLayout
+  title="Devi Adi Nufriana — Software Engineer"
+  description="Software Engineer with expertise in React and Vue. Building fast, scalable, and high-quality web solutions."
+  canonicalUrl="https://deanufriana.github.io/"
+>
+  <Navbar client:load />
+  <main>
+    <HomePage client:load />
+    <About client:visible />
+    <Services client:visible />
+    <Experience client:visible />
+    <Projects client:visible />
+    <CallToAction client:visible />
+  </main>
+  <Footer />
+</BaseLayout>

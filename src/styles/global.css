@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Fonts are loaded via async preload in BaseLayout.astro for better performance */
 
 @custom-variant dark (&:is(.dark *));
 
@@ -31,7 +32,7 @@
   --glass-bg: rgba(255, 255, 255, 0.7);
   --glass-border: rgba(0, 0, 0, 0.08);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-  
+
   /* Subtle Folio accent */
   --accent-green: #10b981;
   --accent-green-glow: rgba(16, 185, 129, 0.15);
@@ -79,14 +80,20 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background);
   color: var(--foreground);
-  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
-              color 0.3s ease,
-              border-color 0.3s ease;
+  transition:
+    background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .h-screen {
@@ -94,21 +101,27 @@ body {
 }
 
 /* Typewriter cursor */
-.typewriter, .mark {
+.typewriter,
+.mark {
   display: inline-block;
   position: relative;
 }
 
 .typewriter:not(:empty)::after {
-  content: '|';
+  content: "|";
   position: absolute;
   right: -0.2em;
   animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  from, to { opacity: 1; }
-  50% { opacity: 0; }
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* Fade-in animations */
@@ -124,8 +137,12 @@ body {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideInLeft {
@@ -140,7 +157,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 0 0 var(--accent-green-glow);
   }
   50% {
@@ -149,8 +167,13 @@ body {
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .animate-fade-in-up {
@@ -165,12 +188,24 @@ body {
   animation: slideInLeft 0.6s ease-out forwards;
 }
 
-.animate-delay-1 { animation-delay: 0.1s; }
-.animate-delay-2 { animation-delay: 0.2s; }
-.animate-delay-3 { animation-delay: 0.3s; }
-.animate-delay-4 { animation-delay: 0.4s; }
-.animate-delay-5 { animation-delay: 0.5s; }
-.animate-delay-6 { animation-delay: 0.6s; }
+.animate-delay-1 {
+  animation-delay: 0.1s;
+}
+.animate-delay-2 {
+  animation-delay: 0.2s;
+}
+.animate-delay-3 {
+  animation-delay: 0.3s;
+}
+.animate-delay-4 {
+  animation-delay: 0.4s;
+}
+.animate-delay-5 {
+  animation-delay: 0.5s;
+}
+.animate-delay-6 {
+  animation-delay: 0.6s;
+}
 
 /* Glassmorphism nav */
 .glass-nav {
@@ -178,7 +213,9 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--nav-border);
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition:
+    background-color 0.5s ease,
+    border-color 0.5s ease;
 }
 
 /* Glassmorphism Card Utility */
@@ -217,7 +254,9 @@ body {
 
 /* Smooth link transitions */
 a {
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
 }
 
 /* Section transitions */

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import resume from "@/data/resume.json";
 import { onMounted, onUnmounted, ref } from "vue";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useResume } from "@/composables/resume";
+import { Home, User, Layers, Briefcase, Folder, Sun, Moon, Plus } from "lucide-vue-next";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
+const resume = useResume(props.lang);
 
 const isScrolled = ref(false);
 
@@ -39,153 +41,80 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="fixed top-0 left-0 right-0 z-50 glass-nav transition-all duration-300"
+    class="glass-nav fixed top-0 right-0 left-0 z-50 transition-all duration-300"
     :class="{ 'shadow-lg': isScrolled }"
   >
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex items-center justify-between h-14 sm:h-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="flex h-14 items-center justify-between sm:h-16">
         <!-- Mobile: Icon nav row -->
-        <div class="flex md:hidden items-center gap-1">
+        <div class="flex items-center gap-1 md:hidden">
           <a
             href="#home"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
             :title="t('nav.home')"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
+            <Home :size="18" />
           </a>
           <a
             href="#about"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
             :title="t('nav.about')"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+            <User :size="18" />
           </a>
           <a
             href="#services"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
             :title="t('nav.services')"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <polygon points="12 2 2 7 12 12 22 7 12 2" />
-              <polyline points="2 17 12 22 22 17" />
-              <polyline points="2 12 12 17 22 12" />
-            </svg>
+            <Layers :size="18" />
           </a>
           <a
             href="#experience"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
             :title="t('nav.experience')"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-            </svg>
+            <Briefcase :size="18" />
           </a>
           <a
             href="#projects"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 rounded-xl p-2.5 transition-all"
             :title="t('nav.projects')"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path
-                d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
-              />
-            </svg>
+            <Folder :size="18" />
           </a>
         </div>
 
         <!-- Desktop: Logo -->
         <a
           href="#home"
-          class="hidden md:block text-lg font-bold text-foreground hover:opacity-80 transition-opacity"
+          class="text-foreground hidden text-lg font-bold transition-opacity hover:opacity-80 md:block"
         >
-          {{ resume.basics.name.split(" ")[0]
-          }}<span class="text-emerald-500">.</span>
+          {{ resume.basics.name.split(" ")[0] }}<span class="text-emerald-500">.</span>
         </a>
 
         <!-- Desktop: Nav Links -->
-        <div class="hidden md:flex items-center gap-8">
+        <div class="hidden items-center gap-8 md:flex">
           <a
             href="#home"
-            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >{{ t('nav.home') }}</a
-          >
+            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >{{ t("nav.home") }}</a>
           <a
             href="#about"
-            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >{{ t('nav.about') }}</a
-          >
+            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >{{ t("nav.about") }}</a>
           <a
             href="#services"
-            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >{{ t('nav.services') }}</a
-          >
+            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >{{ t("nav.services") }}</a>
           <a
             href="#experience"
-            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >{{ t('nav.experience') }}</a
-          >
+            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >{{ t("nav.experience") }}</a>
           <a
             href="#projects"
-            class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >{{ t('nav.projects') }}</a
-          >
+            class="text-muted-foreground hover:text-foreground text-sm font-medium transition-colors"
+          >{{ t("nav.projects") }}</a>
         </div>
 
         <!-- Right side: Theme toggle + Lang + CTA -->
@@ -193,82 +122,46 @@ onUnmounted(() => {
           <!-- Language Switcher -->
           <a
             :href="lang === 'en' ? '/id/' : '/'"
-            class="p-2 rounded-xl text-sm font-bold text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer inline-flex items-center"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 inline-flex cursor-pointer items-center rounded-xl p-2 text-sm font-bold transition-all"
             :title="lang === 'en' ? 'Indonesian' : 'English'"
           >
-            {{ lang === 'en' ? 'ID' : 'EN' }}
+            {{ lang === "en" ? "ID" : "EN" }}
           </a>
 
           <!-- Theme Toggle -->
           <button
-            @click="toggleTheme"
-            class="p-2.5 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent/60 transition-all cursor-pointer group/theme"
+            class="text-muted-foreground hover:text-foreground hover:bg-accent/60 group/theme cursor-pointer rounded-xl p-2.5 transition-all"
             :title="isDark ? 'Light Mode' : 'Dark Mode'"
+            @click="toggleTheme"
           >
-            <div class="relative w-[18px] h-[18px] transition-transform duration-500 ease-in-out group-active/theme:scale-90" :class="{ 'rotate-[360deg]': isDark }">
-              <!-- Sun -->
-              <svg
+            <div
+              class="relative h-[18px] w-[18px] transition-transform duration-500 ease-in-out group-active/theme:scale-90"
+              :class="{ 'rotate-[360deg]': isDark }"
+            >
+              <Sun
                 v-if="isDark"
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="absolute inset-0 text-emerald-500 animate-in fade-in zoom-in duration-300"
-              >
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2" />
-                <path d="M12 20v2" />
-                <path d="m4.93 4.93 1.41 1.41" />
-                <path d="m17.66 17.66 1.41 1.41" />
-                <path d="M2 12h2" />
-                <path d="M20 12h2" />
-                <path d="m6.34 17.66-1.41 1.41" />
-                <path d="m19.07 4.93-1.41 1.41" />
-              </svg>
-              <!-- Moon -->
-              <svg
+                :size="18"
+                :stroke-width="2.5"
+                class="animate-in fade-in zoom-in absolute inset-0 text-emerald-500 duration-300"
+              />
+              <Moon
                 v-else
-                xmlns="http://www.w3.org/2000/svg"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="absolute inset-0 text-blue-500 animate-in fade-in zoom-in duration-300"
-              >
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-              </svg>
+                :size="18"
+                :stroke-width="2.5"
+                class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
+              />
             </div>
           </button>
 
           <a
             :href="`mailto:${resume.basics.email}`"
-            class="hidden md:inline-flex items-center gap-1.5 px-4 py-2 bg-foreground text-background text-xs sm:text-sm font-medium rounded-full hover:opacity-90 transition-all"
+            class="bg-foreground text-background inline-flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium transition-all hover:opacity-90 sm:text-sm"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <line x1="12" y1="8" x2="12" y2="16" />
-              <line x1="8" y1="12" x2="16" y2="12" />
-            </svg>
-            {{ t('hero.hire') }}
+            <Plus
+              :size="14"
+              :stroke-width="2.5"
+            />
+            {{ t("hero.hire") }}
           </a>
         </div>
       </div>

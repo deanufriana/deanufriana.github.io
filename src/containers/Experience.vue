@@ -1,13 +1,11 @@
 <script lang="ts" setup>
-import resumeEn from "@/data/resume.json";
-import resumeId from "@/data/resume.id.json";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useResume } from "@/composables/resume";
 import { computed, ref, nextTick } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
-
-const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
+const resume = useResume(props.lang);
 
 const expandedWorkName = ref<string | null>(null);
 
@@ -40,10 +38,7 @@ const groupedWork = computed(() => {
     // If any role has no end date, the whole group is "Present"
     if (!job.endDate) {
       group.endDate = "";
-    } else if (
-      group.endDate &&
-      new Date(job.endDate) > new Date(group.endDate)
-    ) {
+    } else if (group.endDate && new Date(job.endDate) > new Date(group.endDate)) {
       group.endDate = job.endDate;
     }
   });
@@ -74,7 +69,6 @@ const toggleExpand = async (name: string) => {
   } else {
     expandedWorkName.value = name;
     await nextTick();
-    const section = document.getElementById("experience");
 
     const element = document.getElementById(`work-${name}`);
     if (element) {
@@ -92,34 +86,28 @@ const toggleExpand = async (name: string) => {
 
 const formatDate = (date: string | undefined | null) => {
   if (!date) return t("experience.present");
-  return new Date(date).toLocaleDateString(
-    props.lang === "id" ? "id-ID" : "en-US",
-    {
-      year: "numeric",
-      month: "short",
-    },
-  );
+  return new Date(date).toLocaleDateString(props.lang === "id" ? "id-ID" : "en-US", {
+    year: "numeric",
+    month: "short",
+  });
 };
 </script>
 
 <template>
   <section
     id="experience"
-    class="py-20 sm:py-28 overflow-hidden cursor-default"
+    class="cursor-default overflow-hidden py-20 sm:py-28"
     style="background-color: var(--section-alt-bg)"
     @click="expandedWorkName = null"
   >
-    <div class="max-w-6xl mx-auto px-6">
+    <div class="mx-auto max-w-6xl px-6">
       <!-- Section Header -->
-      <div class="flex items-end justify-between mb-10">
+      <div class="mb-10 flex items-end justify-between">
         <div>
-          <span
-            class="text-xs font-semibold text-muted-foreground tracking-widest uppercase"
-            >{{ t("experience.label") }}</span
-          >
-          <h2
-            class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-2"
-          >
+          <span class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">{{
+            t("experience.label")
+          }}</span>
+          <h2 class="mt-2 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
             {{ t("experience.heading") }}
           </h2>
         </div>
@@ -129,25 +117,24 @@ const formatDate = (date: string | undefined | null) => {
       <transition-group
         name="work-list"
         tag="div"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
       >
         <div
           v-for="work in workList"
           :id="`work-${work.name}`"
           :key="work.name"
-          class="group relative rounded-2xl glass-card p-6 card-hover flex flex-col gap-4 h-fit transition-all duration-700 ease-in-out cursor-pointer"
+          class="group glass-card card-hover relative flex h-fit cursor-pointer flex-col gap-4 rounded-2xl p-6 transition-all duration-700 ease-in-out"
           :class="{
-            'md:col-span-2 lg:col-span-3 border-emerald-500/30 ring-1 ring-emerald-500/20 shadow-xl shadow-emerald-500/5':
+            'border-emerald-500/30 shadow-xl ring-1 shadow-emerald-500/5 ring-emerald-500/20 md:col-span-2 lg:col-span-3':
               expandedWorkName === work.name,
-            'opacity-60 scale-[0.98] blur-[1px] grayscale-[0.5]':
+            'scale-[0.98] opacity-60 blur-[1px] grayscale-[0.5]':
               expandedWorkName && expandedWorkName !== work.name,
           }"
           @click.stop="toggleExpand(work.name)"
         >
           <div
             :class="{
-              'grid grid-cols-1 lg:grid-cols-3 gap-8':
-                expandedWorkName === work.name,
+              'grid grid-cols-1 gap-8 lg:grid-cols-3': expandedWorkName === work.name,
             }"
           >
             <!-- Left Side / Top Area -->
@@ -159,23 +146,19 @@ const formatDate = (date: string | undefined | null) => {
                     :href="work.url"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-xl sm:text-2xl font-bold text-foreground group-hover:text-emerald-500 transition-colors"
+                    class="text-foreground text-xl font-bold transition-colors group-hover:text-emerald-500 sm:text-2xl"
                     @click.stop
                   >
                     {{ work.name }}
                   </a>
-                  <p class="text-sm text-muted-foreground mt-1">
+                  <p class="text-muted-foreground mt-1 text-sm">
                     {{ formatDate(work.startDate) }} —
-                    {{
-                      work.endDate
-                        ? formatDate(work.endDate)
-                        : t("experience.present")
-                    }}
+                    {{ work.endDate ? formatDate(work.endDate) : t("experience.present") }}
                   </p>
                 </div>
                 <!-- Arrow icon -->
                 <div
-                  class="p-2 rounded-lg bg-accent opacity-0 group-hover:opacity-100 transition-all transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  class="bg-accent transform rounded-lg p-2 opacity-0 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
                   @click.stop
                 >
                   <svg
@@ -189,7 +172,12 @@ const formatDate = (date: string | undefined | null) => {
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <line
+                      x1="7"
+                      y1="17"
+                      x2="17"
+                      y2="7"
+                    />
                     <polyline points="7 7 17 7 17 17" />
                   </svg>
                 </div>
@@ -199,9 +187,9 @@ const formatDate = (date: string | undefined | null) => {
               <div class="mt-4 flex flex-col gap-2">
                 <span
                   v-for="(role, idx) in work.roles"
-                  :key="idx"
                   v-show="expandedWorkName === work.name || idx === 0"
-                  class="inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 w-fit"
+                  :key="idx"
+                  class="inline-flex w-fit items-center rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-500"
                 >
                   {{ role.position }}
                 </span>
@@ -209,7 +197,7 @@ const formatDate = (date: string | undefined | null) => {
 
               <!-- Primary Summary -->
               <p
-                class="text-sm text-muted-foreground leading-relaxed mt-4 transition-all duration-300"
+                class="text-muted-foreground mt-4 text-sm leading-relaxed transition-all duration-300"
                 :class="{ 'line-clamp-3': expandedWorkName !== work.name }"
               >
                 {{ work.primarySummary }}
@@ -217,8 +205,8 @@ const formatDate = (date: string | undefined | null) => {
 
               <!-- Read More Button -->
               <button
+                class="mt-4 flex w-fit cursor-pointer items-center gap-1 text-xs font-semibold text-emerald-500 transition-colors hover:text-emerald-400"
                 @click="toggleExpand(work.name)"
-                class="text-xs font-semibold text-emerald-500 hover:text-emerald-400 transition-colors w-fit flex items-center gap-1 mt-4 cursor-pointer"
               >
                 {{
                   expandedWorkName === work.name
@@ -238,7 +226,7 @@ const formatDate = (date: string | undefined | null) => {
                   class="transition-transform duration-300"
                   :class="{ 'rotate-180': expandedWorkName === work.name }"
                 >
-                  <polyline points="6 9 12 15 18 9"></polyline>
+                  <polyline points="6 9 12 15 18 9" />
                 </svg>
               </button>
             </div>
@@ -246,7 +234,7 @@ const formatDate = (date: string | undefined | null) => {
             <!-- Right Side (Timeline View when expanded) -->
             <div
               v-if="expandedWorkName === work.name"
-              class="lg:col-span-2 flex flex-col gap-10 animate-fade-in-up md:pl-6 md:border-l border-border"
+              class="animate-fade-in-up border-border flex flex-col gap-10 md:border-l md:pl-6 lg:col-span-2"
             >
               <!-- Roles Timeline -->
               <div class="flex flex-col gap-10">
@@ -258,43 +246,42 @@ const formatDate = (date: string | undefined | null) => {
                   <!-- Timeline Line -->
                   <div
                     v-if="idx !== work.roles.length - 1"
-                    class="absolute left-3 top-6 bottom-[-2.5rem] w-[1px] bg-border"
-                  ></div>
+                    class="bg-border absolute top-6 bottom-[-2.5rem] left-3 w-[1px]"
+                  />
                   <!-- Timeline Dot -->
                   <div
-                    class="absolute left-0 top-1.5 w-6 h-6 rounded-full border-2 border-emerald-500 bg-background z-10 flex items-center justify-center"
+                    class="bg-background absolute top-1.5 left-0 z-10 flex h-6 w-6 items-center justify-center rounded-full border-2 border-emerald-500"
                   >
-                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                    <div class="h-2 w-2 rounded-full bg-emerald-500" />
                   </div>
 
                   <div class="flex flex-col gap-4">
                     <div>
-                      <h4 class="text-lg font-bold text-foreground">
+                      <h4 class="text-foreground text-lg font-bold">
                         {{ role.position }}
                       </h4>
-                      <p class="text-xs font-medium text-emerald-500 uppercase tracking-wider">
+                      <p class="text-xs font-medium tracking-wider text-emerald-500 uppercase">
                         {{ formatDate(role.startDate) }} —
-                        {{
-                          role.endDate
-                            ? formatDate(role.endDate)
-                            : t("experience.present")
-                        }}
+                        {{ role.endDate ? formatDate(role.endDate) : t("experience.present") }}
                       </p>
                     </div>
 
-                    <p class="text-sm text-muted-foreground leading-relaxed">
+                    <p class="text-muted-foreground text-sm leading-relaxed">
                       {{ role.summary }}
                     </p>
 
-                    <ul v-if="role.highlights?.length" class="flex flex-col gap-2">
+                    <ul
+                      v-if="role.highlights?.length"
+                      class="flex flex-col gap-2"
+                    >
                       <li
                         v-for="highlight in role.highlights"
                         :key="highlight"
-                        class="flex gap-3 text-sm text-muted-foreground leading-relaxed group/item"
+                        class="text-muted-foreground group/item flex gap-3 text-sm leading-relaxed"
                       >
                         <span
-                          class="text-emerald-500 mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500/40 group-hover/item:bg-emerald-500 shrink-0 transition-colors"
-                        ></span>
+                          class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500/40 text-emerald-500 transition-colors group-hover/item:bg-emerald-500"
+                        />
                         {{ highlight }}
                       </li>
                     </ul>
@@ -304,16 +291,14 @@ const formatDate = (date: string | undefined | null) => {
 
               <!-- Collective Skills -->
               <div>
-                <h4
-                  class="text-xs font-bold text-muted-foreground tracking-widest uppercase mb-4"
-                >
-                  Technologies Used
+                <h4 class="text-muted-foreground mb-4 text-xs font-bold tracking-widest uppercase">
+                  {{ t("experience.techStack") }}
                 </h4>
                 <div class="flex flex-wrap gap-1.5">
                   <span
                     v-for="skill in work.allSkills"
                     :key="skill"
-                    class="px-2.5 py-1 text-[10px] font-bold rounded-lg border border-border bg-accent/30 text-muted-foreground hover:bg-emerald-500/10 hover:text-emerald-500 hover:border-emerald-500/30 transition-all cursor-default"
+                    class="border-border bg-accent/30 text-muted-foreground cursor-default rounded-lg border px-2.5 py-1 text-[10px] font-bold transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-500"
                   >
                     {{ skill }}
                   </span>

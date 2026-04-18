@@ -1,0 +1,165 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  lang?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  lang = "en",
+  canonicalUrl,
+  ogImage = "https://deanufriana.github.io/og-image.png",
+} = Astro.props;
+
+const siteUrl = "https://deanufriana.github.io";
+const canonical = canonicalUrl || Astro.url.href;
+
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Devi Adi Nufriana",
+  url: siteUrl,
+  jobTitle: "Software Engineer",
+  sameAs: ["https://www.linkedin.com/in/deanufriana", "https://github.com/deanufriana"],
+  knowsAbout: ["Vue.js", "React.js", "TypeScript", "JavaScript", "Go", "Flutter"],
+};
+---
+
+<!doctype html>
+<html lang={lang} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Devi Adi Nufriana" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Devi Adi Nufriana" />
+    <meta property="og:locale" content={lang === "id" ? "id_ID" : "en_US"} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Fonts: preload for performance (non-blocking) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      />
+    </noscript>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Google Analytics via Partytown (off main thread) -->
+    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-5XH9HL1N8D"
+    ></script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag(...args) {
+        dataLayer.push(args);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-5XH9HL1N8D");
+    </script>
+
+    <!-- Prevent FOUC: apply dark/light theme before render -->
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+        } else {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
+
+    <!-- Global Analytics Tracking -->
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Scroll Milestone Tracking ---
+        const milestones = [25, 50, 75, 90];
+        const trackedMilestones = new Set();
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (scrollHeight <= 0) return;
+
+            const scrollPercent = Math.round((window.scrollY / scrollHeight) * 100);
+
+            milestones.forEach((m) => {
+              if (scrollPercent >= m && !trackedMilestones.has(m)) {
+                trackedMilestones.add(m);
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                  event: "scroll",
+                  percent_scrolled: m,
+                });
+              }
+            });
+          },
+          { passive: true },
+        );
+
+        // --- Global Click Tracking ---
+        document.addEventListener("click", (e) => {
+          const target = e.target.closest("button, a");
+          if (!target) return;
+
+          const label =
+            target.textContent?.trim() ||
+            target.getAttribute("aria-label") ||
+            target.getAttribute("title") ||
+            "unlabeled";
+          const type = target.tagName.toLowerCase();
+          const isOutbound = target.href && !target.href.includes(window.location.hostname);
+
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "click",
+            element_type: type,
+            element_text: label,
+            element_url: target.href || null,
+            element_id: target.id || null,
+            outbound: isOutbound,
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="antialiased">
+    <slot />
+  </body>
+</html>

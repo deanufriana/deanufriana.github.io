@@ -1,4 +1,4 @@
-import { ref, onUnmounted } from 'vue';
+import { ref, onUnmounted } from "vue";
 
 interface TypewriterOptions {
   typingSpeed?: number;
@@ -8,12 +8,7 @@ interface TypewriterOptions {
 }
 
 export function useTypewriter(texts: string[], options: TypewriterOptions = {}) {
-  const {
-    typingSpeed = 100,
-    deletingSpeed = 50,
-    pauseDuration = 2000,
-    startDelay = 500
-  } = options;
+  const { typingSpeed = 100, deletingSpeed = 50, pauseDuration = 2000, startDelay = 500 } = options;
 
   const typedText = ref("");
   let currentTextIndex = 0;
@@ -59,6 +54,6 @@ export function useTypewriter(texts: string[], options: TypewriterOptions = {}) 
   });
 
   return {
-    typedText
+    typedText,
   };
 }

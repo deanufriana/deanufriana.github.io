@@ -1,5 +1,8 @@
 name: on Update Resume
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   # Trigger the workflow every time you push to the `master` branch
   # Using a different branch name? Replace `master` with your branch’s name

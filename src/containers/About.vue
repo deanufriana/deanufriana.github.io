@@ -7,79 +7,123 @@ import { computed } from "vue";
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
 
-const resume = computed(() => props.lang === 'id' ? resumeId : resumeEn);
+const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
 const allSkills = computed(() => resume.value.skills.flatMap((s) => s.keywords));
 </script>
 
 <template>
-  <section id="about" class="py-20 sm:py-28">
-    <div class="max-w-6xl mx-auto px-6">
+  <section
+    id="about"
+    class="py-20 sm:py-28"
+  >
+    <div class="mx-auto max-w-6xl px-6">
       <!-- Section Label -->
-      <div class="animate-fade-in-up opacity-0" style="animation-delay: 0.1s; animation-fill-mode: forwards;">
-        <span class="text-xs font-semibold text-muted-foreground tracking-widest uppercase">{{ t('about.label') }}</span>
+      <div
+        class="animate-fade-in-up opacity-0"
+        style="animation-delay: 0.1s; animation-fill-mode: forwards"
+      >
+        <span class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">{{
+          t("about.label")
+        }}</span>
       </div>
 
-      <div class="mt-6 grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
+      <div class="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
         <!-- Left: Main content -->
-        <div class="lg:col-span-3 flex flex-col gap-6">
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-            {{ t('about.heading') }} <span class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">{{ resume.basics.name.split(' ')[0] }}</span>
+        <div class="flex flex-col gap-6 lg:col-span-3">
+          <h2 class="text-3xl leading-tight font-bold tracking-tight sm:text-4xl lg:text-5xl">
+            {{ t("about.heading") }}
+            <span
+              class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+            >{{ resume.basics.name.split(" ")[0] }}</span>
           </h2>
 
-          <p class="text-base sm:text-lg text-muted-foreground leading-relaxed">
+          <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
             {{ resume.basics.summary }}
           </p>
 
-          <div class="flex flex-wrap gap-3 mt-2">
+          <div class="mt-2 flex flex-wrap gap-3">
             <a
               target="_blank"
               rel="noopener noreferrer"
               href="https://registry.jsonresume.org/deanufriana"
-              class="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background text-sm font-semibold rounded-full hover:opacity-90 transition-all hover:scale-105 active:scale-95"
+              class="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-                <polyline points="7 10 12 15 17 10"/>
-                <line x1="12" y1="15" x2="12" y2="3"/>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line
+                  x1="12"
+                  y1="15"
+                  x2="12"
+                  y2="3"
+                />
               </svg>
-              {{ t('about.downloadCv') }}
+              {{ t("about.downloadCv") }}
             </a>
           </div>
         </div>
 
         <!-- Right: Skills & Info -->
-        <div class="lg:col-span-2 flex flex-col gap-8">
+        <div class="flex flex-col gap-8 lg:col-span-2">
           <!-- Info Cards -->
           <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-xl bg-card border border-border card-hover">
-              <p class="text-2xl sm:text-3xl font-bold">
-                {{ new Date().getFullYear() - new Date(resume.work[resume.work.length - 1].startDate).getFullYear() }}+
+            <div class="bg-card border-border card-hover rounded-xl border p-4">
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{
+                  new Date().getFullYear() -
+                    new Date(resume.work[resume.work.length - 1].startDate).getFullYear()
+                }}+
               </p>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.yearsExp') }}</p>
+              <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
+                {{ t("about.yearsExp") }}
+              </p>
             </div>
-            <div class="p-4 rounded-xl bg-card border border-border card-hover">
-              <p class="text-2xl sm:text-3xl font-bold">{{ resume.work.length }}+</p>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.companies') }}</p>
+            <div class="bg-card border-border card-hover rounded-xl border p-4">
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ resume.work.length }}+
+              </p>
+              <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
+                {{ t("about.companies") }}
+              </p>
             </div>
-            <div class="p-4 rounded-xl bg-card border border-border card-hover">
-              <p class="text-2xl sm:text-3xl font-bold">{{ resume.projects.length }}+</p>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.projects') }}</p>
+            <div class="bg-card border-border card-hover rounded-xl border p-4">
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ resume.projects.length }}+
+              </p>
+              <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
+                {{ t("about.projects") }}
+              </p>
             </div>
-            <div class="p-4 rounded-xl bg-card border border-border card-hover">
-              <p class="text-2xl sm:text-3xl font-bold">{{ t('about.privacyValue') }}</p>
-              <p class="text-xs text-muted-foreground mt-1 uppercase tracking-wider">{{ t('about.privacyLabel') }}</p>
+            <div class="bg-card border-border card-hover rounded-xl border p-4">
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ t("about.privacyValue") }}
+              </p>
+              <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
+                {{ t("about.privacyLabel") }}
+              </p>
             </div>
-
           </div>
 
           <!-- Skills -->
           <div>
-            <h3 class="text-sm font-semibold text-muted-foreground tracking-widest uppercase mb-4">{{ t('about.techStack') }}</h3>
+            <h3 class="text-muted-foreground mb-4 text-sm font-semibold tracking-widest uppercase">
+              {{ t("about.techStack") }}
+            </h3>
             <div class="flex flex-wrap gap-2">
               <span
                 v-for="skill in allSkills"
                 :key="skill"
-                class="px-3 py-1.5 text-xs font-medium rounded-full border border-border bg-card text-foreground hover:bg-accent transition-colors"
+                class="border-border bg-card text-foreground hover:bg-accent rounded-full border px-3 py-1.5 text-xs font-medium transition-colors"
               >
                 {{ skill }}
               </span>
