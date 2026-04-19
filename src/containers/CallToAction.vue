@@ -1,30 +1,22 @@
 <script lang="ts" setup>
 import { Button } from "@/components/ui/button";
-import { useClipboard } from "@/composables/clipboard";
 import { useResume } from "@/composables/resume";
-import { useTranslations, type ui } from "@/i18n/ui";
 import { useScrollReveal } from "@/composables/reveal";
-import { Check, Copy, Mail } from "lucide-vue-next";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { ExternalLink, Mail } from "lucide-vue-next";
+import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
 });
 const t = useTranslations(props.lang);
 const resume = useResume(props.lang);
-const { copied, copyToClipboard } = useClipboard();
 
 const { elementRef: sectionRef } = useScrollReveal();
 
-const copyEmail = async () => {
-  const success = await copyToClipboard(resume.value.basics.email);
-  if (success) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "copy_email",
-      email: resume.value.basics.email,
-    });
-  }
-};
+const upworkProfile = computed(() =>
+  resume.value.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
+);
 </script>
 
 <template>
@@ -57,20 +49,16 @@ const copyEmail = async () => {
           {{ t("hero.hire") }}
         </Button>
         <Button
-          variant="cta-outline"
+          v-if="upworkProfile"
+          as="a"
+          :href="upworkProfile.url"
+          target="_blank"
+          variant="upwork"
           size="pill"
           class="w-full sm:w-auto"
-          @click="copyEmail"
         >
-          <Copy
-            v-if="!copied"
-            :size="16"
-          />
-          <Check
-            v-else
-            :size="16"
-          />
-          {{ copied ? t("hero.copied") : t("hero.copyEmail") }}
+          <ExternalLink :size="16" />
+          {{ t("hero.upwork") }}
         </Button>
       </div>
     </div>

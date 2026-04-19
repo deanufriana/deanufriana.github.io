@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { Button } from "@/components/ui/button";
-import { useClipboard } from "@/composables/clipboard";
 import { useResume } from "@/composables/resume";
 import { useTypewriter } from "@/composables/string";
 import { useTranslations, type ui } from "@/i18n/ui";
-import { Check, Copy, Mail } from "lucide-vue-next";
+import { ExternalLink, Mail } from "lucide-vue-next";
 import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
@@ -12,7 +11,6 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
 });
 const t = useTranslations(props.lang);
 const resume = useResume(props.lang);
-const { copied, copyToClipboard } = useClipboard();
 
 const texts = computed(() => {
   const positions = new Set(resume.value.work.map((job) => job.position));
@@ -34,16 +32,9 @@ const yearExperience = computed(() => {
   return getYear - firstJob;
 });
 
-const copyEmail = async () => {
-  const success = await copyToClipboard(resume.value.basics.email);
-  if (success) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "copy_email",
-      email: resume.value.basics.email,
-    });
-  }
-};
+const upworkProfile = computed(() =>
+  resume.value.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
+);
 </script>
 
 <template>
@@ -143,20 +134,16 @@ const copyEmail = async () => {
             {{ t("hero.hire") }}
           </Button>
           <Button
-            variant="glass"
+            v-if="upworkProfile"
+            as="a"
+            :href="upworkProfile.url"
+            target="_blank"
+            variant="upwork"
             size="pill"
             class="w-full sm:w-auto"
-            @click="copyEmail"
           >
-            <Copy
-              v-if="!copied"
-              :size="16"
-            />
-            <Check
-              v-else
-              :size="16"
-            />
-            {{ copied ? t("hero.copied") : t("hero.copyEmail") }}
+            <ExternalLink :size="16" />
+            {{ t("hero.upwork") }}
           </Button>
         </div>
       </div>

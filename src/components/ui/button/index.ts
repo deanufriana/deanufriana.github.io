@@ -22,6 +22,8 @@ export const buttonVariants = cva(
         glass:
           "glass-card border border-white/10 backdrop-blur-xl hover:bg-white/10 dark:hover:bg-black/10 hover:scale-105 active:scale-95 transition-all shadow-xl",
         "ghost-emerald": "text-emerald-500 hover:text-emerald-400 transition-colors",
+        upwork:
+          "bg-[#14a800] text-white shadow-emerald-500/20 shadow-xl hover:bg-[#108a00] hover:scale-105 active:scale-95 transition-all",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
