@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
 });
 const t = useTranslations(props.lang);
-const resume = useResume(props.lang);
+const { resume } = useResume(props.lang);
 
 const { elementRef: sectionRef } = useScrollReveal();
 

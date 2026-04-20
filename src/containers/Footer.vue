@@ -7,7 +7,7 @@ import { Github, Globe, Instagram, Linkedin, Mail } from "lucide-vue-next";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
-const resume = useResume(props.lang);
+const { resume } = useResume(props.lang);
 
 const currentYear = new Date().getFullYear();
 
@@ -71,9 +71,7 @@ const contactLabels: Record<string, string> = {
 
         <!-- Right: Copyright -->
         <div class="text-center sm:text-right">
-          <p class="text-muted-foreground text-sm">
-            © {{ currentYear }} {{ resume.basics.name }}
-          </p>
+          <p class="text-muted-foreground text-sm">© {{ currentYear }} {{ resume.basics.name }}</p>
           <p class="text-muted-foreground/60 mt-1 text-xs">
             {{ t("footer.builtWith") }}
           </p>

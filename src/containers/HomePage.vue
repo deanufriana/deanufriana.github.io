@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
 });
 const t = useTranslations(props.lang);
-const resume = useResume(props.lang);
+const { resume, yearsOfExperience } = useResume(props.lang);
 
 const texts = computed(() => {
   const positions = new Set(resume.value.work.map((job) => job.position));
@@ -22,14 +22,6 @@ const { typedText } = useTypewriter(texts.value, {
   deletingSpeed: 50,
   pauseDuration: 2000,
   startDelay: 500,
-});
-
-const yearExperience = computed(() => {
-  const getYear = new Date().getFullYear();
-  const firstJob = new Date(
-    resume.value.work[resume.value.work.length - 1].startDate,
-  ).getFullYear();
-  return getYear - firstJob;
 });
 
 const upworkProfile = computed(() =>
@@ -58,7 +50,9 @@ const upworkProfile = computed(() =>
           >
             <span
               class="text-muted-foreground text-center text-sm font-medium tracking-widest uppercase md:text-left md:text-base"
-            >{{ resume.basics.label }}</span>
+            >
+              {{ resume.basics.label }}
+            </span>
           </div>
           <!-- Available for Work Badge -->
           <div
@@ -73,7 +67,7 @@ const upworkProfile = computed(() =>
               />
               <span
                 class="text-xs font-semibold tracking-wider text-emerald-500 uppercase md:text-sm"
-              >{{ t("hero.badge") }}
+                >{{ t("hero.badge") }}
               </span>
             </div>
           </div>
@@ -90,7 +84,8 @@ const upworkProfile = computed(() =>
             I'm
             <span
               class="bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent"
-            >{{ resume.basics.name }}</span>
+              >{{ resume.basics.name }}</span
+            >
           </h1>
         </div>
 
@@ -104,7 +99,7 @@ const upworkProfile = computed(() =>
           >
             <span class="block md:inline">
               {{ t("hero.intro") }}
-              <span class="text-foreground font-semibold">{{ yearExperience }}+</span>
+              <span class="text-foreground font-semibold">{{ yearsOfExperience }}+</span>
               {{ t("hero.suffix") }}
             </span>
             <div

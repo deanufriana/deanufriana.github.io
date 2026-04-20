@@ -10,7 +10,7 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
 });
 const t = useTranslations(props.lang);
-const resume = useResume(props.lang);
+const { resume } = useResume(props.lang);
 
 // Scroll handling
 const { y } = useScroll(typeof window !== "undefined" ? window : null);
@@ -141,7 +141,8 @@ onMounted(() => {
               activeSection === 'home' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'home' ? 'page' : undefined"
-          >{{ t("nav.home") }}</a>
+            >{{ t("nav.home") }}</a
+          >
           <a
             href="#about"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -149,7 +150,8 @@ onMounted(() => {
               activeSection === 'about' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'about' ? 'page' : undefined"
-          >{{ t("nav.about") }}</a>
+            >{{ t("nav.about") }}</a
+          >
           <a
             href="#services"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -157,7 +159,8 @@ onMounted(() => {
               activeSection === 'services' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'services' ? 'page' : undefined"
-          >{{ t("nav.services") }}</a>
+            >{{ t("nav.services") }}</a
+          >
           <a
             href="#experience"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -167,7 +170,8 @@ onMounted(() => {
                 : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'experience' ? 'page' : undefined"
-          >{{ t("nav.experience") }}</a>
+            >{{ t("nav.experience") }}</a
+          >
           <a
             href="#projects"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -175,7 +179,8 @@ onMounted(() => {
               activeSection === 'projects' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'projects' ? 'page' : undefined"
-          >{{ t("nav.projects") }}</a>
+            >{{ t("nav.projects") }}</a
+          >
         </div>
 
         <!-- Right side: Theme toggle + Lang + CTA -->

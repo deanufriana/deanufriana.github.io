@@ -1,15 +1,14 @@
 <script lang="ts" setup>
-import { useScrollReveal } from "@/composables/reveal";
-import resumeId from "@/data/resume.id.json";
-import resumeEn from "@/data/resume.json";
+import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
+import { useScrollReveal } from "@/composables/reveal";
 import { Download } from "lucide-vue-next";
 import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
+const { resume, yearsOfExperience, stats } = useResume(props.lang);
 
-const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
 const allSkills = computed(() => resume.value.skills.flatMap((s) => s.keywords));
 
 const { elementRef: sectionRef } = useScrollReveal();
@@ -39,7 +38,8 @@ const { elementRef: sectionRef } = useScrollReveal();
             {{ t("about.heading") }}
             <span
               class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
-            >{{ resume.basics.name.split(" ")[0] }}</span>
+              >{{ resume.basics.name.split(" ")[0] }}</span
+            >
           </h2>
 
           <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
@@ -64,28 +64,19 @@ const { elementRef: sectionRef } = useScrollReveal();
           <!-- Info Cards -->
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">
-                {{
-                  new Date().getFullYear() -
-                    new Date(resume.work[resume.work.length - 1].startDate).getFullYear()
-                }}+
-              </p>
+              <p class="text-2xl font-bold sm:text-3xl">{{ yearsOfExperience }}+</p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.yearsExp") }}
               </p>
             </div>
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">
-                {{ resume.work.length }}+
-              </p>
+              <p class="text-2xl font-bold sm:text-3xl">{{ stats.companies }}+</p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.companies") }}
               </p>
             </div>
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">
-                {{ resume.projects.length }}+
-              </p>
+              <p class="text-2xl font-bold sm:text-3xl">{{ stats.projects }}+</p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.projects") }}
               </p>
