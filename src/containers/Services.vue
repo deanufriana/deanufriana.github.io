@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { useTranslations, type ui } from "@/i18n/ui";
 import { useScrollReveal } from "@/composables/reveal";
+import { useTranslations, type ui } from "@/i18n/ui";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);

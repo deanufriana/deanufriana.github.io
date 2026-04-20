@@ -1,11 +1,14 @@
 ---
-import "../styles/global.css";
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Home } from "lucide-vue-next";
+import "../styles/global.css";
 ---
 
-<BaseLayout title="404 — Page Not Found" description="The page you're looking for doesn't exist.">
+<BaseLayout
+  title="404 — Page Not Found"
+  description="The page you're looking for doesn't exist."
+>
   <main class="relative flex min-h-screen items-center justify-center overflow-hidden">
     <!-- Subtle background gradient -->
     <div class="pointer-events-none absolute inset-0">
@@ -29,7 +32,13 @@ import { Home } from "lucide-vue-next";
           temporarily unavailable.
         </p>
         <div class="mt-10 flex justify-center">
-          <Button as="a" href="/" variant="cta" size="pill" class="gap-2">
+          <Button
+            as="a"
+            href="/"
+            variant="cta"
+            size="pill"
+            class="gap-2"
+          >
             <Home :size="18" />
             Back to Home
           </Button>
