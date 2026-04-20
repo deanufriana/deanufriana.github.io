@@ -1,9 +1,9 @@
 <script lang="ts" setup>
+import UpworkIcon from "@/components/icons/UpworkIcon.vue";
+import { useResume } from "@/composables/resume";
 import contacts from "@/data/contacts.json";
 import { useTranslations, type ui } from "@/i18n/ui";
-import { useResume } from "@/composables/resume";
-import { Mail, Github, Instagram, Linkedin, Globe } from "lucide-vue-next";
-import UpworkIcon from "@/components/icons/UpworkIcon.vue";
+import { Github, Globe, Instagram, Linkedin, Mail } from "lucide-vue-next";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);

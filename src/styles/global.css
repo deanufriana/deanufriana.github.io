@@ -79,6 +79,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: 5rem;
+}
+
 body {
   font-family:
     "Inter",
@@ -276,6 +281,8 @@ a {
 /* Section transitions */
 section {
   transition: background-color 0.3s ease;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 
 /* Skip to Content link */

@@ -1,68 +1,51 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
-import { useTranslations, type ui } from "@/i18n/ui";
-import { useResume } from "@/composables/resume";
 import { Button } from "@/components/ui/button";
-import { Home, User, Layers, Briefcase, Folder, Sun, Moon, Plus } from "lucide-vue-next";
+import { useResume } from "@/composables/resume";
+import { useTranslations, type ui } from "@/i18n/ui";
+import { useDark, useIntersectionObserver, useScroll, useToggle } from "@vueuse/core";
+import { Briefcase, Folder, Home, Layers, Moon, Plus, Sun, User } from "lucide-vue-next";
+import { computed, onMounted, ref } from "vue";
 
-const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
+const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
+  lang: "en",
+});
 const t = useTranslations(props.lang);
 const resume = useResume(props.lang);
 
-const isScrolled = ref(false);
+// Scroll handling
+const { y } = useScroll(typeof window !== "undefined" ? window : null);
+const isScrolled = computed(() => y.value > 20);
 
-const handleScroll = () => {
-  isScrolled.value = window.scrollY > 20;
-};
+// Theme management
+const isDark = useDark({
+  storageKey: "theme",
+  valueDark: "dark",
+  valueLight: "light",
+});
+const toggleTheme = () => useToggle(isDark)();
 
-const isDark = ref(true);
+// Active section tracking (Scroll-Spy)
 const activeSection = ref("home");
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value;
-  document.documentElement.classList.toggle("dark", isDark.value);
-  localStorage.setItem("theme", isDark.value ? "dark" : "light");
-};
-
-let observer: IntersectionObserver | null = null;
+const sections = ["home", "about", "services", "experience", "projects"];
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-
-  // Theme setup
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme === "light") {
-    isDark.value = false;
-    document.documentElement.classList.remove("dark");
-  } else {
-    isDark.value = true;
-    document.documentElement.classList.add("dark");
-  }
-
-  // Active section tracking
-  const options = {
-    threshold: 0.2, // Lower threshold for more responsive activation
-    rootMargin: "-20% 0px -35% 0px", // Focus area in the mid-upper part of viewport
-  };
-
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        activeSection.value = entry.target.id;
-      }
-    });
-  }, options);
-
-  const sections = ["home", "about", "services", "experience", "projects"];
   sections.forEach((id) => {
     const el = document.getElementById(id);
-    if (el) observer?.observe(el);
+    if (el) {
+      useIntersectionObserver(
+        el,
+        ([{ isIntersecting }]) => {
+          if (isIntersecting) {
+            activeSection.value = id;
+          }
+        },
+        {
+          threshold: 0.2,
+          rootMargin: "-20% 0px -35% 0px",
+        },
+      );
+    }
   });
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-  observer?.disconnect();
 });
 </script>
 

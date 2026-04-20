@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import resumeEn from "@/data/resume.json";
-import resumeId from "@/data/resume.id.json";
-import { useTranslations, type ui } from "@/i18n/ui";
 import { useScrollReveal } from "@/composables/reveal";
+import resumeId from "@/data/resume.id.json";
+import resumeEn from "@/data/resume.json";
+import { useTranslations, type ui } from "@/i18n/ui";
 import { Download } from "lucide-vue-next";
 import { computed } from "vue";
 

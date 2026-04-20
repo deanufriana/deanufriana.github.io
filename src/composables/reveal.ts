@@ -1,4 +1,5 @@
-import { onMounted, onUnmounted, ref, type Ref } from "vue";
+import { ref, type Ref } from "vue";
+import { useIntersectionObserver } from "@vueuse/core";
 
 /**
  * Reusable composable to trigger reveal animations on scroll.
@@ -8,34 +9,25 @@ export function useScrollReveal() {
   const elementRef: Ref<HTMLElement | null> = ref(null);
   const isVisible = ref(false);
 
-  let observer: IntersectionObserver | null = null;
+  const { stop } = useIntersectionObserver(
+    elementRef,
+    ([{ isIntersecting }]) => {
+      if (isIntersecting) {
+        isVisible.value = true;
 
-  onMounted(() => {
-    if (!elementRef.value) return;
+        if (elementRef.value) {
+          elementRef.value.classList.add("reveal-visible");
+        }
 
-    observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            isVisible.value = true;
-            entry.target.classList.add("reveal-visible");
-            // Stop observing once visible to save resources
-            observer?.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px",
-      },
-    );
-
-    observer.observe(elementRef.value);
-  });
-
-  onUnmounted(() => {
-    observer?.disconnect();
-  });
+        // Stop observing once visible to save resources
+        stop();
+      }
+    },
+    {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    },
+  );
 
   return {
     elementRef,

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { useResume } from "@/composables/resume";
-import { useTranslations, type ui } from "@/i18n/ui";
-import { useScrollReveal } from "@/composables/reveal";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useResume } from "@/composables/resume";
+import { useScrollReveal } from "@/composables/reveal";
+import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, ChevronDown } from "lucide-vue-next";
 import { computed, nextTick, ref } from "vue";
 
