@@ -1,7 +1,7 @@
 {
   "name": "deanufriana.github.io",
   "type": "module",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "private": true,
   "engines": {
     "node": ">=22.12.0"
