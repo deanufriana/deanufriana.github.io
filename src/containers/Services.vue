@@ -23,6 +23,11 @@ const services = [
     titleKey: "services.3.title" as const,
     descKey: "services.3.desc" as const,
   },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-500"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`,
+    titleKey: "services.4.title" as const,
+    descKey: "services.4.desc" as const,
+  },
 ];
 </script>
 
@@ -46,15 +51,16 @@ const services = [
       </div>
 
       <!-- Services Grid -->
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div
           v-for="(service, index) in services"
           :key="index"
           class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-8"
-          :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
+          :class="`stagger-${(index % 6) + 1}`"
         >
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div
+            v-once
             class="bg-foreground/5 mb-2 w-fit rounded-2xl p-4 transition-transform duration-500 group-hover:scale-110"
             v-html="service.icon"
           />

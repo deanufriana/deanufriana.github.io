@@ -176,6 +176,7 @@
         "Created a user-friendly interface for resume management and customization",
         "Integrated modern web technologies for a seamless user experience"
       ],
+      "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
       "url": "https://deanufriana.github.io/resume-lab/"
     },
     {
@@ -184,6 +185,7 @@
       "endDate": "2019-04-01",
       "description": "A modern, responsive Mortgage Calculator (Simulasi KPR) built with React and Vite. This application helps users estimate their monthly mortgage payments, taking into account both **fixed** and **floating** interest rates",
       "highlights": [],
+      "keywords": ["React", "Vite", "Web App"],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
     },
     {
@@ -192,6 +194,7 @@
       "endDate": "2019-04-01",
       "description": "The thesis process becomes more organized and faster, carried out online and can be accessed anywhere via a browser with the aim of saving time, energy and making it easier to obtain information on the thesis process online.",
       "highlights": [],
+      "keywords": ["PHP", "MySQL", "Online System"],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],

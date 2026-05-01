@@ -11,6 +11,21 @@ const { resume, yearsOfExperience, stats } = useResume(props.lang);
 
 const allSkills = computed(() => resume.value.skills.flatMap((s) => s.keywords));
 
+const principles = [
+  {
+    titleKey: "about.principles.1.title" as const,
+    descKey: "about.principles.1.desc" as const,
+  },
+  {
+    titleKey: "about.principles.2.title" as const,
+    descKey: "about.principles.2.desc" as const,
+  },
+  {
+    titleKey: "about.principles.3.title" as const,
+    descKey: "about.principles.3.desc" as const,
+  },
+];
+
 const { elementRef: sectionRef } = useScrollReveal();
 </script>
 
@@ -33,29 +48,55 @@ const { elementRef: sectionRef } = useScrollReveal();
 
       <div class="mt-6 grid grid-cols-1 gap-12 lg:grid-cols-5 lg:gap-16">
         <!-- Left: Main content -->
-        <div class="flex flex-col gap-6 lg:col-span-3">
-          <h2 class="text-3xl leading-tight font-bold tracking-tight sm:text-4xl lg:text-5xl">
-            {{ t("about.heading") }}
-            <span
-              class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
-              >{{ resume.basics.name.split(" ")[0] }}</span
-            >
-          </h2>
+        <div class="flex flex-col gap-10 lg:col-span-3">
+          <div class="flex flex-col gap-6">
+            <h2 class="text-3xl leading-tight font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              {{ t("about.heading") }}
+              <span
+                class="bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent"
+              >
+                {{ resume.basics.name.split(" ")[0] }}
+              </span>
+            </h2>
 
-          <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
-            {{ resume.basics.summary }}
-          </p>
+            <p class="text-muted-foreground text-base leading-relaxed sm:text-lg">
+              {{ resume.basics.summary }}
+            </p>
 
-          <div class="mt-2 flex flex-wrap gap-3">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://registry.jsonresume.org/deanufriana"
-              class="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95"
+            <div class="mt-2 flex flex-wrap gap-3">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://registry.jsonresume.org/deanufriana"
+                class="bg-foreground text-background inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all hover:scale-105 hover:opacity-90 active:scale-95"
+              >
+                <Download :size="16" />
+                {{ t("about.downloadCv") }}
+              </a>
+            </div>
+          </div>
+
+          <!-- Principles Grid -->
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <div
+              v-for="(principle, index) in principles"
+              :key="index"
+              class="bg-card/50 border-border rounded-xl border p-4 transition-all hover:bg-card hover:scale-[1.02]"
+              :class="`stagger-${(index % 6) + 1}`"
             >
-              <Download :size="16" />
-              {{ t("about.downloadCv") }}
-            </a>
+              <h4
+                v-once
+                class="text-foreground text-sm font-bold"
+              >
+                {{ t(principle.titleKey) }}
+              </h4>
+              <p
+                v-once
+                class="text-muted-foreground mt-1 text-xs leading-relaxed"
+              >
+                {{ t(principle.descKey) }}
+              </p>
+            </div>
           </div>
         </div>
 
@@ -64,19 +105,25 @@ const { elementRef: sectionRef } = useScrollReveal();
           <!-- Info Cards -->
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">{{ yearsOfExperience }}+</p>
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ yearsOfExperience }}+
+              </p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.yearsExp") }}
               </p>
             </div>
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">{{ stats.companies }}+</p>
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ stats.companies }}+
+              </p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.companies") }}
               </p>
             </div>
             <div class="bg-card border-border card-hover rounded-xl border p-4">
-              <p class="text-2xl font-bold sm:text-3xl">{{ stats.projects }}+</p>
+              <p class="text-2xl font-bold sm:text-3xl">
+                {{ stats.projects }}+
+              </p>
               <p class="text-muted-foreground mt-1 text-xs tracking-wider uppercase">
                 {{ t("about.projects") }}
               </p>

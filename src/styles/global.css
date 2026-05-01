@@ -226,6 +226,27 @@ body {
   animation-delay: 0.6s;
 }
 
+/* Staggered entrance utilities */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* Scale hover micro-interaction */
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale:active {
+  transform: scale(0.95);
+}
+
 /* Glassmorphism nav */
 .glass-nav {
   background: var(--nav-bg);
@@ -255,11 +276,11 @@ body {
 
 .card-hover:hover {
   border-color: var(--card-hover-border);
-  transform: translateY(-4px);
+  transform: translateY(-8px) scale(1.01);
   background: var(--glass-bg);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
 }
 
 .dark .card-hover:hover {

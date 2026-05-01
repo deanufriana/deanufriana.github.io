@@ -173,6 +173,7 @@
         "Menciptakan antarmuka yang ramah pengguna untuk pengelolaan dan kustomisasi resume",
         "Mengintegrasikan teknologi web modern untuk pengalaman pengguna yang mulus"
       ],
+      "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
       "url": "https://deanufriana.github.io/resume-lab/"
     },
     {
@@ -181,6 +182,7 @@
       "endDate": "2019-04-01",
       "description": "Aplikasi Kalkulator KPR modern dan responsif yang dibangun dengan React dan Vite. Aplikasi ini membantu pengguna memperkirakan cicilan KPR bulanan mereka, dengan mempertimbangkan suku bunga **fixed** dan **floating**.",
       "highlights": [],
+      "keywords": ["React", "Vite", "Web App"],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
     },
     {
@@ -189,6 +191,7 @@
       "endDate": "2019-04-01",
       "description": "Proses skripsi menjadi lebih terorganisir dan cepat, dilakukan secara daring serta dapat diakses di mana saja melalui browser dengan tujuan menghemat waktu, tenaga, dan mempermudah perolehan informasi proses skripsi secara online.",
       "highlights": [],
+      "keywords": ["PHP", "MySQL", "Online System"],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],

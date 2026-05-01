@@ -4,7 +4,7 @@ import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { useDark, useIntersectionObserver, useScroll, useToggle } from "@vueuse/core";
 import { Briefcase, Folder, Home, Layers, Moon, Plus, Sun, User } from "lucide-vue-next";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
@@ -27,8 +27,22 @@ const toggleTheme = () => useToggle(isDark)();
 // Active section tracking (Scroll-Spy)
 const activeSection = ref("home");
 const sections = ["home", "about", "services", "experience", "projects"];
+const isMounted = ref(false);
+
+// Handle bottom of page for last section
+watch(y, (newY) => {
+  if (typeof window !== "undefined") {
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    // If we're within 100px of the bottom, highlight Projects
+    if (newY + clientHeight >= scrollHeight - 100) {
+      activeSection.value = "projects";
+    }
+  }
+});
 
 onMounted(() => {
+  isMounted.value = true;
   sections.forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -36,7 +50,12 @@ onMounted(() => {
         el,
         ([{ isIntersecting }]) => {
           if (isIntersecting) {
-            activeSection.value = id;
+            // Only update if not at the very bottom (where the watcher takes over)
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            if (y.value + clientHeight < scrollHeight - 100) {
+              activeSection.value = id;
+            }
           }
         },
         {
@@ -141,8 +160,9 @@ onMounted(() => {
               activeSection === 'home' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'home' ? 'page' : undefined"
-            >{{ t("nav.home") }}</a
           >
+            {{ t("nav.home") }}
+          </a>
           <a
             href="#about"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -150,8 +170,9 @@ onMounted(() => {
               activeSection === 'about' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'about' ? 'page' : undefined"
-            >{{ t("nav.about") }}</a
           >
+            {{ t("nav.about") }}
+          </a>
           <a
             href="#services"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -159,8 +180,9 @@ onMounted(() => {
               activeSection === 'services' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'services' ? 'page' : undefined"
-            >{{ t("nav.services") }}</a
           >
+            {{ t("nav.services") }}
+          </a>
           <a
             href="#experience"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -170,8 +192,9 @@ onMounted(() => {
                 : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'experience' ? 'page' : undefined"
-            >{{ t("nav.experience") }}</a
           >
+            {{ t("nav.experience") }}
+          </a>
           <a
             href="#projects"
             class="hover:text-foreground text-sm font-medium transition-colors"
@@ -179,8 +202,9 @@ onMounted(() => {
               activeSection === 'projects' ? 'font-bold text-emerald-500' : 'text-muted-foreground'
             "
             :aria-current="activeSection === 'projects' ? 'page' : undefined"
-            >{{ t("nav.projects") }}</a
           >
+            {{ t("nav.projects") }}
+          </a>
         </div>
 
         <!-- Right side: Theme toggle + Lang + CTA -->
@@ -211,18 +235,20 @@ onMounted(() => {
               class="relative h-[18px] w-[18px] transition-transform duration-500 ease-in-out group-active/theme:scale-90"
               :class="{ 'rotate-[360deg]': isDark }"
             >
-              <Sun
-                v-if="isDark"
-                :size="18"
-                :stroke-width="2.5"
-                class="animate-in fade-in zoom-in absolute inset-0 text-emerald-500 duration-300"
-              />
-              <Moon
-                v-else
-                :size="18"
-                :stroke-width="2.5"
-                class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
-              />
+              <template v-if="isMounted">
+                <Sun
+                  v-if="isDark"
+                  :size="18"
+                  :stroke-width="2.5"
+                  class="animate-in fade-in zoom-in absolute inset-0 text-emerald-500 duration-300"
+                />
+                <Moon
+                  v-else
+                  :size="18"
+                  :stroke-width="2.5"
+                  class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
+                />
+              </template>
             </div>
           </Button>
 

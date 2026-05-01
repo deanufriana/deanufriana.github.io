@@ -67,7 +67,8 @@ const upworkProfile = computed(() =>
               />
               <span
                 class="text-xs font-semibold tracking-wider text-emerald-500 uppercase md:text-sm"
-                >{{ t("hero.badge") }}
+              >
+                {{ t("hero.badge") }}
               </span>
             </div>
           </div>
@@ -84,8 +85,9 @@ const upworkProfile = computed(() =>
             I'm
             <span
               class="bg-gradient-to-r from-emerald-400 via-teal-400 to-blue-500 bg-clip-text text-transparent"
-              >{{ resume.basics.name }}</span
             >
+              {{ resume.basics.name }}
+            </span>
           </h1>
         </div>
 
@@ -116,13 +118,15 @@ const upworkProfile = computed(() =>
           style="animation-delay: 0.5s; animation-fill-mode: forwards"
         >
           <Button
+            v-once
             as="a"
             :href="`mailto:${resume.basics.email}?subject=Free%20Consultation%20Inquiry`"
             variant="cta"
             size="pill"
-            class="w-full sm:w-auto"
+            class="hover-scale w-full sm:w-auto"
           >
             <Mail
+              v-once
               :size="16"
               :stroke-width="2.5"
             />
@@ -130,14 +134,18 @@ const upworkProfile = computed(() =>
           </Button>
           <Button
             v-if="upworkProfile"
+            v-once
             as="a"
             :href="upworkProfile.url"
             target="_blank"
             variant="upwork"
             size="pill"
-            class="w-full sm:w-auto"
+            class="hover-scale w-full sm:w-auto"
           >
-            <ExternalLink :size="16" />
+            <ExternalLink
+              v-once
+              :size="16"
+            />
             {{ t("hero.upwork") }}
           </Button>
         </div>

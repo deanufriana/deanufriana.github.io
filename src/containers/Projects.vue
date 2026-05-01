@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import resumeEn from "@/data/resume.json";
-import resumeId from "@/data/resume.id.json";
-import { useTranslations, type ui } from "@/i18n/ui";
-import { useScrollReveal } from "@/composables/reveal";
 import { Badge } from "@/components/ui/badge";
+import { useScrollReveal } from "@/composables/reveal";
+import resumeId from "@/data/resume.id.json";
+import resumeEn from "@/data/resume.json";
+import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, Link } from "lucide-vue-next";
 import { computed } from "vue";
 
@@ -39,16 +39,20 @@ const { elementRef: sectionRef } = useScrollReveal();
 
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <a
+        <div
           v-for="(project, index) in resume.projects"
           :key="project.name"
-          :href="project.url"
-          target="_blank"
-          rel="noopener noreferrer"
-          :aria-label="`View project: ${project.name}`"
-          class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-6 no-underline"
+          class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-6"
+          :class="`stagger-${(index % 6) + 1}`"
           :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
         >
+          <a
+            :href="project.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`View project: ${project.name}`"
+            class="absolute inset-0 z-10"
+          />
           <!-- Project Header -->
           <div class="flex items-start justify-between gap-3">
             <div class="flex-1">
@@ -93,6 +97,20 @@ const { elementRef: sectionRef } = useScrollReveal();
             {{ t("projects.personal") }}
           </p>
 
+          <!-- Tech Stack Tags -->
+          <div
+            v-if="project.keywords && project.keywords.length"
+            class="mt-2 flex flex-wrap gap-1.5"
+          >
+            <span
+              v-for="tech in project.keywords"
+              :key="tech"
+              class="text-muted-foreground bg-foreground/5 rounded-md px-2 py-0.5 text-[10px] font-medium"
+            >
+              {{ tech }}
+            </span>
+          </div>
+
           <!-- Link label -->
           <div class="text-muted-foreground mt-auto flex items-center gap-2 pt-2 text-xs">
             <Link :size="12" />
@@ -100,7 +118,7 @@ const { elementRef: sectionRef } = useScrollReveal();
               project.url.replace("https://", "").replace("http://", "")
             }}</span>
           </div>
-        </a>
+        </div>
       </div>
     </div>
   </section>
