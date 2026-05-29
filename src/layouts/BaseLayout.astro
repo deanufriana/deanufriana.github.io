@@ -164,9 +164,27 @@ const jsonLd = {
       })();
     </script>
 
-    <!-- Global Analytics Tracking -->
+    <!-- Global Analytics & Interaction Tracking -->
     <script is:inline>
       document.addEventListener("DOMContentLoaded", () => {
+        // --- Scroll Reveal Animation ---
+        const revealElements = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("reveal-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px",
+          }
+        );
+        revealElements.forEach((el) => revealObserver.observe(el));
+
         // --- Scroll Milestone Tracking ---
         const milestones = [25, 50, 75, 90];
         const trackedMilestones = new Set();
@@ -220,6 +238,7 @@ const jsonLd = {
     </script>
   </head>
   <body class="antialiased">
+    <div id="scroll-progress"></div>
     <a
       href="#main-content"
       class="skip-link"

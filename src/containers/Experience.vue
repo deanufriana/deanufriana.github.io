@@ -2,7 +2,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/composables/resume";
-import { useScrollReveal } from "@/composables/reveal";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, ChevronDown } from "lucide-vue-next";
 import { computed, nextTick, ref } from "vue";
@@ -10,8 +9,6 @@ import { computed, nextTick, ref } from "vue";
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
 const { resume } = useResume(props.lang);
-
-const { elementRef: sectionRef } = useScrollReveal();
 
 const expandedWorkName = ref<string | null>(null);
 
@@ -102,7 +99,6 @@ const formatDate = (date: string | undefined | null) => {
 <template>
   <section
     id="experience"
-    ref="sectionRef"
     class="reveal cursor-default overflow-hidden py-20 sm:py-28"
     style="background-color: var(--section-alt-bg)"
     @click="expandedWorkName = null"

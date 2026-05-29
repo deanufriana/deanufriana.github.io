@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/composables/resume";
-import { useScrollReveal } from "@/composables/reveal";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { ExternalLink, Mail } from "lucide-vue-next";
 import { computed } from "vue";
@@ -12,8 +11,6 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
 const t = useTranslations(props.lang);
 const { resume } = useResume(props.lang);
 
-const { elementRef: sectionRef } = useScrollReveal();
-
 const upworkProfile = computed(() =>
   resume.value.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
 );
@@ -21,7 +18,6 @@ const upworkProfile = computed(() =>
 
 <template>
   <section
-    ref="sectionRef"
     class="reveal py-20 sm:py-28"
     style="background-color: var(--section-alt-bg)"
   >

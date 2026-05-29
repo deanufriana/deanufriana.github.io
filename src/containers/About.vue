@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
-import { useScrollReveal } from "@/composables/reveal";
 import { Download } from "lucide-vue-next";
 import { computed } from "vue";
 
@@ -25,14 +24,11 @@ const principles = [
     descKey: "about.principles.3.desc" as const,
   },
 ];
-
-const { elementRef: sectionRef } = useScrollReveal();
 </script>
 
 <template>
   <section
     id="about"
-    ref="sectionRef"
     class="reveal py-20 sm:py-28"
   >
     <div class="mx-auto max-w-6xl px-6">

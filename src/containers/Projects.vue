@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { Badge } from "@/components/ui/badge";
 import { useResume } from "@/composables/resume";
-import { useScrollReveal } from "@/composables/reveal";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, Link } from "lucide-vue-next";
 
@@ -9,14 +8,11 @@ const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "e
 const t = useTranslations(props.lang);
 
 const { resume } = useResume(props.lang);
-
-const { elementRef: sectionRef } = useScrollReveal();
 </script>
 
 <template>
   <section
     id="projects"
-    ref="sectionRef"
     class="reveal py-20 sm:py-28"
   >
     <div class="mx-auto max-w-6xl px-6">

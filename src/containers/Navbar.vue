@@ -235,20 +235,18 @@ onMounted(() => {
               class="relative h-[18px] w-[18px] transition-transform duration-500 ease-in-out group-active/theme:scale-90"
               :class="{ 'rotate-[360deg]': isDark }"
             >
-              <template v-if="isMounted">
-                <Sun
-                  v-if="isDark"
-                  :size="18"
-                  :stroke-width="2.5"
-                  class="animate-in fade-in zoom-in absolute inset-0 text-emerald-500 duration-300"
-                />
-                <Moon
-                  v-else
-                  :size="18"
-                  :stroke-width="2.5"
-                  class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
-                />
-              </template>
+              <Sun
+                v-if="isMounted && isDark"
+                :size="18"
+                :stroke-width="2.5"
+                class="animate-in fade-in zoom-in absolute inset-0 text-emerald-500 duration-300"
+              />
+              <Moon
+                v-else
+                :size="18"
+                :stroke-width="2.5"
+                class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
+              />
             </div>
           </Button>
 
