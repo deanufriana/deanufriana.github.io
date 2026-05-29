@@ -36,11 +36,11 @@
       "highlights": [
         "Analyzed and optimized existing workflows to reduce redundancy and improve system efficiency",
         "Designed and implemented a notification microservice to support scalable system integration",
-        "Integration third party sistem such as WA, SMS, EMAIL, and push notification",
+        "Integrated third-party systems such as WA, SMS, email, and push notifications",
         "Collaborated with multiple teams to streamline integration processes across systems",
         "Implemented CI/CD pipelines using GitLab CI to improve deployment automation"
       ],
-      "skills": ["Go Lang", "VueJs", "Docker", "Gitlab"],
+      "skills": ["Go", "Vue.js", "Docker", "GitLab"],
       "url": "https://brilife.co.id/"
     },
     {
@@ -78,7 +78,7 @@
         "Ensured seamless user access to policy information and services.",
         "Employed technologies such as JavaScript, ReactJS, ViteJS, Git, Nginx, and Linux to achieve project goals."
       ],
-      "skills": ["JavaScript", "ReactJS", "Linux"]
+      "skills": ["JavaScript", "React", "Linux"]
     },
     {
       "name": "BRI Life",
@@ -96,7 +96,7 @@
         "Proficiently utilized a versatile tech stack, including JavaScript, ExpressJS, ReactJS, Git, React Native, SQL Server, and Linux server configuration.",
         "Equipped with the skills to configure and deploy applications in various environments, be it development or production."
       ],
-      "skills": ["JavaScript", "ReactJS", "Flutter", "ExpressJS", "SQL Server", "Linux", "NodeJS"]
+      "skills": ["JavaScript", "React", "Flutter", "Express.js", "SQL Server", "Linux", "Node.js"]
     }
   ],
   "education": [

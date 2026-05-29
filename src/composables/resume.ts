@@ -13,8 +13,9 @@ export function useResume(lang: MaybeRefOrGetter<keyof typeof ui>) {
     const workHistory = resume.value.work;
     if (workHistory.length === 0) return 0;
 
-    const firstJob = new Date(workHistory[workHistory.length - 1].startDate).getFullYear();
-    return currentYear - firstJob;
+    const startDates = workHistory.map((w) => new Date(w.startDate).getTime());
+    const earliestDate = new Date(Math.min(...startDates));
+    return currentYear - earliestDate.getFullYear();
   });
 
   const stats = computed(() => {

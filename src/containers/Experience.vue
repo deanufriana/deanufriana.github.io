@@ -130,6 +130,9 @@ const formatDate = (date: string | undefined | null) => {
           v-for="work in workList"
           :id="`work-${work.name}`"
           :key="work.name"
+          role="button"
+          tabindex="0"
+          :aria-expanded="expandedWorkName === work.name ? 'true' : 'false'"
           class="group glass-card card-hover relative flex h-fit cursor-pointer flex-col gap-4 rounded-2xl p-6 transition-all duration-700 ease-in-out"
           :class="{
             'border-emerald-500/30 shadow-xl ring-1 shadow-emerald-500/5 ring-emerald-500/20 md:col-span-2 lg:col-span-3':
@@ -138,6 +141,8 @@ const formatDate = (date: string | undefined | null) => {
               expandedWorkName && expandedWorkName !== work.name,
           }"
           @click.stop="toggleExpand(work.name)"
+          @keydown.enter.prevent="toggleExpand(work.name)"
+          @keydown.space.prevent="toggleExpand(work.name)"
         >
           <div
             :class="{

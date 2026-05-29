@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 import { Badge } from "@/components/ui/badge";
+import { useResume } from "@/composables/resume";
 import { useScrollReveal } from "@/composables/reveal";
-import resumeId from "@/data/resume.id.json";
-import resumeEn from "@/data/resume.json";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, Link } from "lucide-vue-next";
-import { computed } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
 
-const resume = computed(() => (props.lang === "id" ? resumeId : resumeEn));
+const { resume } = useResume(props.lang);
 
 const { elementRef: sectionRef } = useScrollReveal();
 </script>

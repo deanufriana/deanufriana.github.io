@@ -102,6 +102,16 @@ const { elementRef: sectionRef } = useScrollReveal();
 
         <!-- Right: Skills & Info -->
         <div class="flex flex-col gap-8 lg:col-span-2">
+          <!-- Profile Avatar -->
+          <div class="flex justify-center lg:justify-start">
+            <img
+              :src="resume.basics.image"
+              :alt="resume.basics.name"
+              class="h-28 w-28 rounded-2xl object-cover border border-border shadow-md transition-all hover:scale-105"
+              loading="lazy"
+            >
+          </div>
+
           <!-- Info Cards -->
           <div class="grid grid-cols-2 gap-4">
             <div class="bg-card border-border card-hover rounded-xl border p-4">
