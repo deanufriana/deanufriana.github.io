@@ -1,29 +1,5 @@
 ---
-import About from "@/containers/About.vue";
-import CallToAction from "@/containers/CallToAction.vue";
-import Experience from "@/containers/Experience.vue";
-import Footer from "@/containers/Footer.vue";
-import HomePage from "@/containers/HomePage.vue";
-import Navbar from "@/containers/Navbar.vue";
-import Projects from "@/containers/Projects.vue";
-import Services from "@/containers/Services.vue";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import "../styles/global.css";
+import PortfolioPage from "@/components/PortfolioPage.astro";
 ---
 
-<BaseLayout
-  title="Devi Adi Nufriana — Software Engineer"
-  description="Software Engineer with expertise in React and Vue. Building fast, scalable, and high-quality web solutions."
-  canonicalUrl="https://deanufriana.github.io/"
->
-  <Navbar client:load />
-  <main id="main-content">
-    <HomePage client:load />
-    <About />
-    <Services />
-    <Experience client:visible />
-    <Projects />
-    <CallToAction />
-  </main>
-  <Footer />
-</BaseLayout>
+<PortfolioPage lang="en" />

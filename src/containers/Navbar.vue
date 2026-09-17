@@ -2,9 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
-import { useDark, useIntersectionObserver, useScroll, useToggle } from "@vueuse/core";
+import { useIntersectionObserver, useScroll } from "@vueuse/core";
 import { Briefcase, Folder, Home, Layers, Moon, Plus, Sun, User } from "lucide-vue-next";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
   lang: "en",
@@ -17,17 +17,45 @@ const { y } = useScroll(typeof window !== "undefined" ? window : null);
 const isScrolled = computed(() => y.value > 20);
 
 // Theme management
-const isDark = useDark({
-  storageKey: "theme",
-  valueDark: "dark",
-  valueLight: "light",
-});
-const toggleTheme = () => useToggle(isDark)();
+const isDark = ref(true);
+
+const applyCurrentTheme = () => {
+  if (typeof window === "undefined") return;
+  const theme = localStorage.getItem("theme");
+  if (theme === "light") {
+    isDark.value = false;
+    document.documentElement.classList.remove("dark");
+  } else {
+    isDark.value = true;
+    document.documentElement.classList.add("dark");
+  }
+};
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value;
+  if (typeof window !== "undefined") {
+    if (isDark.value) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }
+};
 
 // Active section tracking (Scroll-Spy)
 const activeSection = ref("home");
 const sections = ["home", "about", "services", "experience", "projects"];
 const isMounted = ref(false);
+
+const targetLangUrl = computed(() => {
+  const basePath = props.lang === "en" ? "/id/" : "/";
+  if (activeSection.value && activeSection.value !== "home") {
+    return `${basePath}#${activeSection.value}`;
+  }
+  return basePath;
+});
 
 // Handle bottom of page for last section
 watch(y, (newY) => {
@@ -43,6 +71,9 @@ watch(y, (newY) => {
 
 onMounted(() => {
   isMounted.value = true;
+  applyCurrentTheme();
+  document.addEventListener("astro:after-swap", applyCurrentTheme);
+
   sections.forEach((id) => {
     const el = document.getElementById(id);
     if (el) {
@@ -65,6 +96,12 @@ onMounted(() => {
       );
     }
   });
+});
+
+onUnmounted(() => {
+  if (typeof window !== "undefined") {
+    document.removeEventListener("astro:after-swap", applyCurrentTheme);
+  }
 });
 </script>
 
@@ -212,7 +249,7 @@ onMounted(() => {
           <!-- Language Switcher -->
           <Button
             as="a"
-            :href="lang === 'en' ? '/id/' : '/'"
+            :href="targetLangUrl"
             variant="ghost"
             size="icon-xl"
             class="text-sm font-bold"
@@ -223,10 +260,9 @@ onMounted(() => {
           </Button>
 
           <!-- Theme Toggle -->
-          <Button
-            variant="ghost"
-            size="icon-xl"
-            class="group/theme"
+          <button
+            type="button"
+            class="hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/10 inline-flex items-center justify-center gap-2 rounded-xl p-2 transition-all cursor-pointer group/theme outline-none focus-visible:ring-ring/50 focus-visible:ring-[3px]"
             :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
             :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
             @click="toggleTheme"
@@ -248,7 +284,7 @@ onMounted(() => {
                 class="animate-in fade-in zoom-in absolute inset-0 text-blue-500 duration-300"
               />
             </div>
-          </Button>
+          </button>
 
           <Button
             as="a"

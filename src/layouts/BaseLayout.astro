@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 interface Props {
   title: string;
   description: string;
@@ -36,6 +38,7 @@ const jsonLd = {
   class="dark"
 >
   <head>
+    <ClientRouter />
     <meta charset="UTF-8" />
     <meta
       http-equiv="X-UA-Compatible"
@@ -136,8 +139,7 @@ const jsonLd = {
     <script
       type="application/ld+json"
       set:html={JSON.stringify(jsonLd)}
-    />
-
+    ></script>
     <!-- Google Analytics via Partytown (off main thread) -->
     <script
       type="text/partytown"
@@ -151,22 +153,22 @@ const jsonLd = {
       gtag("js", new Date());
       gtag("config", "G-NCLQWHKW9N");
     </script>
-
     <!-- Prevent FOUC: apply dark/light theme before render -->
     <script is:inline>
-      (function () {
+      function applyTheme() {
         const theme = localStorage.getItem("theme");
         if (theme === "light") {
           document.documentElement.classList.remove("dark");
         } else {
           document.documentElement.classList.add("dark");
         }
-      })();
+      }
+      applyTheme();
+      document.addEventListener("astro:after-swap", applyTheme);
     </script>
-
     <!-- Global Analytics & Interaction Tracking -->
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
+      function initPageInteractions() {
         // --- Scroll Reveal Animation ---
         const revealElements = document.querySelectorAll(".reveal");
         const revealObserver = new IntersectionObserver(
@@ -181,10 +183,15 @@ const jsonLd = {
           {
             threshold: 0.15,
             rootMargin: "0px 0px -50px 0px",
-          }
+          },
         );
         revealElements.forEach((el) => revealObserver.observe(el));
+      }
 
+      document.addEventListener("DOMContentLoaded", initPageInteractions);
+      document.addEventListener("astro:page-load", initPageInteractions);
+
+      document.addEventListener("DOMContentLoaded", () => {
         // --- Scroll Milestone Tracking ---
         const milestones = [25, 50, 75, 90];
         const trackedMilestones = new Set();
@@ -242,8 +249,9 @@ const jsonLd = {
     <a
       href="#main-content"
       class="skip-link"
-      >Skip to content</a
     >
+      Skip to content
+    </a>
     <slot />
   </body>
 </html>

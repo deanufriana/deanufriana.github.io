@@ -3,11 +3,35 @@ import { Badge } from "@/components/ui/badge";
 import { useResume } from "@/composables/resume";
 import { useTranslations, type ui } from "@/i18n/ui";
 import { ArrowUpRight, Link } from "lucide-vue-next";
+import { computed, ref } from "vue";
 
 const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), { lang: "en" });
 const t = useTranslations(props.lang);
 
 const { resume } = useResume(props.lang);
+
+const selectedTag = ref<string>("all");
+
+// Extract unique keywords from projects
+const allTags = computed(() => {
+  const tags = new Set<string>();
+  resume.value.projects.forEach((p) => {
+    p.keywords?.forEach((k) => tags.add(k));
+  });
+  return Array.from(tags);
+});
+
+const filteredProjects = computed(() => {
+  if (selectedTag.value === "all") {
+    return resume.value.projects;
+  }
+  return resume.value.projects.filter((p) => p.keywords?.includes(selectedTag.value));
+});
+
+const getProjectYear = (dateStr?: string) => {
+  if (!dateStr) return "";
+  return new Date(dateStr).getFullYear();
+};
 </script>
 
 <template>
@@ -17,7 +41,7 @@ const { resume } = useResume(props.lang);
   >
     <div class="mx-auto max-w-6xl px-6">
       <!-- Section Header -->
-      <div class="mb-10 flex items-end justify-between">
+      <div class="mb-8 flex items-end justify-between">
         <div>
           <span class="text-muted-foreground text-xs font-semibold tracking-widest uppercase">{{
             t("projects.label")
@@ -31,14 +55,43 @@ const { resume } = useResume(props.lang);
         </div>
       </div>
 
+      <!-- Tech Filter Pills -->
+      <div class="mb-8 flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          class="cursor-pointer rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200"
+          :class="
+            selectedTag === 'all'
+              ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/20'
+              : 'border-border bg-card/60 text-muted-foreground hover:text-foreground border hover:border-emerald-500/40'
+          "
+          @click="selectedTag = 'all'"
+        >
+          {{ props.lang === "id" ? "Semua" : "All" }}
+        </button>
+        <button
+          v-for="tag in allTags"
+          :key="tag"
+          type="button"
+          class="cursor-pointer rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200"
+          :class="
+            selectedTag === tag
+              ? 'bg-emerald-500 text-black shadow-md shadow-emerald-500/20'
+              : 'border-border bg-card/60 text-muted-foreground hover:text-foreground border hover:border-emerald-500/40'
+          "
+          @click="selectedTag = tag"
+        >
+          {{ tag }}
+        </button>
+      </div>
+
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div
-          v-for="(project, index) in resume.projects"
+          v-for="(project, index) in filteredProjects"
           :key="project.name"
-          class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-6"
+          class="group glass-card card-hover relative flex flex-col gap-4 rounded-2xl p-6 transition-all duration-300"
           :class="`stagger-${(index % 6) + 1}`"
-          :style="{ animationDelay: `${(index + 1) * 0.1}s` }"
         >
           <a
             :href="project.url"
@@ -63,9 +116,10 @@ const { resume } = useResume(props.lang);
                   {{ t("projects.openSource") }}
                 </Badge>
                 <span
+                  v-if="project.startDate"
                   class="text-muted-foreground text-[10px] font-medium tracking-wider uppercase"
                 >
-                  {{ new Date(project.startDate).getFullYear() }}
+                  {{ getProjectYear(project.startDate) }}
                 </span>
               </div>
             </div>

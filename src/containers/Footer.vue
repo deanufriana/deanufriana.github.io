@@ -71,7 +71,9 @@ const contactLabels: Record<string, string> = {
 
         <!-- Right: Copyright -->
         <div class="text-center sm:text-right">
-          <p class="text-muted-foreground text-sm">© {{ currentYear }} {{ resume.basics.name }}</p>
+          <p class="text-muted-foreground text-sm">
+            © {{ currentYear }} {{ resume.basics.name }}
+          </p>
           <p class="text-muted-foreground/60 mt-1 text-xs">
             {{ t("footer.builtWith") }}
           </p>

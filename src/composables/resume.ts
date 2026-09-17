@@ -1,11 +1,12 @@
-import resumeId from "@/data/resume.id.json";
-import resumeEn from "@/data/resume.json";
+import resumeId from "@/data/resume/id.json";
+import resumeEn from "@/data/resume/en.json";
 import { type ui } from "@/i18n/ui";
-import { computed, type MaybeRefOrGetter, toValue } from "vue";
+import type { Resume } from "@/schemas/resume";
+import { computed, type ComputedRef, type MaybeRefOrGetter, toValue } from "vue";
 
 export function useResume(lang: MaybeRefOrGetter<keyof typeof ui>) {
-  const resume = computed(() => {
-    return toValue(lang) === "id" ? resumeId : resumeEn;
+  const resume: ComputedRef<Resume> = computed(() => {
+    return (toValue(lang) === "id" ? resumeId : resumeEn) as Resume;
   });
 
   const yearsOfExperience = computed(() => {

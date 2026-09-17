@@ -54,17 +54,7 @@ const groupedWork = computed(() => {
   }));
 });
 
-const workList = computed(() => {
-  const list = [...groupedWork.value];
-  if (expandedWorkName.value) {
-    const index = list.findIndex((w) => w.name === expandedWorkName.value);
-    if (index > -1) {
-      const [item] = list.splice(index, 1);
-      return [item, ...list];
-    }
-  }
-  return list;
-});
+const workList = computed(() => groupedWork.value);
 
 const toggleExpand = async (name: string) => {
   if (expandedWorkName.value === name) {
@@ -75,9 +65,9 @@ const toggleExpand = async (name: string) => {
 
     const element = document.getElementById(`work-${name}`);
     if (element) {
-      const offset = 100; // Cushion offset from top
+      const offset = 90; // Cushion offset from navbar
       const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      const offsetPosition = elementPosition + window.scrollY - offset;
 
       window.scrollTo({
         top: offsetPosition,
@@ -101,7 +91,6 @@ const formatDate = (date: string | undefined | null) => {
     id="experience"
     class="reveal cursor-default overflow-hidden py-20 sm:py-28"
     style="background-color: var(--section-alt-bg)"
-    @click="expandedWorkName = null"
   >
     <div class="mx-auto max-w-6xl px-6">
       <!-- Section Header -->
@@ -117,28 +106,17 @@ const formatDate = (date: string | undefined | null) => {
       </div>
 
       <!-- Experience Cards -->
-      <transition-group
-        name="work-list"
-        tag="div"
-        class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-      >
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div
           v-for="work in workList"
           :id="`work-${work.name}`"
           :key="work.name"
-          role="button"
-          tabindex="0"
-          :aria-expanded="expandedWorkName === work.name ? 'true' : 'false'"
-          class="group glass-card card-hover relative flex h-fit cursor-pointer flex-col gap-4 rounded-2xl p-6 transition-all duration-700 ease-in-out"
+          class="group glass-card card-hover relative flex h-fit cursor-pointer flex-col gap-4 rounded-2xl p-6 transition-all duration-500 ease-in-out"
           :class="{
-            'border-emerald-500/30 shadow-xl ring-1 shadow-emerald-500/5 ring-emerald-500/20 md:col-span-2 lg:col-span-3':
+            'border-emerald-500/40 shadow-xl ring-1 shadow-emerald-500/10 ring-emerald-500/30 md:col-span-2 lg:col-span-3':
               expandedWorkName === work.name,
-            'scale-[0.98] opacity-60 blur-[1px] grayscale-[0.5]':
-              expandedWorkName && expandedWorkName !== work.name,
           }"
-          @click.stop="toggleExpand(work.name)"
-          @keydown.enter.prevent="toggleExpand(work.name)"
-          @keydown.space.prevent="toggleExpand(work.name)"
+          @click="toggleExpand(work.name)"
         >
           <div
             :class="{
@@ -290,7 +268,7 @@ const formatDate = (date: string | undefined | null) => {
             </div>
           </div>
         </div>
-      </transition-group>
+      </div>
     </div>
   </section>
 </template>
@@ -303,6 +281,7 @@ const formatDate = (date: string | undefined | null) => {
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

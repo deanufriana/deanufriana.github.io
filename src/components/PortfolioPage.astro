@@ -1,0 +1,56 @@
+---
+import About from "@/containers/About.vue";
+import CallToAction from "@/containers/CallToAction.vue";
+import Experience from "@/containers/Experience.vue";
+import Footer from "@/containers/Footer.vue";
+import HomePage from "@/containers/HomePage.vue";
+import Navbar from "@/containers/Navbar.vue";
+import Projects from "@/containers/Projects.vue";
+import Services from "@/containers/Services.vue";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import "../styles/global.css";
+import type { ui } from "@/i18n/ui";
+
+interface Props {
+  lang?: keyof typeof ui;
+}
+
+const { lang = "en" } = Astro.props;
+
+const isId = lang === "id";
+const title = "Devi Adi Nufriana — Software Engineer";
+const description = isId
+  ? "Software Engineer dengan keahlian dalam React dan Vue. Membangun solusi web yang cepat, dapat diskalakan, dan berkualitas tinggi."
+  : "Software Engineer with expertise in React and Vue. Building fast, scalable, and high-quality web solutions.";
+const canonicalUrl = isId ? "https://deanufriana.github.io/id/" : "https://deanufriana.github.io/";
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  lang={lang}
+  canonicalUrl={canonicalUrl}
+>
+  <Navbar
+    lang={lang}
+    client:load
+  />
+  <main id="main-content">
+    <HomePage
+      lang={lang}
+      client:idle
+    />
+    <About lang={lang} />
+    <Services lang={lang} />
+    <Experience
+      lang={lang}
+      client:visible
+    />
+    <Projects
+      lang={lang}
+      client:visible
+    />
+    <CallToAction lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
