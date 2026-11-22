@@ -10,13 +10,16 @@ export function useResume(lang: MaybeRefOrGetter<keyof typeof ui>) {
   });
 
   const yearsOfExperience = computed(() => {
-    const currentYear = new Date().getFullYear();
     const workHistory = resume.value.work;
     if (workHistory.length === 0) return 0;
 
+    const now = new Date();
     const startDates = workHistory.map((w) => new Date(w.startDate).getTime());
     const earliestDate = new Date(Math.min(...startDates));
-    return currentYear - earliestDate.getFullYear();
+    const months =
+      (now.getFullYear() - earliestDate.getFullYear()) * 12 +
+      (now.getMonth() - earliestDate.getMonth());
+    return Math.max(0, Math.floor(months / 12));
   });
 
   const stats = computed(() => {

@@ -35,7 +35,6 @@ const jsonLd = {
 <!doctype html>
 <html
   lang={lang}
-  class="dark"
 >
   <head>
     <ClientRouter />
@@ -153,14 +152,15 @@ const jsonLd = {
       gtag("js", new Date());
       gtag("config", "G-NCLQWHKW9N");
     </script>
-    <!-- Prevent FOUC: apply dark/light theme before render -->
+    <!-- Prevent FOUC: apply dark/light theme before render, respecting OS preference -->
     <script is:inline>
       function applyTheme() {
         const theme = localStorage.getItem("theme");
-        if (theme === "light") {
-          document.documentElement.classList.remove("dark");
-        } else {
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (theme === "dark" || (!theme && prefersDark)) {
           document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
         }
       }
       applyTheme();
@@ -168,33 +168,14 @@ const jsonLd = {
     </script>
     <!-- Global Analytics & Interaction Tracking -->
     <script is:inline>
-      function initPageInteractions() {
-        // --- Scroll Reveal Animation ---
-        const revealElements = document.querySelectorAll(".reveal");
-        const revealObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("reveal-visible");
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.15,
-            rootMargin: "0px 0px -50px 0px",
-          },
-        );
-        revealElements.forEach((el) => revealObserver.observe(el));
-      }
-
-      document.addEventListener("DOMContentLoaded", initPageInteractions);
-      document.addEventListener("astro:page-load", initPageInteractions);
-
       document.addEventListener("DOMContentLoaded", () => {
         // --- Scroll Milestone Tracking ---
         const milestones = [25, 50, 75, 90];
         const trackedMilestones = new Set();
+
+        document.addEventListener("astro:page-load", () => {
+          trackedMilestones.clear();
+        });
 
         window.addEventListener(
           "scroll",

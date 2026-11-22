@@ -1,4 +1,3 @@
-import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig } from "astro/config";
@@ -13,7 +12,6 @@ export default defineConfig({
   site: "https://deanufriana.github.io/",
 
   integrations: [
-    mdx(),
     sitemap(),
     vue(),
     partytown({
