@@ -125,6 +125,21 @@ body {
   animation-delay: 240ms;
 }
 
+/* Circular theme reveal (scoped to theme toggle so Astro transitions stay untouched) */
+html.theme-transition::view-transition-old(root),
+html.theme-transition::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html.theme-transition::view-transition-old(root) {
+  z-index: 1;
+}
+
+html.theme-transition::view-transition-new(root) {
+  z-index: 9999;
+}
+
 /* Glassmorphism nav (only element using backdrop-filter per R-10) */
 .glass-nav {
   background: var(--nav-bg);

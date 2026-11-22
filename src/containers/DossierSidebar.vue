@@ -43,7 +43,7 @@ const applyCurrentTheme = () => {
   }
 };
 
-const toggleTheme = () => {
+const commitThemeToggle = () => {
   isDark.value = !isDark.value;
   if (typeof window !== "undefined") {
     if (isDark.value) {
@@ -54,6 +54,60 @@ const toggleTheme = () => {
       localStorage.setItem("theme", "light");
     }
   }
+};
+
+const toggleTheme = (event?: MouseEvent) => {
+  if (typeof window === "undefined" || typeof document === "undefined") {
+    commitThemeToggle();
+    return;
+  }
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const startViewTransition = (
+    document as Document & {
+      startViewTransition?: (cb: () => void) => { ready: Promise<void>; finished: Promise<void> };
+    }
+  ).startViewTransition;
+
+  if (prefersReducedMotion || !startViewTransition) {
+    commitThemeToggle();
+    return;
+  }
+
+  const target = event?.currentTarget as HTMLElement | null;
+  const rect = target?.getBoundingClientRect();
+  const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+  const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+  const endRadius = Math.hypot(
+    Math.max(x, window.innerWidth - x),
+    Math.max(y, window.innerHeight - y),
+  );
+
+  document.documentElement.classList.add("theme-transition");
+  const transition = startViewTransition.call(document, () => {
+    commitThemeToggle();
+  });
+
+  transition.ready
+    .then(() => {
+      document.documentElement.animate(
+        {
+          clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`],
+        },
+        {
+          duration: 850,
+          easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          pseudoElement: "::view-transition-new(root)",
+        },
+      );
+    })
+    .catch(() => {});
+
+  transition.finished
+    .finally(() => {
+      document.documentElement.classList.remove("theme-transition");
+    })
+    .catch(() => {});
 };
 
 // Live Jakarta (WIB) clock
@@ -178,7 +232,7 @@ onUnmounted(() => {
           class="hover:bg-accent inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-md p-2 transition-colors"
           :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
           :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-          @click="toggleTheme"
+          @click="toggleTheme($event)"
         >
           <Sun
             v-if="isMounted && isDark"
@@ -224,7 +278,7 @@ onUnmounted(() => {
             class="hover:bg-accent inline-flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-md p-2 transition-colors"
             :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
             :aria-label="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'"
-            @click="toggleTheme"
+            @click="toggleTheme($event)"
           >
             <Sun
               v-if="isMounted && isDark"

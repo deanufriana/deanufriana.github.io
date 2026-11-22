@@ -8,7 +8,7 @@ on:
   # Using a different branch name? Replace `master` with your branch’s name
   push:
     branches: [master]
-    paths: [src/data/resume.json]
+    paths: [src/data/resume/en.json]
   # Allows you to run this workflow manually from the Actions tab on GitHub.
   workflow_dispatch:
 
@@ -24,9 +24,11 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Prepare resume.json for Gist
+        run: cp src/data/resume/en.json resume.json
       - name: Update Resume Gist
         uses: exuanbo/actions-deploy-gist@v1
         with:
           token: ${{ secrets.GIST_TOKEN }}
           gist_id: b0396934938be633d75f134046ae8806
-          file_path: src/data/resume.json
+          file_path: resume.json
