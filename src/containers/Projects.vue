@@ -20,7 +20,7 @@ const isGitHubUrl = (url: string) => url.includes("github.com");
 <template>
   <section
     id="projects"
-    class="animate-fade-in-up enter-delay-2 border-border border-t pt-8"
+    class="animate-fade-in-up enter-delay-2"
   >
     <h2 class="text-muted-foreground mb-2 text-xs font-semibold tracking-wider uppercase">
       {{ t("projects.title") }}
@@ -47,7 +47,9 @@ const isGitHubUrl = (url: string) => url.includes("github.com");
         <!-- Project Header -->
         <div class="flex items-start justify-between gap-3">
           <div class="flex flex-wrap items-center gap-2">
-            <h3 class="text-foreground group-hover:text-brand text-base font-bold transition-colors">
+            <h3
+              class="text-foreground group-hover:text-brand text-base font-bold transition-colors"
+            >
               {{ project.name }}
             </h3>
             <Badge

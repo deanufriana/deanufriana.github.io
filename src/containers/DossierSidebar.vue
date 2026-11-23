@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import UpworkIcon from "@/components/icons/UpworkIcon.vue";
-import { Button } from "@/components/ui/button";
 import { useResume } from "@/composables/resume";
 import contacts from "@/data/contacts.json";
 import { useTranslations, type ui } from "@/i18n/ui";
@@ -135,12 +134,18 @@ const navLinks = computed(() => [
 ]);
 
 const targetLangUrl = computed(() => {
-  const basePath = props.lang === "en" ? "/id/" : "/";
-  if (activeSection.value && activeSection.value !== "overview") {
-    return `${basePath}#${activeSection.value}`;
-  }
-  return basePath;
+  return props.lang === "en" ? "/id/" : "/";
 });
+
+const handleLangSwitch = () => {
+  if (typeof document !== "undefined") {
+    document.documentElement.classList.remove("lang-to-id", "lang-to-en");
+    document.documentElement.classList.add(
+      "lang-transition",
+      props.lang === "en" ? "lang-to-id" : "lang-to-en",
+    );
+  }
+};
 
 const upworkProfile = computed(() =>
   resume.value.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
@@ -215,18 +220,35 @@ onUnmounted(() => {
       >
         {{ resume.basics.name.split(" ")[0] }}<span class="text-brand">.</span>
       </a>
-      <div class="flex items-center gap-1">
-        <Button
-          as="a"
+      <div class="flex items-center gap-1.5">
+        <a
           :href="targetLangUrl"
-          variant="ghost"
-          size="icon"
-          class="min-h-11 min-w-11 rounded-md text-xs font-bold"
+          class="border-border bg-background/80 relative inline-flex h-8 items-center rounded-full border p-0.5 text-[11px] font-bold tracking-wide transition-colors"
           :title="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
           :aria-label="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
+          @click="handleLangSwitch"
         >
-          {{ lang === "en" ? "ID" : "EN" }}
-        </Button>
+          <span
+            class="relative z-10 rounded-full px-2 py-0.5 transition-colors duration-200"
+            :class="
+              lang === 'en'
+                ? 'lang-pill-active-mobile bg-brand text-white shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
+            "
+          >
+            EN
+          </span>
+          <span
+            class="relative z-10 rounded-full px-2 py-0.5 transition-colors duration-200"
+            :class="
+              lang === 'id'
+                ? 'lang-pill-active-mobile bg-brand text-white shadow-xs'
+                : 'text-muted-foreground hover:text-foreground'
+            "
+          >
+            ID
+          </span>
+        </a>
         <button
           type="button"
           class="hover:bg-accent inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-md p-2 transition-colors"
@@ -261,18 +283,35 @@ onUnmounted(() => {
         >
           {{ resume.basics.name.split(" ")[0] }}<span class="text-brand">.</span>
         </a>
-        <div class="flex items-center gap-1">
-          <Button
-            as="a"
+        <div class="flex items-center gap-1.5">
+          <a
             :href="targetLangUrl"
-            variant="ghost"
-            size="icon"
-            class="min-h-9 min-w-9 rounded-md text-xs font-bold"
+            class="border-border bg-background/70 hover:border-foreground/20 relative inline-flex h-7 items-center rounded-full border p-0.5 text-[11px] font-bold tracking-wide transition-colors"
             :title="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
             :aria-label="lang === 'en' ? 'Switch to Indonesian' : 'Switch to English'"
+            @click="handleLangSwitch"
           >
-            {{ lang === "en" ? "ID" : "EN" }}
-          </Button>
+            <span
+              class="relative z-10 rounded-full px-2 py-0.5 transition-colors duration-200"
+              :class="
+                lang === 'en'
+                  ? 'lang-pill-active bg-brand text-white shadow-xs'
+                  : 'text-muted-foreground hover:text-foreground'
+              "
+            >
+              EN
+            </span>
+            <span
+              class="relative z-10 rounded-full px-2 py-0.5 transition-colors duration-200"
+              :class="
+                lang === 'id'
+                  ? 'lang-pill-active bg-brand text-white shadow-xs'
+                  : 'text-muted-foreground hover:text-foreground'
+              "
+            >
+              ID
+            </span>
+          </a>
           <button
             type="button"
             class="hover:bg-accent inline-flex min-h-9 min-w-9 cursor-pointer items-center justify-center rounded-md p-2 transition-colors"
@@ -293,50 +332,52 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <!-- Identity Block -->
-      <div class="flex flex-col gap-4">
-        <h1 class="text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl">
-          {{ resume.basics.name.split(" ").slice(0, 2).join(" ") }}
-          <span class="font-serif font-normal italic">
-            {{ resume.basics.name.split(" ").slice(2).join(" ") }}
-          </span>
-        </h1>
+      <!-- Identity Block + Nav (Morphs smoothly on language switch) -->
+      <div class="lang-morph-sidebar flex flex-col gap-8">
+        <div class="flex flex-col gap-4">
+          <h1 class="text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl">
+            {{ resume.basics.name.split(" ").slice(0, 2).join(" ") }}
+            <span class="font-serif font-normal italic">
+              {{ resume.basics.name.split(" ").slice(2).join(" ") }}
+            </span>
+          </h1>
 
-        <p class="text-muted-foreground text-sm font-medium">
-          {{ resume.basics.label }} · {{ resume.basics.location?.city }}
-          <span
-            v-if="jakartaTime"
-            class="text-muted-foreground text-xs"
-          >
-            ({{ jakartaTime }} WIB)
-          </span>
-        </p>
+          <p class="text-muted-foreground text-sm font-medium">
+            {{ resume.basics.label }} · {{ resume.basics.location?.city }}
+            <span
+              v-if="jakartaTime"
+              class="text-muted-foreground text-xs"
+            >
+              ({{ jakartaTime }} WIB)
+            </span>
+          </p>
 
-        <p class="text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base">
-          {{ resume.basics.summary }}
-        </p>
-      </div>
+          <p class="text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base">
+            {{ resume.basics.summary }}
+          </p>
+        </div>
 
-      <!-- Simple Section Nav -->
-      <nav
-        aria-label="Section navigation"
-        class="hidden items-center gap-6 lg:flex print:hidden"
-      >
-        <a
-          v-for="link in navLinks"
-          :key="link.id"
-          :href="link.href"
-          class="text-sm transition-colors"
-          :class="
-            activeSection === link.id
-              ? 'text-brand font-semibold'
-              : 'text-muted-foreground hover:text-foreground font-medium'
-          "
-          :aria-current="activeSection === link.id ? 'page' : undefined"
+        <!-- Simple Section Nav -->
+        <nav
+          aria-label="Section navigation"
+          class="hidden items-center gap-6 lg:flex print:hidden"
         >
-          {{ link.label }}
-        </a>
-      </nav>
+          <a
+            v-for="link in navLinks"
+            :key="link.id"
+            :href="link.href"
+            class="text-sm transition-colors"
+            :class="
+              activeSection === link.id
+                ? 'text-brand font-semibold'
+                : 'text-muted-foreground hover:text-foreground font-medium'
+            "
+            :aria-current="activeSection === link.id ? 'page' : undefined"
+          >
+            {{ link.label }}
+          </a>
+        </nav>
+      </div>
     </div>
 
     <div class="flex flex-wrap items-center justify-between gap-4">

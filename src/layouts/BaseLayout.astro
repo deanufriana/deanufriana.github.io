@@ -165,6 +165,45 @@ const jsonLd = {
       }
       applyTheme();
       document.addEventListener("astro:after-swap", applyTheme);
+
+      // Smooth language switch transition & scroll position preservation
+      if (!window.__langTransitionInitialized) {
+        window.__langTransitionInitialized = true;
+        let savedScrollY = null;
+
+        document.addEventListener("astro:before-preparation", (event) => {
+          const fromPath = event.from?.pathname?.replace(/\/$/, "") || "";
+          const toPath = event.to?.pathname?.replace(/\/$/, "") || "";
+          const toId = fromPath === "" && toPath === "/id";
+          const toEn = fromPath === "/id" && toPath === "";
+
+          if (toId || toEn) {
+            savedScrollY = window.scrollY;
+            document.documentElement.classList.remove("lang-to-id", "lang-to-en");
+            document.documentElement.classList.add(
+              "lang-transition",
+              toId ? "lang-to-id" : "lang-to-en",
+            );
+          }
+        });
+
+        document.addEventListener("astro:after-swap", () => {
+          if (savedScrollY !== null) {
+            window.scrollTo({ top: savedScrollY, behavior: "instant" });
+            savedScrollY = null;
+          }
+        });
+
+        document.addEventListener("astro:page-load", () => {
+          setTimeout(() => {
+            document.documentElement.classList.remove(
+              "lang-transition",
+              "lang-to-id",
+              "lang-to-en",
+            );
+          }, 420);
+        });
+      }
     </script>
     <!-- Global Analytics & Interaction Tracking -->
     <script is:inline>

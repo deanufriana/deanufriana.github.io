@@ -5,7 +5,7 @@
     "email": "devi.nufriana@gmail.com",
     "phone": "(62) 85642612283",
     "url": "https://deanufriana.github.io",
-    "summary": "Frontend and full-stack engineer based in Jakarta. Over 7 years building and modernizing production web applications with Vue, React, and Go at Blibli, BRI Life, and Frisidea.",
+    "summary": "Building fast, maintainable web interfaces and backend integrations—from modernizing legacy frontends in Vue and React to shipping reliable Go microservices.",
     "location": {
       "postalCode": "13950",
       "city": "East Jakarta",
@@ -37,7 +37,12 @@
         "Streamlined cross-team integration workflows, cutting redundant manual steps across internal operations.",
         "Set up automated GitLab CI/CD pipelines to standardize builds and speed up deployments."
       ],
-      "skills": ["Go", "Vue.js", "Docker", "GitLab"],
+      "skills": [
+        "Go",
+        "Vue.js",
+        "Docker",
+        "GitLab"
+      ],
       "url": "https://brilife.co.id/"
     },
     {
@@ -53,7 +58,12 @@
         "Added end-to-end Playwright test suites to catch regressions before production release.",
         "Optimized Product Detail page rendering and overall frontend performance."
       ],
-      "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
+      "skills": [
+        "JavaScript",
+        "Vue.js",
+        "Playwright",
+        "Linux"
+      ]
     },
     {
       "name": "Frisidea",
@@ -68,7 +78,12 @@
         "Built a web-based customer care portal for insurance policyholders.",
         "Configured Nginx and managed Linux server deployments."
       ],
-      "skills": ["JavaScript", "React", "Vite", "Linux"]
+      "skills": [
+        "JavaScript",
+        "React",
+        "Vite",
+        "Linux"
+      ]
     },
     {
       "name": "BRI Life",
@@ -82,7 +97,15 @@
         "Built and maintained the 'Digiform' web app in React alongside Express.js APIs.",
         "Managed three concurrent applications, including Linux server setup and production releases."
       ],
-      "skills": ["JavaScript", "React", "Flutter", "Express.js", "SQL Server", "Linux", "Node.js"]
+      "skills": [
+        "JavaScript",
+        "React",
+        "Flutter",
+        "Express.js",
+        "SQL Server",
+        "Linux",
+        "Node.js"
+      ]
     }
   ],
   "education": [
@@ -112,17 +135,31 @@
     {
       "name": "Mobile Development",
       "level": "Intermediate",
-      "keywords": ["Flutter", "React Native", "Dart"]
+      "keywords": [
+        "Flutter",
+        "React Native",
+        "Dart"
+      ]
     },
     {
       "name": "Backend Development",
       "level": "Intermediate",
-      "keywords": ["Express.js", "Go", "MySQL", "RESTful APIs"]
+      "keywords": [
+        "Express.js",
+        "Go",
+        "MySQL",
+        "RESTful APIs"
+      ]
     },
     {
       "name": "DevOps & Infrastructure",
       "level": "Intermediate",
-      "keywords": ["Docker", "CI/CD (GitHub Actions, GitLab CI)", "Linux Server", "Git"]
+      "keywords": [
+        "Docker",
+        "CI/CD (GitHub Actions, GitLab CI)",
+        "Linux Server",
+        "Git"
+      ]
     }
   ],
   "volunteer": [],
@@ -158,7 +195,12 @@
         "Added JSON Resume import alongside manual form editing",
         "Implemented clean PDF export optimized for Applicant Tracking Systems"
       ],
-      "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
+      "keywords": [
+        "Vue 3",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS"
+      ],
       "url": "https://deanufriana.github.io/resume-lab/"
     },
     {
@@ -167,7 +209,11 @@
       "endDate": "2019-04-01",
       "description": "Interactive mortgage calculator built with React and Vite to estimate monthly payments across fixed and floating interest rates.",
       "highlights": [],
-      "keywords": ["React", "Vite", "Web App"],
+      "keywords": [
+        "React",
+        "Vite",
+        "Web App"
+      ],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
     },
     {
@@ -176,11 +222,15 @@
       "endDate": "2019-04-01",
       "description": "Web-based thesis management portal built with PHP and MySQL to help students and advisors track submissions, schedules, and approvals online.",
       "highlights": [],
-      "keywords": ["PHP", "MySQL", "Web App"],
+      "keywords": [
+        "PHP",
+        "MySQL",
+        "Web App"
+      ],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],
   "meta": {
-    "theme": "macchiato"
+    "theme": "compact-developer"
   }
 }

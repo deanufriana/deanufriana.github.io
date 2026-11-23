@@ -68,7 +68,7 @@ const formatDate = (date: string | undefined | null) => {
 <template>
   <section
     id="experience"
-    class="animate-fade-in-up enter-delay-1 border-border border-t pt-8"
+    class="animate-fade-in-up enter-delay-1"
   >
     <h2 class="text-muted-foreground mb-6 text-xs font-semibold tracking-wider uppercase">
       {{ t("experience.title") }}

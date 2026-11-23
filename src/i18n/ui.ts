@@ -24,7 +24,7 @@ export const ui = {
     "projects.subtitle":
       "Most client work is under NDA. Here are a few public and open-source projects I've built.",
     "projects.openSource": "Open Source",
-    "projects.liveDemo": "Live App",
+    "projects.liveDemo": "Live",
     "projects.personal": "Personal project",
     "footer.builtWith": "Built with Astro & Vue.js",
   },
@@ -46,7 +46,7 @@ export const ui = {
     "projects.subtitle":
       "Proyek klien bersifat rahasia (NDA). Berikut adalah proyek publik dan open-source yang saya bangun.",
     "projects.openSource": "Open Source",
-    "projects.liveDemo": "Aplikasi Live",
+    "projects.liveDemo": "Live",
     "projects.personal": "Proyek Pribadi",
     "footer.builtWith": "Dibuat dengan Astro & Vue.js",
   },

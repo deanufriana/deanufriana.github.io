@@ -5,7 +5,7 @@
     "email": "devi.nufriana@gmail.com",
     "phone": "(62) 85642612283",
     "url": "https://deanufriana.github.io",
-    "summary": "Frontend dan full-stack engineer di Jakarta. Lebih dari 7 tahun membangun dan memodernisasi aplikasi web produksi dengan Vue, React, dan Go di Blibli, BRI Life, dan Frisidea.",
+    "summary": "Membangun antarmuka web yang cepat dan layanan integrasi backend—mulai dari modernisasi frontend dengan Vue dan React hingga microservice berbasis Go.",
     "location": {
       "postalCode": "13950",
       "city": "Jakarta Timur",
@@ -37,7 +37,12 @@
         "Menyederhanakan alur integrasi lintas sistem untuk memangkas proses berulang dan meningkatkan efisiensi operasional.",
         "Menyiapkan pipeline CI/CD otomatis di GitLab CI agar proses rilis lebih cepat dan konsisten."
       ],
-      "skills": ["Go", "Vue.js", "Docker", "GitLab"],
+      "skills": [
+        "Go",
+        "Vue.js",
+        "Docker",
+        "GitLab"
+      ],
       "url": "https://brilife.co.id/"
     },
     {
@@ -53,7 +58,12 @@
         "Menambahkan pengujian end-to-end dengan Playwright untuk mencegah regresi sebelum rilis ke produksi.",
         "Mengoptimalkan performa rendering pada halaman detail produk."
       ],
-      "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
+      "skills": [
+        "JavaScript",
+        "Vue.js",
+        "Playwright",
+        "Linux"
+      ]
     },
     {
       "name": "Frisidea",
@@ -68,7 +78,12 @@
         "Membangun portal layanan pelanggan berbasis web bagi pemegang polis asuransi.",
         "Mengelola konfigurasi Nginx dan deployment pada server Linux."
       ],
-      "skills": ["JavaScript", "React", "Vite", "Linux"]
+      "skills": [
+        "JavaScript",
+        "React",
+        "Vite",
+        "Linux"
+      ]
     },
     {
       "name": "BRI Life",
@@ -82,7 +97,15 @@
         "Mengembangkan dan memelihara aplikasi web 'Digiform' dengan React serta REST API berbasis Express.js.",
         "Menangani tiga proyek aplikasi sekaligus, termasuk konfigurasi server Linux dan rilis produksi."
       ],
-      "skills": ["JavaScript", "React", "Flutter", "Express.js", "SQL Server", "Linux", "Node.js"]
+      "skills": [
+        "JavaScript",
+        "React",
+        "Flutter",
+        "Express.js",
+        "SQL Server",
+        "Linux",
+        "Node.js"
+      ]
     }
   ],
   "education": [
@@ -112,17 +135,31 @@
     {
       "name": "Mobile Development",
       "level": "Intermediate",
-      "keywords": ["Flutter", "React Native", "Dart"]
+      "keywords": [
+        "Flutter",
+        "React Native",
+        "Dart"
+      ]
     },
     {
       "name": "Backend Development",
       "level": "Intermediate",
-      "keywords": ["Express.js", "Go", "MySQL", "RESTful APIs"]
+      "keywords": [
+        "Express.js",
+        "Go",
+        "MySQL",
+        "RESTful APIs"
+      ]
     },
     {
       "name": "DevOps & Infrastruktur",
       "level": "Intermediate",
-      "keywords": ["Docker", "CI/CD (GitHub Actions, GitLab CI)", "Server Linux", "Git"]
+      "keywords": [
+        "Docker",
+        "CI/CD (GitHub Actions, GitLab CI)",
+        "Server Linux",
+        "Git"
+      ]
     }
   ],
   "volunteer": [],
@@ -158,7 +195,12 @@
         "Menambahkan fitur impor file JSON Resume dan pengisian form manual",
         "Mengembangkan ekspor PDF yang dioptimalkan untuk sistem ATS"
       ],
-      "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
+      "keywords": [
+        "Vue 3",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS"
+      ],
       "url": "https://deanufriana.github.io/resume-lab/"
     },
     {
@@ -167,7 +209,11 @@
       "endDate": "2019-04-01",
       "description": "Kalkulator KPR interaktif berbasis React dan Vite untuk menghitung estimasi cicilan bulanan dengan skema bunga fixed dan floating.",
       "highlights": [],
-      "keywords": ["React", "Vite", "Web App"],
+      "keywords": [
+        "React",
+        "Vite",
+        "Web App"
+      ],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
     },
     {
@@ -176,11 +222,15 @@
       "endDate": "2019-04-01",
       "description": "Portal manajemen skripsi berbasis web (PHP & MySQL) yang memudahkan mahasiswa dan dosen pembimbing memantau pengajuan, jadwal bimbingan, dan persetujuan secara daring.",
       "highlights": [],
-      "keywords": ["PHP", "MySQL", "Web App"],
+      "keywords": [
+        "PHP",
+        "MySQL",
+        "Web App"
+      ],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],
   "meta": {
-    "theme": "macchiato"
+    "theme": "compact-developer"
   }
 }

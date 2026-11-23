@@ -140,6 +140,112 @@ html.theme-transition::view-transition-new(root) {
   z-index: 9999;
 }
 
+/* Language switch editorial blur-morph transition */
+html.lang-transition .animate-fade-in-up {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+html.lang-transition .lang-morph-sidebar {
+  view-transition-name: lang-sidebar;
+}
+
+html.lang-transition .lang-morph-main {
+  view-transition-name: lang-main;
+}
+
+html.lang-transition .lang-pill-active {
+  view-transition-name: lang-pill;
+}
+
+html.lang-transition .lang-pill-active-mobile {
+  view-transition-name: lang-pill-mobile;
+}
+
+@keyframes langSlideOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+}
+
+@keyframes langSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes langSlideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+}
+
+@keyframes langSlideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+html.lang-transition::view-transition-old(root),
+html.lang-transition::view-transition-new(root) {
+  animation-duration: 200ms;
+}
+
+/* EN -> ID: slide left out, enter from right */
+html.lang-transition.lang-to-id::view-transition-old(lang-sidebar),
+html.lang-transition.lang-to-id::view-transition-old(lang-main) {
+  animation: langSlideOutLeft 200ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+html.lang-transition.lang-to-id::view-transition-new(lang-sidebar) {
+  animation: langSlideInRight 300ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
+}
+
+html.lang-transition.lang-to-id::view-transition-new(lang-main) {
+  animation: langSlideInRight 320ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
+}
+
+/* ID -> EN: slide right out, enter from left */
+html.lang-transition.lang-to-en::view-transition-old(lang-sidebar),
+html.lang-transition.lang-to-en::view-transition-old(lang-main) {
+  animation: langSlideOutRight 200ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+html.lang-transition.lang-to-en::view-transition-new(lang-sidebar) {
+  animation: langSlideInLeft 300ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
+}
+
+html.lang-transition.lang-to-en::view-transition-new(lang-main) {
+  animation: langSlideInLeft 320ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
+}
+
+html.lang-transition::view-transition-group(lang-pill),
+html.lang-transition::view-transition-group(lang-pill-mobile) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
 /* Glassmorphism nav (only element using backdrop-filter per R-10) */
 .glass-nav {
   background: var(--nav-bg);
