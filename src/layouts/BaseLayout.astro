@@ -168,7 +168,10 @@ const jsonLd = {
     </script>
     <!-- Global Analytics & Interaction Tracking -->
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", () => {
+      (() => {
+        if (window.__trackingInitialized) return;
+        window.__trackingInitialized = true;
+
         // --- Scroll Milestone Tracking ---
         const milestones = [25, 50, 75, 90];
         const trackedMilestones = new Set();
@@ -222,7 +225,7 @@ const jsonLd = {
             outbound: isOutbound,
           });
         });
-      });
+      })();
     </script>
   </head>
   <body class="antialiased">

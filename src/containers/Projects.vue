@@ -20,8 +20,12 @@ const isGitHubUrl = (url: string) => url.includes("github.com");
 <template>
   <section
     id="projects"
-    class="animate-fade-in-up enter-delay-2"
+    class="animate-fade-in-up enter-delay-2 border-border border-t pt-8"
   >
+    <h2 class="text-muted-foreground mb-2 text-xs font-semibold tracking-wider uppercase">
+      {{ t("projects.title") }}
+    </h2>
+
     <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
       {{ t("projects.subtitle") }}
     </p>

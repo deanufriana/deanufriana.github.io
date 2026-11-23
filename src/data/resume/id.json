@@ -12,7 +12,6 @@
       "countryCode": "ID",
       "region": "Indonesia"
     },
-    "image": "https://media.licdn.com/dms/image/v2/C5603AQEmOped69Jl7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1603892082142?e=1749686400&v=beta&t=egYHX4_TPza5o6xdTzEBjbAFNKp1O0z-QOelgNkhsL0",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -32,12 +31,11 @@
       "position": "Software Engineer",
       "startDate": "2025-11-06",
       "endDate": "",
-      "summary": "Full-stack engineer yang bertanggung jawab menganalisis masalah bisnis dan berkolaborasi dengan tim lintas fungsi dalam tim integrasi digital untuk merancang dan meningkatkan alur kerja sistem, mengurangi redundansi, dan meningkatkan efisiensi operasional.",
+      "summary": "Membangun layanan integrasi backend dan sistem internal untuk ekosistem digital BRI Life, menghubungkan alur kerja asuransi utama dengan berbagai layanan komunikasi pihak ketiga.",
       "highlights": [
-        "Menganalisis dan mengoptimalkan alur kerja sistem untuk mengurangi redundansi dan meningkatkan efisiensi operasional.",
-        "Merancang dan mengimplementasikan microservice notifikasi berbasis Go untuk mendukung integrasi sistem yang skalabel.",
-        "Mengintegrasikan layanan pihak ketiga termasuk WhatsApp, SMS, email, dan push notification.",
-        "Membangun pipeline CI/CD menggunakan GitLab CI untuk mengotomasi proses deployment."
+        "Membangun microservice notifikasi berbasis Go untuk pengiriman pesan WhatsApp, SMS, email, dan push notification secara terpusat.",
+        "Menyederhanakan alur integrasi lintas sistem untuk memangkas proses berulang dan meningkatkan efisiensi operasional.",
+        "Menyiapkan pipeline CI/CD otomatis di GitLab CI agar proses rilis lebih cepat dan konsisten."
       ],
       "skills": ["Go", "Vue.js", "Docker", "GitLab"],
       "url": "https://brilife.co.id/"
@@ -48,12 +46,12 @@
       "url": "https://www.blibli.com",
       "startDate": "2022-08-01",
       "endDate": "2025-10-23",
-      "summary": "Frontend Engineer yang memimpin inisiatif modernisasi antarmuka pengguna (UI) dan optimasi performa. Memelopori migrasi sistem lawas ke Vue.js dan mengimplementasikan pengujian integrasi yang komprehensif.",
+      "summary": "Memimpin modernisasi frontend pada halaman ulasan dan detail produk, memigrasikan tampilan berbasis Java ke Vue.js serta menerapkan pengujian end-to-end otomatis.",
       "highlights": [
-        "Merancang ulang dan memigrasikan halaman Review Center dari Java ke Vue, meningkatkan pengalaman pengguna dan arsitektur frontend.",
-        "Melakukan refactoring halaman Review, Hall of Fame, dan fitur terbaru ke versi Vue terkini dengan komponen modular yang mudah digunakan ulang.",
-        "Mengembangkan integration test menggunakan Playwright untuk menjaga keandalan fitur produksi.",
-        "Menyempurnakan halaman detail produk dan mengoptimalkan performa rendering frontend."
+        "Memigrasikan halaman Review Center dari template Java lawas ke Vue.js untuk meningkatkan kualitas UX dan kemudahan pemeliharaan.",
+        "Membangun ulang halaman Review, Hall of Fame, dan fitur terbaru menggunakan komponen Vue yang modular.",
+        "Menambahkan pengujian end-to-end dengan Playwright untuk mencegah regresi sebelum rilis ke produksi.",
+        "Mengoptimalkan performa rendering pada halaman detail produk."
       ],
       "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
     },
@@ -63,11 +61,11 @@
       "url": "https://www.frisidea.com/id/",
       "startDate": "2021-04-01",
       "endDate": "2022-07-01",
-      "summary": "Full-stack Developer yang memodernisasi aplikasi web untuk sektor asuransi dan layanan pelanggan menggunakan React dan Vite.",
+      "summary": "Memodernisasi aplikasi web untuk platform asuransi dan layanan pelanggan menggunakan React dan Vite.",
       "highlights": [
-        "Memperbarui dan meningkatkan aplikasi web TMLI menggunakan stack React dan Vite modern.",
-        "Menyesuaikan UI/UX kitasiap.com agar lebih responsif dan sesuai dengan kebutuhan pengguna.",
-        "Membangun sistem akses customer care berbasis web untuk industri asuransi guna mempermudah akses informasi polis.",
+        "Memperbarui aplikasi web TMLI dengan stack React dan Vite modern.",
+        "Menyempurnakan tampilan responsif kitasiap.com agar lebih nyaman digunakan di berbagai perangkat.",
+        "Membangun portal layanan pelanggan berbasis web bagi pemegang polis asuransi.",
         "Mengelola konfigurasi Nginx dan deployment pada server Linux."
       ],
       "skills": ["JavaScript", "React", "Vite", "Linux"]
@@ -78,11 +76,11 @@
       "url": "https://brilife.co.id",
       "startDate": "2019-02-01",
       "endDate": "2021-03-01",
-      "summary": "Full-stack Developer yang bertanggung jawab memodernisasi aplikasi seluler 'Mylife' ke Flutter serta mengembangkan aplikasi web internal berbasis React dan Express.",
+      "summary": "Memigrasikan aplikasi seluler 'Mylife' ke Flutter serta membangun aplikasi web internal menggunakan React dan Express.js.",
       "highlights": [
-        "Memimpin analisis sistem dan migrasi aplikasi seluler 'Mylife' dari React Native ke Flutter.",
-        "Mengembangkan dan memelihara aplikasi web 'Digiform' menggunakan ReactJS serta layanan API berbasis Express.js.",
-        "Mengelola tiga proyek aplikasi sekaligus, termasuk konfigurasi dan deployment di lingkungan development dan produksi."
+        "Memimpin migrasi aplikasi seluler 'Mylife' dari React Native ke Flutter.",
+        "Mengembangkan dan memelihara aplikasi web 'Digiform' dengan React serta REST API berbasis Express.js.",
+        "Menangani tiga proyek aplikasi sekaligus, termasuk konfigurasi server Linux dan rilis produksi."
       ],
       "skills": ["JavaScript", "React", "Flutter", "Express.js", "SQL Server", "Linux", "Node.js"]
     }
@@ -133,8 +131,7 @@
     {
       "name": "Certified Software Engineer",
       "date": "2019-12-12",
-      "issuer": "Pijar Camp",
-      "url": "https://certificate.com"
+      "issuer": "Pijar Camp"
     }
   ],
   "publications": [],
@@ -155,13 +152,11 @@
       "name": "Resume Lab",
       "startDate": "2025-10-01",
       "endDate": "2025-10-10",
-      "description": "Laboratorium resume modern dan ramah ATS yang dibangun dengan Vue 3, TypeScript, Vite, dan Tailwind CSS. Buat resume profesional dengan mengunggah file JSON atau mengisi formulir secara manual, lalu buat PDF yang dioptimalkan untuk Applicant Tracking Systems (ATS).",
+      "description": "Aplikasi pembuat CV ramah ATS berbasis Vue 3, TypeScript, Vite, dan Tailwind CSS. Mendukung impor data JSON Resume maupun pengisian form manual dengan ekspor PDF siap pakai.",
       "highlights": [
-        "Membangun laboratorium resume modern dan ramah ATS menggunakan Vue 3, TypeScript, Vite, dan Tailwind CSS",
-        "Mengimplementasikan unggah file JSON dan pengisian formulir manual untuk pembuatan resume",
-        "Mengembangkan pembuatan PDF dengan optimasi ATS untuk resume profesional",
-        "Menciptakan antarmuka yang ramah pengguna untuk pengelolaan dan kustomisasi resume",
-        "Mengintegrasikan teknologi web modern untuk pengalaman pengguna yang mulus"
+        "Membangun aplikasi pembuat CV ramah ATS dengan Vue 3, TypeScript, Vite, dan Tailwind CSS",
+        "Menambahkan fitur impor file JSON Resume dan pengisian form manual",
+        "Mengembangkan ekspor PDF yang dioptimalkan untuk sistem ATS"
       ],
       "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
       "url": "https://deanufriana.github.io/resume-lab/"
@@ -170,7 +165,7 @@
       "name": "Simulasi KPR",
       "startDate": "2018-03-01",
       "endDate": "2019-04-01",
-      "description": "Aplikasi Kalkulator KPR modern dan responsif yang dibangun dengan React dan Vite. Aplikasi ini membantu pengguna memperkirakan cicilan KPR bulanan mereka, dengan mempertimbangkan suku bunga fixed dan floating.",
+      "description": "Kalkulator KPR interaktif berbasis React dan Vite untuk menghitung estimasi cicilan bulanan dengan skema bunga fixed dan floating.",
       "highlights": [],
       "keywords": ["React", "Vite", "Web App"],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
@@ -179,9 +174,9 @@
       "name": "Sistem Skripsi",
       "startDate": "2018-03-01",
       "endDate": "2019-04-01",
-      "description": "Proses skripsi menjadi lebih terorganisir dan cepat, dilakukan secara daring serta dapat diakses di mana saja melalui browser dengan tujuan menghemat waktu, tenaga, dan mempermudah perolehan informasi proses skripsi secara online.",
+      "description": "Portal manajemen skripsi berbasis web (PHP & MySQL) yang memudahkan mahasiswa dan dosen pembimbing memantau pengajuan, jadwal bimbingan, dan persetujuan secara daring.",
       "highlights": [],
-      "keywords": ["PHP", "MySQL", "Online System"],
+      "keywords": ["PHP", "MySQL", "Web App"],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],

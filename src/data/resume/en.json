@@ -12,7 +12,6 @@
       "countryCode": "ID",
       "region": "Indonesia"
     },
-    "image": "https://media.licdn.com/dms/image/v2/C5603AQEmOped69Jl7A/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1603892082142?e=1749686400&v=beta&t=egYHX4_TPza5o6xdTzEBjbAFNKp1O0z-QOelgNkhsL0",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -32,13 +31,11 @@
       "position": "Software Engineer",
       "startDate": "2025-11-06",
       "endDate": "",
-      "summary": "Full-stack engineer responsible for analyzing business problems and collaborating with cross-functional teams within the digital integration team to design and improve system workflows, reducing redundancy and increasing operational efficiency.",
+      "summary": "Building backend integrations and internal tools for BRI Life's digital ecosystem, connecting core insurance workflows with third-party communication services.",
       "highlights": [
-        "Analyzed and optimized existing workflows to reduce redundancy and improve system efficiency",
-        "Designed and implemented a notification microservice to support scalable system integration",
-        "Integrated third-party systems such as WA, SMS, email, and push notifications",
-        "Collaborated with multiple teams to streamline integration processes across systems",
-        "Implemented CI/CD pipelines using GitLab CI to improve deployment automation"
+        "Built a Go notification microservice handling WhatsApp, SMS, email, and push delivery across core systems.",
+        "Streamlined cross-team integration workflows, cutting redundant manual steps across internal operations.",
+        "Set up automated GitLab CI/CD pipelines to standardize builds and speed up deployments."
       ],
       "skills": ["Go", "Vue.js", "Docker", "GitLab"],
       "url": "https://brilife.co.id/"
@@ -49,12 +46,12 @@
       "url": "https://www.blibli.com",
       "startDate": "2022-08-01",
       "endDate": "2025-10-23",
-      "summary": "Frontend Engineer leading UI modernization and performance optimization initiatives. Spearheaded migration of legacy systems to Vue.js and implemented comprehensive integration testing.",
+      "summary": "Led frontend modernization for customer-facing review and product pages, migrating legacy Java views to Vue.js and introducing automated end-to-end testing.",
       "highlights": [
-        "Redesigned and migrated the Review Center page from Java to Vue, modernizing the frontend stack and UX.",
-        "Refactored the Review, Hall of Fame, and latest pages to the latest Vue version using modular, reusable components.",
-        "Built end-to-end integration test suites with Playwright to catch regressions before production release.",
-        "Refined the UI Detail page and implemented frontend performance optimizations."
+        "Migrated the Review Center from legacy Java templates to Vue.js, improving maintainability and user experience.",
+        "Rebuilt the Review, Hall of Fame, and feed pages with modular Vue components.",
+        "Added end-to-end Playwright test suites to catch regressions before production release.",
+        "Optimized Product Detail page rendering and overall frontend performance."
       ],
       "skills": ["JavaScript", "Vue.js", "Playwright", "Linux"]
     },
@@ -64,12 +61,12 @@
       "url": "https://www.frisidea.com/id/",
       "startDate": "2021-04-01",
       "endDate": "2022-07-01",
-      "summary": "Full-stack Developer modernizing web applications for insurance and customer care platforms using React and Vite.",
+      "summary": "Modernized web applications for insurance and customer care platforms using React and Vite.",
       "highlights": [
-        "Upgraded and enhanced the TMLI web application using modern React and Vite practices.",
-        "Improved the responsive UI/UX of kitasiap.com to align with user and client requirements.",
-        "Built a web-based customer care portal for the insurance industry to streamline policy access.",
-        "Managed Nginx configuration and deployments on Linux servers."
+        "Upgraded the TMLI web application using modern React and Vite.",
+        "Redesigned kitasiap.com for better mobile responsiveness and usability.",
+        "Built a web-based customer care portal for insurance policyholders.",
+        "Configured Nginx and managed Linux server deployments."
       ],
       "skills": ["JavaScript", "React", "Vite", "Linux"]
     },
@@ -79,11 +76,11 @@
       "url": "https://brilife.co.id",
       "startDate": "2019-02-01",
       "endDate": "2021-03-01",
-      "summary": "Full-stack Developer responsible for migrating the 'Mylife' mobile app to Flutter and building internal web applications with React and Express.js.",
+      "summary": "Migrated the 'Mylife' mobile app to Flutter and built internal web applications with React and Express.js.",
       "highlights": [
-        "Led the migration of the 'Mylife' mobile application from React Native to Flutter.",
-        "Built and maintained the 'Digiform' web app in ReactJS alongside Express.js backend APIs.",
-        "Managed three concurrent application projects, including Linux server setup and production deployments."
+        "Led the migration of the 'Mylife' mobile app from React Native to Flutter.",
+        "Built and maintained the 'Digiform' web app in React alongside Express.js APIs.",
+        "Managed three concurrent applications, including Linux server setup and production releases."
       ],
       "skills": ["JavaScript", "React", "Flutter", "Express.js", "SQL Server", "Linux", "Node.js"]
     }
@@ -134,8 +131,7 @@
     {
       "name": "Certified Software Engineer",
       "date": "2019-12-12",
-      "issuer": "Pijar Camp",
-      "url": "https://certificate.com"
+      "issuer": "Pijar Camp"
     }
   ],
   "publications": [],
@@ -156,22 +152,20 @@
       "name": "Resume Lab",
       "startDate": "2025-10-01",
       "endDate": "2025-10-10",
-      "description": "A modern, ATS-friendly resume lab built with Vue 3, TypeScript, Vite, and Tailwind CSS. Create professional resumes by uploading JSON files or filling in forms manually, then generate PDFs optimized for Applicant Tracking Systems.",
+      "description": "ATS-friendly resume builder built with Vue 3, TypeScript, Vite, and Tailwind CSS. Import JSON Resume files or fill out forms manually to export clean, parser-ready PDFs.",
       "highlights": [
-        "Built a modern, ATS-friendly resume lab using Vue 3, TypeScript, Vite, and Tailwind CSS",
-        "Implemented JSON file upload and manual form entry for resume creation",
-        "Developed PDF generation with ATS optimization for professional resumes",
-        "Created a user-friendly interface for resume management and customization",
-        "Integrated modern web technologies for a seamless user experience"
+        "Built an ATS-friendly resume builder with Vue 3, TypeScript, Vite, and Tailwind CSS",
+        "Added JSON Resume import alongside manual form editing",
+        "Implemented clean PDF export optimized for Applicant Tracking Systems"
       ],
       "keywords": ["Vue 3", "TypeScript", "Vite", "Tailwind CSS"],
       "url": "https://deanufriana.github.io/resume-lab/"
     },
     {
-      "name": "Mortgage Loan",
+      "name": "Mortgage Calculator (Simulasi KPR)",
       "startDate": "2018-03-01",
       "endDate": "2019-04-01",
-      "description": "A modern, responsive Mortgage Calculator (Simulasi KPR) built with React and Vite. This application helps users estimate their monthly mortgage payments, taking into account both fixed and floating interest rates.",
+      "description": "Interactive mortgage calculator built with React and Vite to estimate monthly payments across fixed and floating interest rates.",
       "highlights": [],
       "keywords": ["React", "Vite", "Web App"],
       "url": "https://deanufriana.github.io/simulasi-kpr/"
@@ -180,9 +174,9 @@
       "name": "Sistem Skripsi",
       "startDate": "2018-03-01",
       "endDate": "2019-04-01",
-      "description": "The thesis process becomes more organized and faster, carried out online and can be accessed anywhere via a browser with the aim of saving time, energy and making it easier to obtain information on the thesis process online.",
+      "description": "Web-based thesis management portal built with PHP and MySQL to help students and advisors track submissions, schedules, and approvals online.",
       "highlights": [],
-      "keywords": ["PHP", "MySQL", "Online System"],
+      "keywords": ["PHP", "MySQL", "Web App"],
       "url": "https://github.com/deanufriana/sistem_skripsi"
     }
   ],

@@ -22,20 +22,8 @@ export function useResume(lang: MaybeRefOrGetter<keyof typeof ui>) {
     return Math.max(0, Math.floor(months / 12));
   });
 
-  const stats = computed(() => {
-    const uniqueCompanies = new Set(resume.value.work.map((w) => w.name));
-
-    return {
-      years: yearsOfExperience.value,
-      projects: resume.value.projects.length,
-      companies: uniqueCompanies.size,
-      skills: resume.value.skills.flatMap((s) => s.keywords).length,
-    };
-  });
-
   return {
     resume,
     yearsOfExperience,
-    stats,
   };
 }

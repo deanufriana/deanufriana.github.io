@@ -151,26 +151,6 @@ html.theme-transition::view-transition-new(root) {
     border-color 0.3s ease;
 }
 
-/* Solid surface card with hairline border (R-10, R-12) */
-.surface-card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  transition: border-color 0.25s ease;
-}
-
-.surface-card-interactive {
-  background: var(--card);
-  border: 1px solid var(--border);
-  transition:
-    border-color 0.25s ease,
-    transform 0.25s ease;
-}
-
-.surface-card-interactive:hover {
-  border-color: var(--card-hover-border);
-  transform: translateY(-2px);
-}
-
 /* Smooth link transitions */
 a {
   transition:
@@ -297,10 +277,6 @@ hr {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-
-  .surface-card-interactive:hover {
-    transform: none;
-  }
 }
 
 @media print {
@@ -337,9 +313,7 @@ hr {
     padding: 1rem 0 0 0 !important;
   }
 
-  article,
-  .surface-card,
-  .surface-card-interactive {
+  article {
     break-inside: avoid;
   }
 }

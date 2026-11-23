@@ -52,6 +52,10 @@ const groupedWork = computed(() => {
   }));
 });
 
+if (groupedWork.value.length > 0) {
+  expandedCompanies.value[groupedWork.value[0].name] = true;
+}
+
 const formatDate = (date: string | undefined | null) => {
   if (!date) return t("experience.present");
   return new Date(date).toLocaleDateString(props.lang === "id" ? "id-ID" : "en-US", {
@@ -64,8 +68,12 @@ const formatDate = (date: string | undefined | null) => {
 <template>
   <section
     id="experience"
-    class="animate-fade-in-up enter-delay-1"
+    class="animate-fade-in-up enter-delay-1 border-border border-t pt-8"
   >
+    <h2 class="text-muted-foreground mb-6 text-xs font-semibold tracking-wider uppercase">
+      {{ t("experience.title") }}
+    </h2>
+
     <div class="flex flex-col gap-8">
       <article
         v-for="work in groupedWork"
@@ -94,20 +102,50 @@ const formatDate = (date: string | undefined | null) => {
             {{ work.name }}
           </h3>
 
-          <span class="text-muted-foreground text-xs font-medium">
+          <span
+            v-if="work.roles.length === 1"
+            class="text-muted-foreground text-xs font-medium"
+          >
             {{ formatDate(work.startDate) }} -
             {{ work.endDate ? formatDate(work.endDate) : t("experience.present") }}
           </span>
         </div>
 
-        <!-- Compact Primary Role & Summary -->
-        <div class="flex flex-col gap-1.5">
+        <!-- Role(s) & Summary -->
+        <div
+          v-if="work.roles.length === 1"
+          class="flex flex-col gap-1.5"
+        >
           <p class="text-foreground text-sm font-semibold">
-            {{ work.roles.map((r: { position: string }) => r.position).join(" · ") }}
+            {{ work.roles[0].position }}
           </p>
           <p class="text-muted-foreground text-sm leading-relaxed">
             {{ work.roles[0].summary }}
           </p>
+        </div>
+
+        <div
+          v-else
+          class="border-border flex flex-col gap-3 border-l-2 pl-4"
+        >
+          <div
+            v-for="(role, idx) in work.roles"
+            :key="idx"
+            class="flex flex-col gap-1"
+          >
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <p class="text-foreground text-sm font-semibold">
+                {{ role.position }}
+              </p>
+              <span class="text-muted-foreground text-xs font-medium">
+                {{ formatDate(role.startDate) }} -
+                {{ role.endDate ? formatDate(role.endDate) : t("experience.present") }}
+              </span>
+            </div>
+            <p class="text-muted-foreground text-sm leading-relaxed">
+              {{ role.summary }}
+            </p>
+          </div>
         </div>
 
         <!-- Smooth Accordion for Detailed Highlights -->
