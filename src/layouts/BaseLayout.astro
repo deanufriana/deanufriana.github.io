@@ -27,7 +27,11 @@ const jsonLd = {
   name: "Devi Adi Nufriana",
   url: siteUrl,
   jobTitle: "Software Engineer",
-  sameAs: ["https://www.linkedin.com/in/deanufriana", "https://github.com/deanufriana"],
+  sameAs: [
+    "https://www.linkedin.com/in/deanufriana",
+    "https://github.com/deanufriana",
+    "https://medium.com/@deanufriana",
+  ],
   knowsAbout: ["Vue.js", "React.js", "TypeScript", "JavaScript", "Go", "Flutter"],
 };
 ---
@@ -170,6 +174,7 @@ const jsonLd = {
       if (!window.__langTransitionInitialized) {
         window.__langTransitionInitialized = true;
         let savedScrollY = null;
+        let isLangTransition = false;
 
         document.addEventListener("astro:before-preparation", (event) => {
           const fromPath = event.from?.pathname?.replace(/\/$/, "") || "";
@@ -179,11 +184,25 @@ const jsonLd = {
 
           if (toId || toEn) {
             savedScrollY = window.scrollY;
-            document.documentElement.classList.remove("lang-to-id", "lang-to-en");
-            document.documentElement.classList.add(
-              "lang-transition",
-              toId ? "lang-to-id" : "lang-to-en",
-            );
+            isLangTransition = true;
+            document.documentElement.classList.add("lang-transition");
+          }
+        });
+
+        document.addEventListener("astro:before-swap", (event) => {
+          const newRoot = event.newDocument.documentElement;
+          newRoot.classList.add("no-intro");
+
+          const theme = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (theme === "dark" || (!theme && prefersDark)) {
+            newRoot.classList.add("dark");
+          } else {
+            newRoot.classList.remove("dark");
+          }
+
+          if (isLangTransition) {
+            newRoot.classList.add("lang-transition");
           }
         });
 
@@ -196,12 +215,9 @@ const jsonLd = {
 
         document.addEventListener("astro:page-load", () => {
           setTimeout(() => {
-            document.documentElement.classList.remove(
-              "lang-transition",
-              "lang-to-id",
-              "lang-to-en",
-            );
-          }, 420);
+            document.documentElement.classList.remove("lang-transition");
+            isLangTransition = false;
+          }, 360);
         });
       }
     </script>

@@ -26,7 +26,11 @@ export const ui = {
     "projects.openSource": "Open Source",
     "projects.liveDemo": "Live",
     "projects.personal": "Personal project",
+    "projects.moreOnGithub": "More on GitHub",
     "footer.builtWith": "Built with Astro & Vue.js",
+    "github.latestPush": "Latest push",
+    "github.languages": "Public GitHub Languages",
+    "github.updated": "Updated",
   },
   id: {
     "nav.overview": "Ringkasan",
@@ -48,7 +52,11 @@ export const ui = {
     "projects.openSource": "Open Source",
     "projects.liveDemo": "Live",
     "projects.personal": "Proyek Pribadi",
+    "projects.moreOnGithub": "Lainnya di GitHub",
     "footer.builtWith": "Dibuat dengan Astro & Vue.js",
+    "github.latestPush": "Pembaruan terbaru",
+    "github.languages": "Bahasa di GitHub Publik",
+    "github.updated": "Diperbarui",
   },
 } as const;
 

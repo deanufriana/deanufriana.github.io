@@ -114,15 +114,86 @@ body {
 }
 
 .enter-delay-1 {
-  animation-delay: 80ms;
+  animation-delay: 50ms;
 }
 
 .enter-delay-2 {
-  animation-delay: 160ms;
+  animation-delay: 100ms;
 }
 
 .enter-delay-3 {
-  animation-delay: 240ms;
+  animation-delay: 150ms;
+}
+
+.enter-delay-4 {
+  animation-delay: 210ms;
+}
+
+.enter-delay-5 {
+  animation-delay: 270ms;
+}
+
+/* Restrained editorial blur-to-sharp entrance */
+@keyframes editorialReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-editorial-in {
+  animation: editorialReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Architectural vertical hairline draw on desktop split-screen */
+@keyframes dividerDrawY {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dossier-divider::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--border);
+    transform-origin: top center;
+    pointer-events: none;
+    animation: dividerDrawY 0.7s cubic-bezier(0.22, 1, 0.36, 1) 80ms both;
+  }
+}
+
+/* Progressive CSS scroll-driven reveals for lower sections */
+@keyframes scrollReveal {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal-on-scroll {
+    animation: scrollReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 85%;
+  }
 }
 
 /* Circular theme reveal (scoped to theme toggle so Astro transitions stay untouched) */
@@ -141,10 +212,16 @@ html.theme-transition::view-transition-new(root) {
 }
 
 /* Language switch editorial blur-morph transition */
-html.lang-transition .animate-fade-in-up {
+html.no-intro .animate-fade-in-up,
+html.no-intro .animate-editorial-in,
+html.no-intro .dossier-divider::after,
+html.lang-transition .animate-fade-in-up,
+html.lang-transition .animate-editorial-in,
+html.lang-transition .dossier-divider::after {
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
+  filter: none !important;
 }
 
 html.lang-transition .lang-morph-sidebar {
@@ -163,47 +240,25 @@ html.lang-transition .lang-pill-active-mobile {
   view-transition-name: lang-pill-mobile;
 }
 
-@keyframes langSlideOutLeft {
+@keyframes langBlurOut {
   from {
     opacity: 1;
-    transform: translateX(0);
+    filter: blur(0);
   }
   to {
     opacity: 0;
-    transform: translateX(-20px);
+    filter: blur(2px);
   }
 }
 
-@keyframes langSlideInRight {
+@keyframes langBlurIn {
   from {
     opacity: 0;
-    transform: translateX(20px);
+    filter: blur(2px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes langSlideOutRight {
-  from {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-}
-
-@keyframes langSlideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+    filter: blur(0);
   }
 }
 
@@ -212,32 +267,29 @@ html.lang-transition::view-transition-new(root) {
   animation-duration: 200ms;
 }
 
-/* EN -> ID: slide left out, enter from right */
-html.lang-transition.lang-to-id::view-transition-old(lang-sidebar),
-html.lang-transition.lang-to-id::view-transition-old(lang-main) {
-  animation: langSlideOutLeft 200ms cubic-bezier(0.4, 0, 1, 1) both;
+html.lang-transition::view-transition-group(lang-sidebar),
+html.lang-transition::view-transition-group(lang-main) {
+  animation: none;
 }
 
-html.lang-transition.lang-to-id::view-transition-new(lang-sidebar) {
-  animation: langSlideInRight 300ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
+html.lang-transition::view-transition-old(lang-sidebar),
+html.lang-transition::view-transition-new(lang-sidebar),
+html.lang-transition::view-transition-old(lang-main),
+html.lang-transition::view-transition-new(lang-main) {
+  height: auto;
 }
 
-html.lang-transition.lang-to-id::view-transition-new(lang-main) {
-  animation: langSlideInRight 320ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
+html.lang-transition::view-transition-old(lang-sidebar),
+html.lang-transition::view-transition-old(lang-main) {
+  animation: langBlurOut 160ms cubic-bezier(0.4, 0, 1, 1) both;
 }
 
-/* ID -> EN: slide right out, enter from left */
-html.lang-transition.lang-to-en::view-transition-old(lang-sidebar),
-html.lang-transition.lang-to-en::view-transition-old(lang-main) {
-  animation: langSlideOutRight 200ms cubic-bezier(0.4, 0, 1, 1) both;
+html.lang-transition::view-transition-new(lang-sidebar) {
+  animation: langBlurIn 240ms cubic-bezier(0.22, 1, 0.36, 1) 40ms both;
 }
 
-html.lang-transition.lang-to-en::view-transition-new(lang-sidebar) {
-  animation: langSlideInLeft 300ms cubic-bezier(0.22, 1, 0.36, 1) 35ms both;
-}
-
-html.lang-transition.lang-to-en::view-transition-new(lang-main) {
-  animation: langSlideInLeft 320ms cubic-bezier(0.22, 1, 0.36, 1) 70ms both;
+html.lang-transition::view-transition-new(lang-main) {
+  animation: langBlurIn 260ms cubic-bezier(0.22, 1, 0.36, 1) 60ms both;
 }
 
 html.lang-transition::view-transition-group(lang-pill),
@@ -383,6 +435,14 @@ hr {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
+  .animate-editorial-in,
+  .reveal-on-scroll {
+    animation-timeline: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
 
 @media print {
@@ -397,8 +457,16 @@ hr {
   }
 
   #scroll-progress,
-  .skip-link {
+  .skip-link,
+  .dossier-divider::after {
     display: none !important;
+  }
+
+  .reveal-on-scroll {
+    animation: none !important;
+    animation-timeline: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   body {

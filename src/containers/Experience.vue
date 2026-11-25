@@ -68,7 +68,7 @@ const formatDate = (date: string | undefined | null) => {
 <template>
   <section
     id="experience"
-    class="animate-fade-in-up enter-delay-1"
+    class="animate-editorial-in enter-delay-4"
   >
     <h2 class="text-muted-foreground mb-6 text-xs font-semibold tracking-wider uppercase">
       {{ t("experience.title") }}
@@ -76,9 +76,10 @@ const formatDate = (date: string | undefined | null) => {
 
     <div class="flex flex-col gap-8">
       <article
-        v-for="work in groupedWork"
+        v-for="(work, workIdx) in groupedWork"
         :key="work.name"
         class="flex flex-col gap-2.5"
+        :class="{ 'reveal-on-scroll': workIdx > 0 }"
       >
         <!-- Company Header -->
         <div class="flex flex-wrap items-baseline justify-between gap-2">

@@ -10,6 +10,9 @@ on:
         default: patch
         type: choice
         options: [patch, minor, major]
+  schedule:
+    # Refresh build-time GitHub stats on the 1st of every month at 02:00 UTC (09:00 WIB)
+    - cron: "0 2 1 * *"
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
@@ -25,6 +28,8 @@ jobs:
         uses: actions/checkout@v6
       - name: Install, build, and upload your site
         uses: withastro/action@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -36,6 +41,7 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
   update-version:
+    if: github.event_name == 'workflow_dispatch'
     needs: deploy
     runs-on: ubuntu-latest
     permissions:

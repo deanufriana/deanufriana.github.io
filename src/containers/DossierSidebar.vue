@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import MediumIcon from "@/components/icons/MediumIcon.vue";
 import UpworkIcon from "@/components/icons/UpworkIcon.vue";
 import { useResume } from "@/composables/resume";
 import contacts from "@/data/contacts.json";
@@ -9,7 +10,6 @@ import {
   ExternalLink,
   Github,
   Globe,
-  Instagram,
   Linkedin,
   Mail,
   Moon,
@@ -27,7 +27,6 @@ const { y } = useScroll(typeof window !== "undefined" ? window : null);
 
 // Theme management
 const isDark = ref(true);
-const isMounted = ref(false);
 
 const applyCurrentTheme = () => {
   if (typeof window === "undefined") return;
@@ -139,11 +138,7 @@ const targetLangUrl = computed(() => {
 
 const handleLangSwitch = () => {
   if (typeof document !== "undefined") {
-    document.documentElement.classList.remove("lang-to-id", "lang-to-en");
-    document.documentElement.classList.add(
-      "lang-transition",
-      props.lang === "en" ? "lang-to-id" : "lang-to-en",
-    );
+    document.documentElement.classList.add("lang-transition");
   }
 };
 
@@ -155,7 +150,7 @@ const contactLabels: Record<string, string> = {
   gmail: "Email",
   github: "GitHub",
   linkedin: "LinkedIn",
-  instagram: "Instagram",
+  medium: "Medium",
   upwork: "Upwork",
 };
 
@@ -170,7 +165,6 @@ watch(y, (newY) => {
 });
 
 onMounted(() => {
-  isMounted.value = true;
   applyCurrentTheme();
   updateJakartaTime();
   clockInterval = setInterval(updateJakartaTime, 30000);
@@ -257,13 +251,12 @@ onUnmounted(() => {
           @click="toggleTheme($event)"
         >
           <Sun
-            v-if="isMounted && isDark"
             :size="18"
-            class="text-brand"
+            class="text-brand hidden dark:block"
           />
           <Moon
-            v-else
             :size="18"
+            class="block dark:hidden"
           />
         </button>
       </div>
@@ -272,11 +265,11 @@ onUnmounted(() => {
 
   <!-- Tinted Fixed Left Dossier Sidebar (Desktop) / Intro Header (Mobile) -->
   <aside
-    class="bg-sidebar border-border flex flex-col justify-between gap-10 border-b px-6 pt-24 pb-12 sm:px-10 lg:sticky lg:top-0 lg:h-dvh lg:w-[40%] lg:shrink-0 lg:border-r lg:border-b-0 lg:px-12 lg:py-16 xl:w-[38%] xl:px-16"
+    class="bg-sidebar border-border dossier-divider relative flex flex-col justify-between gap-10 border-b px-6 pt-24 pb-12 sm:px-10 lg:sticky lg:top-0 lg:h-dvh lg:w-[40%] lg:shrink-0 lg:border-b-0 lg:px-12 lg:py-16 xl:w-[38%] xl:px-16"
   >
     <div class="flex flex-col gap-8">
       <!-- Desktop Utility Row -->
-      <div class="hidden items-center justify-between lg:flex print:hidden">
+      <div class="animate-editorial-in hidden items-center justify-between lg:flex print:hidden">
         <a
           href="#overview"
           class="text-foreground text-base font-bold transition-opacity hover:opacity-80"
@@ -320,13 +313,12 @@ onUnmounted(() => {
             @click="toggleTheme($event)"
           >
             <Sun
-              v-if="isMounted && isDark"
               :size="16"
-              class="text-brand"
+              class="text-brand hidden dark:block"
             />
             <Moon
-              v-else
               :size="16"
+              class="block dark:hidden"
             />
           </button>
         </div>
@@ -335,24 +327,29 @@ onUnmounted(() => {
       <!-- Identity Block + Nav (Morphs smoothly on language switch) -->
       <div class="lang-morph-sidebar flex flex-col gap-8">
         <div class="flex flex-col gap-4">
-          <h1 class="text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl">
+          <h1
+            class="animate-editorial-in enter-delay-1 text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl"
+          >
             {{ resume.basics.name.split(" ").slice(0, 2).join(" ") }}
             <span class="font-serif font-normal italic">
               {{ resume.basics.name.split(" ").slice(2).join(" ") }}
             </span>
           </h1>
 
-          <p class="text-muted-foreground text-sm font-medium">
+          <p class="animate-editorial-in enter-delay-2 text-muted-foreground text-sm font-medium">
             {{ resume.basics.label }} · {{ resume.basics.location?.city }}
             <span
-              v-if="jakartaTime"
-              class="text-muted-foreground text-xs"
+              class="text-muted-foreground text-xs tabular-nums transition-opacity duration-300"
+              :class="jakartaTime ? 'opacity-100' : 'opacity-0 select-none'"
+              :aria-hidden="!jakartaTime || undefined"
             >
-              ({{ jakartaTime }} WIB)
+              ({{ jakartaTime || "00:00" }} WIB)
             </span>
           </p>
 
-          <p class="text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base">
+          <p
+            class="animate-editorial-in enter-delay-3 text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base"
+          >
             {{ resume.basics.summary }}
           </p>
         </div>
@@ -360,7 +357,7 @@ onUnmounted(() => {
         <!-- Simple Section Nav -->
         <nav
           aria-label="Section navigation"
-          class="hidden items-center gap-6 lg:flex print:hidden"
+          class="animate-editorial-in enter-delay-4 hidden items-center gap-6 lg:flex print:hidden"
         >
           <a
             v-for="link in navLinks"
@@ -380,7 +377,7 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center justify-between gap-4">
+    <div class="animate-editorial-in enter-delay-5 flex flex-wrap items-center justify-between gap-4">
       <!-- Social Icons -->
       <div class="flex items-center gap-1.5">
         <a
@@ -401,8 +398,8 @@ onUnmounted(() => {
             v-else-if="contact.icon === 'github'"
             :size="16"
           />
-          <Instagram
-            v-else-if="contact.icon === 'instagram'"
+          <MediumIcon
+            v-else-if="contact.icon === 'medium'"
             :size="16"
           />
           <Linkedin
