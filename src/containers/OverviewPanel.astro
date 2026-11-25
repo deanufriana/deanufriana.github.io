@@ -1,0 +1,162 @@
+---
+import { useTranslations, type ui } from "@/i18n/ui";
+import type { GitHubLanguageShare, GitHubRepoMeta } from "@/lib/github";
+import type { Resume } from "@/schemas/resume";
+
+interface Props {
+  lang?: keyof typeof ui;
+  resume: Resume;
+  yearsOfExperience: number;
+  latestPush?: GitHubRepoMeta | null;
+  languages?: GitHubLanguageShare[];
+}
+
+const {
+  lang = "en",
+  resume,
+  yearsOfExperience,
+  latestPush = null,
+  languages = [],
+} = Astro.props;
+
+const t = useTranslations(lang);
+const currentRole = resume.work[0];
+
+const formatMonthYear = (dateStr: string) =>
+  new Date(dateStr).toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
+    month: "short",
+    year: "numeric",
+  });
+---
+
+<section
+  id="overview"
+  class="animate-editorial-in enter-delay-3 space-y-6"
+>
+  <!-- Key Facts (open, cardless) -->
+  <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+    {
+      currentRole && (
+        <div>
+          <dt class="text-muted-foreground text-xs font-medium">{t("overview.current")}</dt>
+          <dd class="text-foreground mt-0.5 text-sm font-semibold">
+            {currentRole.position} @ {currentRole.name}
+          </dd>
+        </div>
+      )
+    }
+    <div>
+      <dt class="text-muted-foreground text-xs font-medium">
+        {t("overview.experience")}
+      </dt>
+      <dd class="text-foreground mt-0.5 text-sm font-semibold">
+        {yearsOfExperience}+ {t("overview.yearsSuffix")}
+      </dd>
+    </div>
+    <div>
+      <dt class="text-muted-foreground text-xs font-medium">
+        {t("overview.location")}
+      </dt>
+      <dd class="text-foreground mt-0.5 text-sm font-semibold">
+        {resume.basics.location?.city}, {resume.basics.location?.region}
+      </dd>
+    </div>
+  </dl>
+
+  <!-- Latest GitHub Activity Pulse -->
+  {
+    latestPush && (
+      <p class="text-muted-foreground flex flex-wrap items-center gap-1.5 text-xs">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="text-brand shrink-0"
+          aria-hidden="true"
+        >
+          <line
+            x1="6"
+            x2="6"
+            y1="3"
+            y2="15"
+          />
+          <circle
+            cx="18"
+            cy="6"
+            r="3"
+          />
+          <circle
+            cx="6"
+            cy="18"
+            r="3"
+          />
+          <path d="M18 9a9 9 0 0 1-9 9" />
+        </svg>
+        <span>{t("github.latestPush")}:</span>
+        <a
+          href={latestPush.htmlUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-foreground hover:text-brand font-medium transition-colors"
+        >
+          {latestPush.name}
+        </a>
+        <span>· {formatMonthYear(latestPush.pushedAt)}</span>
+      </p>
+    )
+  }
+
+  <!-- Core Stack (open 2-col list, cardless) -->
+  <div class="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+    {
+      resume.skills.map((group) => (
+        <div>
+          <p class="text-foreground text-xs font-semibold">{group.name}</p>
+          <p class="text-muted-foreground mt-0.5 text-xs leading-relaxed">
+            {group.keywords.join(" · ")}
+          </p>
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Hairline GitHub Language Breakdown -->
+  {
+    languages.length > 0 && (
+      <div class="space-y-2 pt-1">
+        <p class="text-muted-foreground text-xs font-medium">{t("github.languages")}</p>
+        <div
+          class="bg-muted flex h-1.5 w-full gap-0.5 overflow-hidden rounded-full"
+          aria-hidden="true"
+        >
+          {languages.map((langItem) => (
+            <span
+              class="h-full"
+              style={`width: ${langItem.percent}%; background-color: ${langItem.color}`}
+              title={`${langItem.name} ${langItem.percent}%`}
+            />
+          ))}
+        </div>
+        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]">
+          {languages.map((langItem) => (
+            <span class="text-muted-foreground inline-flex items-center gap-1.5">
+              <span
+                class="h-2 w-2 rounded-full"
+                style={`background-color: ${langItem.color}`}
+                aria-hidden="true"
+              />
+              <span class="text-foreground font-medium">{langItem.name}</span>
+              <span>{langItem.percent}%</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</section>

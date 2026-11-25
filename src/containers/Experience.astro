@@ -1,0 +1,170 @@
+---
+import { useTranslations, type ui } from "@/i18n/ui";
+import { groupWorkByCompany } from "@/lib/resume";
+import type { Work } from "@/schemas/resume";
+
+interface Props {
+  lang?: keyof typeof ui;
+  work: Work[];
+}
+
+const { lang = "en", work } = Astro.props;
+const t = useTranslations(lang);
+const groupedWork = groupWorkByCompany(work);
+
+const formatDate = (date: string | undefined | null) => {
+  if (!date) return t("experience.present");
+  return new Date(date).toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
+    year: "numeric",
+    month: "short",
+  });
+};
+---
+
+<section
+  id="experience"
+  class="animate-editorial-in enter-delay-4"
+>
+  <h2 class="text-muted-foreground mb-6 text-xs font-semibold tracking-wider uppercase">
+    {t("experience.title")}
+  </h2>
+
+  <div class="flex flex-col gap-8">
+    {
+      groupedWork.map((company, workIdx) => (
+        <article
+          class:list={["flex flex-col gap-2.5", { "reveal-on-scroll": workIdx > 0 }]}
+        >
+          {/* Company Header */}
+          <div class="flex flex-wrap items-baseline justify-between gap-2">
+            {company.url ? (
+              <a
+                href={company.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group/link text-foreground hover:text-brand inline-flex items-center gap-1.5 text-lg font-bold transition-colors"
+              >
+                {company.name}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-muted-foreground transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                  aria-hidden="true"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </a>
+            ) : (
+              <h3 class="text-foreground text-lg font-bold">{company.name}</h3>
+            )}
+
+            {company.roles.length === 1 && (
+              <span class="text-muted-foreground text-xs font-medium">
+                {formatDate(company.startDate)} -{" "}
+                {company.endDate ? formatDate(company.endDate) : t("experience.present")}
+              </span>
+            )}
+          </div>
+
+          {/* Role(s) & Summary */}
+          {company.roles.length === 1 ? (
+            <div class="flex flex-col gap-1.5">
+              <p class="text-foreground text-sm font-semibold">{company.roles[0].position}</p>
+              <p class="text-muted-foreground text-sm leading-relaxed">
+                {company.roles[0].summary}
+              </p>
+            </div>
+          ) : (
+            <div class="border-border flex flex-col gap-3 border-l-2 pl-4">
+              {company.roles.map((role) => (
+                <div class="flex flex-col gap-1">
+                  <div class="flex flex-wrap items-baseline justify-between gap-2">
+                    <p class="text-foreground text-sm font-semibold">{role.position}</p>
+                    <span class="text-muted-foreground text-xs font-medium">
+                      {formatDate(role.startDate)} -{" "}
+                      {role.endDate ? formatDate(role.endDate) : t("experience.present")}
+                    </span>
+                  </div>
+                  <p class="text-muted-foreground text-sm leading-relaxed">{role.summary}</p>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Native Details Accordion for Detailed Highlights (Zero JS) */}
+          {company.hasHighlights ? (
+            <details
+              open={workIdx === 0}
+              class="group"
+            >
+              <summary class="flex cursor-pointer list-none flex-wrap items-center justify-between gap-3 pt-0.5 [&::-webkit-details-marker]:hidden">
+                <span class="text-muted-foreground text-xs">{company.allSkills.join(" · ")}</span>
+                <span class="text-brand inline-flex min-h-9 items-center gap-1 text-xs font-semibold transition-opacity hover:opacity-80 print:hidden">
+                  <span class="group-open:hidden">{t("experience.details")}</span>
+                  <span class="hidden group-open:inline">{t("experience.hideDetails")}</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="transition-transform duration-200 group-open:rotate-180"
+                    aria-hidden="true"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </span>
+              </summary>
+
+              <div class="flex flex-col gap-4 pt-3 pb-1">
+                {company.roles.map((role) => (
+                  <div class="flex flex-col gap-2">
+                    {company.roles.length > 1 && (
+                      <div class="flex flex-wrap items-baseline justify-between gap-2">
+                        <h4 class="text-foreground text-xs font-semibold">{role.position}</h4>
+                        <span class="text-muted-foreground text-xs">
+                          {formatDate(role.startDate)} -{" "}
+                          {role.endDate ? formatDate(role.endDate) : t("experience.present")}
+                        </span>
+                      </div>
+                    )}
+
+                    {role.highlights.length > 0 && (
+                      <ul class="flex flex-col gap-1.5">
+                        {role.highlights.map((highlight) => (
+                          <li class="text-foreground/85 flex gap-2.5 text-sm leading-relaxed">
+                            <span
+                              class="bg-brand mt-2 h-1 w-1 shrink-0 rounded-full"
+                              aria-hidden="true"
+                            />
+                            <span>{highlight}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </details>
+          ) : (
+            <div class="flex flex-wrap items-center justify-between gap-3 pt-0.5">
+              <p class="text-muted-foreground text-xs">{company.allSkills.join(" · ")}</p>
+            </div>
+          )}
+        </article>
+      ))
+    }
+  </div>
+</section>

@@ -11,8 +11,24 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://deanufriana.github.io/",
 
+  i18n: {
+    locales: ["en", "id"],
+    defaultLocale: "en",
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
+
   integrations: [
-    sitemap(),
+    sitemap({
+      i18n: {
+        defaultLocale: "en",
+        locales: {
+          en: "en-US",
+          id: "id-ID",
+        },
+      },
+    }),
     vue(),
     partytown({
       // Adds dataLayer.push as a forwarding-event.

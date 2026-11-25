@@ -1,4 +1,6 @@
 ---
+import interLatin400 from "@fontsource/inter/files/inter-latin-400-normal.woff2?url";
+import interLatin700 from "@fontsource/inter/files/inter-latin-700-normal.woff2?url";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
@@ -7,6 +9,7 @@ interface Props {
   lang?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  showHreflang?: boolean;
 }
 
 const {
@@ -15,6 +18,7 @@ const {
   lang = "en",
   canonicalUrl,
   ogImage = "https://deanufriana.github.io/og-image.png",
+  showHreflang = false,
 } = Astro.props;
 
 const siteUrl = "https://deanufriana.github.io";
@@ -51,6 +55,20 @@ const jsonLd = {
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+    <link
+      rel="preload"
+      href={interLatin400}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={interLatin700}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Security & Privacy -->
     <meta
@@ -80,6 +98,27 @@ const jsonLd = {
       rel="canonical"
       href={canonical}
     />
+    {
+      showHreflang && (
+        <>
+          <link
+            rel="alternate"
+            hreflang="en"
+            href={`${siteUrl}/`}
+          />
+          <link
+            rel="alternate"
+            hreflang="id"
+            href={`${siteUrl}/id/`}
+          />
+          <link
+            rel="alternate"
+            hreflang="x-default"
+            href={`${siteUrl}/`}
+          />
+        </>
+      )
+    }
 
     <!-- Open Graph -->
     <meta
@@ -280,6 +319,66 @@ const jsonLd = {
             outbound: isOutbound,
           });
         });
+
+        // --- Core Web Vitals: Largest Contentful Paint (LCP) ---
+        if (
+          "PerformanceObserver" in window &&
+          PerformanceObserver.supportedEntryTypes?.includes("largest-contentful-paint")
+        ) {
+          let lastLcpEntry = null;
+          let lcpReported = false;
+
+          const lcpObserver = new PerformanceObserver((list) => {
+            const entries = list.getEntries();
+            if (entries.length > 0) {
+              lastLcpEntry = entries[entries.length - 1];
+            }
+          });
+
+          const reportLcp = () => {
+            if (lcpReported || !lastLcpEntry) return;
+            lcpReported = true;
+            lcpObserver.disconnect();
+
+            const value = Math.round(lastLcpEntry.startTime);
+            const rating = value <= 2500 ? "good" : value <= 4000 ? "needs-improvement" : "poor";
+            const el = lastLcpEntry.element;
+            const element = el ? el.tagName.toLowerCase() + (el.id ? "#" + el.id : "") : "unknown";
+
+            window.__lcpMetric = { value, rating, element };
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              event: "web_vitals",
+              metric_name: "LCP",
+              metric_value: value,
+              metric_rating: rating,
+              lcp_element: element,
+            });
+          };
+
+          try {
+            lcpObserver.observe({ type: "largest-contentful-paint", buffered: true });
+
+            if (document.readyState === "complete") {
+              requestAnimationFrame(reportLcp);
+            } else {
+              window.addEventListener("load", () => requestAnimationFrame(reportLcp), {
+                once: true,
+              });
+            }
+
+            window.addEventListener("keydown", reportLcp, { once: true, capture: true });
+            window.addEventListener("pointerdown", reportLcp, { once: true, capture: true });
+            window.addEventListener("pagehide", reportLcp, { once: true });
+            document.addEventListener("visibilitychange", () => {
+              if (document.visibilityState === "hidden") {
+                reportLcp();
+              }
+            });
+          } catch {
+            // Ignore unsupported observer options in older browsers
+          }
+        }
       })();
     </script>
   </head>

@@ -1,12 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@import "@fontsource/inter/300.css";
 @import "@fontsource/inter/400.css";
 @import "@fontsource/inter/500.css";
 @import "@fontsource/inter/600.css";
 @import "@fontsource/inter/700.css";
-@import "@fontsource/inter/800.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -151,6 +149,20 @@ body {
   animation: editorialReveal 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* LCP-safe entrance: starts immediately visible (opacity: 1) so the browser paints LCP without delay */
+@keyframes lcpReveal {
+  from {
+    transform: translateY(6px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-lcp-in {
+  animation: lcpReveal 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* Architectural vertical hairline draw on desktop split-screen */
 @keyframes dividerDrawY {
   from {
@@ -214,9 +226,11 @@ html.theme-transition::view-transition-new(root) {
 /* Language switch editorial blur-morph transition */
 html.no-intro .animate-fade-in-up,
 html.no-intro .animate-editorial-in,
+html.no-intro .animate-lcp-in,
 html.no-intro .dossier-divider::after,
 html.lang-transition .animate-fade-in-up,
 html.lang-transition .animate-editorial-in,
+html.lang-transition .animate-lcp-in,
 html.lang-transition .dossier-divider::after {
   animation: none !important;
   opacity: 1 !important;
@@ -331,7 +345,7 @@ section {
   padding: 10px 20px;
   z-index: 1000;
   border-radius: 0 0 10px 10px;
-  font-weight: 800;
+  font-weight: 700;
   text-decoration: none;
   transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -437,6 +451,7 @@ hr {
   }
 
   .animate-editorial-in,
+  .animate-lcp-in,
   .reveal-on-scroll {
     animation-timeline: none !important;
     opacity: 1 !important;

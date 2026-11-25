@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import MediumIcon from "@/components/icons/MediumIcon.vue";
 import UpworkIcon from "@/components/icons/UpworkIcon.vue";
-import { useResume } from "@/composables/resume";
 import contacts from "@/data/contacts.json";
 import { useTranslations, type ui } from "@/i18n/ui";
+import type { Basics } from "@/schemas/resume";
 import { useIntersectionObserver, useScroll } from "@vueuse/core";
 import {
   Download,
@@ -17,40 +17,34 @@ import {
 } from "lucide-vue-next";
 import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 
-const props = withDefaults(defineProps<{ lang?: keyof typeof ui }>(), {
-  lang: "en",
-});
-const t = useTranslations(props.lang);
-const { resume } = useResume(props.lang);
+const props = withDefaults(
+  defineProps<{
+    lang?: keyof typeof ui;
+    basics: Basics;
+    targetLangUrl: string;
+  }>(),
+  {
+    lang: "en",
+  },
+);
+
+const t = computed(() => useTranslations(props.lang));
 
 const { y } = useScroll(typeof window !== "undefined" ? window : null);
 
-// Theme management
+// Theme management (initial class is applied by BaseLayout's inline script)
 const isDark = ref(true);
 
-const applyCurrentTheme = () => {
-  if (typeof window === "undefined") return;
-  const theme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  if (theme === "dark" || (!theme && prefersDark)) {
-    isDark.value = true;
-    document.documentElement.classList.add("dark");
-  } else {
-    isDark.value = false;
-    document.documentElement.classList.remove("dark");
-  }
+const syncThemeState = () => {
+  if (typeof document === "undefined") return;
+  isDark.value = document.documentElement.classList.contains("dark");
 };
 
 const commitThemeToggle = () => {
   isDark.value = !isDark.value;
   if (typeof window !== "undefined") {
-    if (isDark.value) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
+    document.documentElement.classList.toggle("dark", isDark.value);
+    localStorage.setItem("theme", isDark.value ? "dark" : "light");
   }
 };
 
@@ -127,14 +121,10 @@ const sections = ["overview", "experience", "projects"] as const;
 const stopObservers: Array<() => void> = [];
 
 const navLinks = computed(() => [
-  { id: "overview", href: "#overview", label: t("nav.overview") },
-  { id: "experience", href: "#experience", label: t("nav.experience") },
-  { id: "projects", href: "#projects", label: t("nav.projects") },
+  { id: "overview", href: "#overview", label: t.value("nav.overview") },
+  { id: "experience", href: "#experience", label: t.value("nav.experience") },
+  { id: "projects", href: "#projects", label: t.value("nav.projects") },
 ]);
-
-const targetLangUrl = computed(() => {
-  return props.lang === "en" ? "/id/" : "/";
-});
 
 const handleLangSwitch = () => {
   if (typeof document !== "undefined") {
@@ -143,7 +133,7 @@ const handleLangSwitch = () => {
 };
 
 const upworkProfile = computed(() =>
-  resume.value.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
+  props.basics.profiles.find((p) => p.network.toLowerCase() === "upwork"),
 );
 
 const contactLabels: Record<string, string> = {
@@ -165,10 +155,10 @@ watch(y, (newY) => {
 });
 
 onMounted(() => {
-  applyCurrentTheme();
+  syncThemeState();
   updateJakartaTime();
   clockInterval = setInterval(updateJakartaTime, 30000);
-  document.addEventListener("astro:after-swap", applyCurrentTheme);
+  document.addEventListener("astro:after-swap", syncThemeState);
 
   sections.forEach((id) => {
     const el = document.getElementById(id);
@@ -199,7 +189,7 @@ onUnmounted(() => {
   stopObservers.forEach((stop) => stop());
   stopObservers.length = 0;
   if (typeof window !== "undefined") {
-    document.removeEventListener("astro:after-swap", applyCurrentTheme);
+    document.removeEventListener("astro:after-swap", syncThemeState);
   }
 });
 </script>
@@ -212,7 +202,7 @@ onUnmounted(() => {
         href="#overview"
         class="text-foreground text-base font-bold"
       >
-        {{ resume.basics.name.split(" ")[0] }}<span class="text-brand">.</span>
+        {{ basics.name.split(" ")[0] }}<span class="text-brand">.</span>
       </a>
       <div class="flex items-center gap-1.5">
         <a
@@ -274,7 +264,7 @@ onUnmounted(() => {
           href="#overview"
           class="text-foreground text-base font-bold transition-opacity hover:opacity-80"
         >
-          {{ resume.basics.name.split(" ")[0] }}<span class="text-brand">.</span>
+          {{ basics.name.split(" ")[0] }}<span class="text-brand">.</span>
         </a>
         <div class="flex items-center gap-1.5">
           <a
@@ -328,16 +318,16 @@ onUnmounted(() => {
       <div class="lang-morph-sidebar flex flex-col gap-8">
         <div class="flex flex-col gap-4">
           <h1
-            class="animate-editorial-in enter-delay-1 text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl"
+            class="animate-lcp-in text-4xl leading-[1.06] font-bold tracking-tight sm:text-5xl"
           >
-            {{ resume.basics.name.split(" ").slice(0, 2).join(" ") }}
+            {{ basics.name.split(" ").slice(0, 2).join(" ") }}
             <span class="font-serif font-normal italic">
-              {{ resume.basics.name.split(" ").slice(2).join(" ") }}
+              {{ basics.name.split(" ").slice(2).join(" ") }}
             </span>
           </h1>
 
           <p class="animate-editorial-in enter-delay-2 text-muted-foreground text-sm font-medium">
-            {{ resume.basics.label }} · {{ resume.basics.location?.city }}
+            {{ basics.label }} · {{ basics.location?.city }}
             <span
               class="text-muted-foreground text-xs tabular-nums transition-opacity duration-300"
               :class="jakartaTime ? 'opacity-100' : 'opacity-0 select-none'"
@@ -348,9 +338,9 @@ onUnmounted(() => {
           </p>
 
           <p
-            class="animate-editorial-in enter-delay-3 text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base"
+            class="animate-lcp-in text-muted-foreground max-w-md text-sm leading-relaxed sm:text-base"
           >
-            {{ resume.basics.summary }}
+            {{ basics.summary }}
           </p>
         </div>
 

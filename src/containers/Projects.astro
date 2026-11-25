@@ -1,0 +1,236 @@
+---
+import { badgeVariants } from "@/components/ui/badge";
+import { useTranslations, type ui } from "@/i18n/ui";
+import type { GitHubRepoMeta } from "@/lib/github";
+import { cn } from "@/lib/utils";
+import type { Project } from "@/schemas/resume";
+
+interface Props {
+  lang?: keyof typeof ui;
+  projects: Project[];
+  repoStats?: Record<string, GitHubRepoMeta>;
+  recentRepos?: GitHubRepoMeta[];
+}
+
+const { lang = "en", projects, repoStats = {}, recentRepos = [] } = Astro.props;
+const t = useTranslations(lang);
+
+const extractRepoSlug = (url: string): string | null => {
+  try {
+    const parsed = new URL(url);
+    const parts = parsed.pathname.split("/").filter(Boolean);
+    if (parsed.hostname.includes("github.com") && parts.length >= 2) {
+      return parts[1].toLowerCase();
+    }
+    if (parsed.hostname.endsWith("github.io") && parts.length >= 1) {
+      return parts[0].toLowerCase();
+    }
+    return null;
+  } catch {
+    return null;
+  }
+};
+
+const enrichedProjects = projects.map((project) => {
+  const slug = extractRepoSlug(project.url);
+  return {
+    project,
+    isGitHub: project.url.includes("github.com"),
+    year: project.startDate ? new Date(project.startDate).getFullYear() : "",
+    repoMeta: slug ? (repoStats[slug] ?? null) : null,
+  };
+});
+
+const featuredSlugs = new Set(
+  projects.map((p) => extractRepoSlug(p.url)).filter((s): s is string => Boolean(s)),
+);
+const extraRepos = recentRepos
+  .filter((repo) => !featuredSlugs.has(repo.name.toLowerCase()))
+  .slice(0, 3);
+
+const formatMonthYear = (dateStr: string) =>
+  new Date(dateStr).toLocaleDateString(lang === "id" ? "id-ID" : "en-US", {
+    month: "short",
+    year: "numeric",
+  });
+---
+
+<section id="projects">
+  <div class="reveal-on-scroll">
+    <h2 class="text-muted-foreground mb-2 text-xs font-semibold tracking-wider uppercase">
+      {t("projects.title")}
+    </h2>
+
+    <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
+      {t("projects.subtitle")}
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    {
+      enrichedProjects.map(({ project, isGitHub, year, repoMeta }) => (
+        <div class="reveal-on-scroll group hover:bg-sidebar/60 relative -mx-3 flex flex-col gap-2 rounded-lg p-3 transition-colors duration-200">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View project: ${project.name}`}
+            class="absolute inset-0 z-10"
+          />
+
+          {/* Project Header */}
+          <div class="flex items-start justify-between gap-3">
+            <div class="flex flex-wrap items-center gap-2">
+              <h3 class="text-foreground group-hover:text-brand text-base font-bold transition-colors">
+                {project.name}
+              </h3>
+              <span
+                class={cn(
+                  badgeVariants({ variant: isGitHub ? "secondary" : "brand" }),
+                  "rounded-md px-2 py-0.5 text-[11px] font-semibold",
+                )}
+              >
+                {isGitHub ? t("projects.openSource") : t("projects.liveDemo")}
+              </span>
+              {year && <span class="text-muted-foreground text-xs">{year}</span>}
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-muted-foreground group-hover:text-brand mt-0.5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              aria-hidden="true"
+            >
+              <path d="M7 7h10v10" />
+              <path d="M7 17 17 7" />
+            </svg>
+          </div>
+
+          {/* Description */}
+          {project.description ? (
+            <p class="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+          ) : (
+            <p class="text-muted-foreground text-sm leading-relaxed italic">
+              {t("projects.personal")}
+            </p>
+          )}
+
+          {/* Tech Stack + Live GitHub Repo Metadata */}
+          <div class="text-muted-foreground/80 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            {project.keywords.length > 0 && <span>{project.keywords.join(" · ")}</span>}
+            {repoMeta && (
+              <>
+                {repoMeta.language && (
+                  <span class="text-muted-foreground font-medium">· {repoMeta.language}</span>
+                )}
+                {repoMeta.stars > 0 && (
+                  <span class="text-muted-foreground inline-flex items-center gap-1 font-medium">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-brand"
+                      aria-hidden="true"
+                    >
+                      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                    </svg>
+                    {repoMeta.stars}
+                  </span>
+                )}
+                <span>
+                  · {t("github.updated")} {formatMonthYear(repoMeta.pushedAt)}
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Compact Recently Updated GitHub Repos */}
+  {
+    extraRepos.length > 0 && (
+      <div class="reveal-on-scroll border-border/60 mt-8 border-t pt-6">
+        <h3 class="text-muted-foreground mb-3 text-xs font-semibold tracking-wider uppercase">
+          {t("projects.moreOnGithub")}
+        </h3>
+        <div class="grid grid-cols-1 gap-2 sm:grid-cols-3">
+          {extraRepos.map((repo) => (
+            <a
+              href={repo.htmlUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group hover:bg-sidebar/60 border-border/70 flex flex-col justify-between gap-2 rounded-lg border p-3 transition-colors"
+            >
+              <div class="space-y-1">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="text-foreground group-hover:text-brand truncate text-xs font-semibold transition-colors">
+                    {repo.name}
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="text-muted-foreground group-hover:text-brand shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    aria-hidden="true"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </div>
+                {repo.description && (
+                  <p class="text-muted-foreground line-clamp-2 text-[11px] leading-relaxed">
+                    {repo.description}
+                  </p>
+                )}
+              </div>
+              <div class="text-muted-foreground/80 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px]">
+                {repo.language && <span>{repo.language}</span>}
+                {repo.stars > 0 && (
+                  <span class="inline-flex items-center gap-0.5">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="10"
+                      height="10"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="text-brand"
+                      aria-hidden="true"
+                    >
+                      <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z" />
+                    </svg>
+                    {repo.stars}
+                  </span>
+                )}
+                <span>{formatMonthYear(repo.pushedAt)}</span>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )
+  }
+</section>

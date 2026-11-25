@@ -1,13 +1,14 @@
 ---
 import DossierSidebar from "@/containers/DossierSidebar.vue";
-import Experience from "@/containers/Experience.vue";
-import Footer from "@/containers/Footer.vue";
-import OverviewPanel from "@/containers/OverviewPanel.vue";
-import Projects from "@/containers/Projects.vue";
-import resumeEn from "@/data/resume/en.json";
-import resumeId from "@/data/resume/id.json";
+import Experience from "@/containers/Experience.astro";
+import Footer from "@/containers/Footer.astro";
+import OverviewPanel from "@/containers/OverviewPanel.astro";
+import Projects from "@/containers/Projects.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { fetchGitHubPortfolioData } from "@/lib/github";
+import { calculateYearsOfExperience } from "@/lib/resume";
+import { getEntry } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import "../styles/global.css";
 import type { ui } from "@/i18n/ui";
 
@@ -17,11 +18,20 @@ interface Props {
 
 const { lang = "en" } = Astro.props;
 
+const entry = await getEntry("resume", lang);
+if (!entry) {
+  throw new Error(`Missing resume content entry for locale "${lang}"`);
+}
+const resume = entry.data;
+
 const isId = lang === "id";
-const resume = isId ? resumeId : resumeEn;
 const title = `${resume.basics.name} | ${resume.basics.label}`;
-const description = resume.basics.summary;
-const canonicalUrl = isId ? "https://deanufriana.github.io/id/" : "https://deanufriana.github.io/";
+const description = resume.basics.summary ?? "";
+const canonicalUrl = isId
+  ? "https://deanufriana.github.io/id/"
+  : "https://deanufriana.github.io/";
+const targetLangUrl = getRelativeLocaleUrl(isId ? "en" : "id");
+const yearsOfExperience = calculateYearsOfExperience(resume.work);
 const githubData = await fetchGitHubPortfolioData("deanufriana");
 ---
 
@@ -30,10 +40,13 @@ const githubData = await fetchGitHubPortfolioData("deanufriana");
   description={description}
   lang={lang}
   canonicalUrl={canonicalUrl}
+  showHreflang={true}
 >
   <div class="flex min-h-dvh flex-col lg:flex-row">
     <DossierSidebar
       lang={lang}
+      basics={resume.basics}
+      targetLangUrl={targetLangUrl}
       client:load
     />
     <main
@@ -43,19 +56,25 @@ const githubData = await fetchGitHubPortfolioData("deanufriana");
       <div class="lang-morph-main mx-auto flex max-w-3xl flex-col gap-12">
         <OverviewPanel
           lang={lang}
+          resume={resume}
+          yearsOfExperience={yearsOfExperience}
           latestPush={githubData.latestPush}
           languages={githubData.languages}
         />
         <Experience
           lang={lang}
-          client:visible
+          work={resume.work}
         />
         <Projects
           lang={lang}
+          projects={resume.projects}
           repoStats={githubData.repos}
           recentRepos={githubData.recentRepos}
         />
-        <Footer lang={lang} />
+        <Footer
+          lang={lang}
+          name={resume.basics.name}
+        />
       </div>
     </main>
   </div>
